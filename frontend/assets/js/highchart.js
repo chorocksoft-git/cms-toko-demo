@@ -139,7 +139,7 @@ const createChartData = (data) => {
         lineWidth: 1,
         states: {
           hover: {
-            lineWidth: 1,
+            lineWidth: 2,
           },
         },
         threshold: null,
@@ -148,7 +148,7 @@ const createChartData = (data) => {
         marker: {
           radius: 2,
         },
-        lineWidth: 1,
+        lineWidth: 2,
         states: {
           hover: {
             lineWidth: 1,
