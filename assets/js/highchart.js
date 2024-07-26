@@ -1,5 +1,5 @@
-const HOUR = "1h";
-const DAY = "24h";
+const HOUR = "1D";
+const DAY = "7D";
 
 const ONE_HOUR = 1000 * 60 * 60;
 const TEN_MINUTES = 1000 * 60 * 10;
@@ -14,7 +14,7 @@ const createChartData = (data) => {
     timecode_datetime: timecodeDatetime,
     is_same_timecode: isSameTimecode,
   } = data;
-  let period = "24h";
+  let period = "1D";
   const timeCode = timecodeDatetime?.split(" ").join("T");
   const now = new Date(timeCode);
   const baseTime = new Date(timeCode).setHours(
@@ -30,7 +30,7 @@ const createChartData = (data) => {
     is_same_timecode: isSameTimecode,
     last_ai_price_point: [
       period === HOUR
-        ? (parseInt(baseTime / tickInterval, 10) + (25 + 1)) * tickInterval +
+        ? (parseInt(baseTime / tickInterval, 10) + (24 + 1)) * tickInterval +
           parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES
         : (parseInt(baseTime / tickInterval, 10) + 170) * tickInterval +
           parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES,
@@ -161,19 +161,6 @@ async function init() {
       },
     ],
 
-    tooltip: {
-      shared: true,
-      crosshairs: true,
-      split: true,
-      backgroundColor: "#fff",
-      borderWidth: 2,
-      borderColor: this.color,
-      useHTML: true,
-      style: {
-        fontSize: "12px",
-      },
-    },
-
     legend: {
       layout: "horizontal",
       align: "left",
@@ -191,6 +178,19 @@ async function init() {
 
       labelFormatter: function () {
         return `<span style="color:${this.color}">${this.name}</span>`;
+      },
+    },
+
+    tooltip: {
+      shared: true,
+      crosshairs: true,
+      split: true,
+      backgroundColor: "#fff",
+      borderWidth: 2,
+      borderColor: this.color,
+      useHTML: true,
+      style: {
+        fontSize: "12px",
       },
     },
     plotOptions: {
@@ -248,16 +248,10 @@ async function init() {
         name: "1h Prediction",
         type: "line",
         data: [lastAiPricePoint],
-        color: "rgba(0, 126, 200, 1)",
+        color: "#007EC8",
         marker: {
           symbol: "circle",
           radius: 20,
-          states: {
-            hover: {
-              enabled: true,
-            },
-          },
-
           fillColor: {
             radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
             stops: [
