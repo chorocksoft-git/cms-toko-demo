@@ -1,36 +1,37 @@
-const now = new Date();
 let currentPage = 0;
 const itemsPerPage = 3;
 const footer = document.querySelector(".footer");
+const listContainer = document.getElementById("price-list");
 
 function loadListData() {
-  const listContainer = document.getElementById("price-list");
-
   const start = currentPage * itemsPerPage;
   const end = start + itemsPerPage;
   const currentData = priceData.price_mape_list.slice(start, end);
 
+  if (currentPage === 0) {
+    listContainer.innerHTML = "";
+  }
+
   currentData.forEach((item, index) => {
-    const globalIndex = start + index;
-    if (!priceData.is_same_timecode && index === 0) {
-      return;
-    }
-    const time = priceData.is_same_timecode ? globalIndex + 1 : globalIndex;
+    const globalIndex = start + index + 1;
     const row = document.createElement("div");
     row.className = "time-list-row";
 
     const timeDiv = document.createElement("div");
     const timeSpan = document.createElement("span");
-    timeSpan.textContent = `${time}0 분 전`;
+    timeSpan.textContent = `${globalIndex}0 분 전`;
     timeDiv.appendChild(timeSpan);
 
     const timeRangeDiv = document.createElement("div");
     const timeRangeSpan = document.createElement("span");
 
-    let endTime = new Date(now);
-    endTime.setMinutes(Math.floor(endTime.getMinutes() / 10) * 10 - time * 10);
+    let endTime = new Date(priceData.timecode_datetime);
+    endTime.setMinutes(
+      Math.floor(endTime.getMinutes() / 10) * 10 - globalIndex * 10
+    );
 
     let startTime = new Date(endTime);
+    startTime.setHours(startTime.getHours() - 1);
     startTime.setMinutes(startTime.getMinutes() - 10);
 
     timeRangeSpan.textContent = `${formatDateTime(
