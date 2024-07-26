@@ -161,19 +161,6 @@ async function init() {
       },
     ],
 
-    tooltip: {
-      shared: true,
-      crosshairs: true,
-      split: true,
-      backgroundColor: "#fff",
-      borderWidth: 2,
-      borderColor: this.color,
-      useHTML: true,
-      style: {
-        fontSize: "12px",
-      },
-    },
-
     legend: {
       layout: "horizontal",
       align: "left",
@@ -191,6 +178,19 @@ async function init() {
 
       labelFormatter: function () {
         return `<span style="color:${this.color}">${this.name}</span>`;
+      },
+    },
+
+    tooltip: {
+      shared: true,
+      crosshairs: true,
+      split: true,
+      backgroundColor: "#fff",
+      borderWidth: 2,
+      borderColor: this.color,
+      useHTML: true,
+      style: {
+        fontSize: "12px",
       },
     },
     plotOptions: {
@@ -248,17 +248,10 @@ async function init() {
         name: "1h Prediction",
         type: "line",
         data: [lastAiPricePoint],
-        color: "rgba(0, 126, 200, 1)",
+        color: "#007EC8",
         marker: {
-          enabled: true,
           symbol: "circle",
           radius: 20,
-          states: {
-            hover: {
-              enabled: true,
-            },
-          },
-
           fillColor: {
             radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
             stops: [
