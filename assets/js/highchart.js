@@ -6,15 +6,15 @@ const TEN_MINUTES = 1000 * 60 * 10;
 const tickInterval = ONE_HOUR;
 
 let priceData = {};
+let period = "1D";
 
-const createChartData = (data) => {
+const createChartData = () => {
   const {
     week_price_chart: weekPriceChart,
     ai_price_chart: aiPriceChart,
     timecode_datetime: timecodeDatetime,
     is_same_timecode: isSameTimecode,
-  } = data;
-  let period = "1D";
+  } = priceData;
   const timeCode = timecodeDatetime?.split(" ").join("T");
   const now = new Date(timeCode);
   const baseTime = new Date(timeCode).setHours(
@@ -64,37 +64,14 @@ const findMinValue = (...dataArrays) => {
   return Math.min(...dataArrays.flat().map((point) => point[1]));
 };
 
-async function init() {
-  const activeTab = document.querySelector("header .tab.active");
-  const activeData = activeTab.getAttribute("data-value");
-
-  const response = await fetch(
-    `https://api.coinmarketscore.io/api/v2/toko-demo/${activeData}`
-  );
-  const data = await response.json();
-
-  const { format } = dateFns;
-
-  //수집된 데이터를 전역에서 관리
-  priceData = data;
-
-  currentPage = 0;
-  loadListData();
-  metricsData();
-
-  const chartData = createChartData(data);
-  const {
-    week_price_chart: weekPriceData,
-    ai_price_chart: aiPriceData,
-    last_ai_price_point: lastAiPricePoint,
-  } = chartData;
-
+function chartDraw({
+  week_price_chart: weekPriceData,
+  ai_price_chart: aiPriceData,
+  last_ai_price_point: lastAiPricePoint,
+  timestamps,
+}) {
   const minValue = findMinValue(weekPriceData, aiPriceData);
-  console.log("Minimum Value:", minValue);
-
-  console.log("weekPriceData", weekPriceData);
-  console.log("aiPriceData", aiPriceData);
-  console.log("lastAiPricePoint", lastAiPricePoint);
+  const { format } = dateFns;
 
   Highcharts.chart("container", {
     chart: {
@@ -298,6 +275,26 @@ async function init() {
     //   ],
     // },
   });
+}
+
+async function init() {
+  const activeTab = document.querySelector("header .tab.active");
+  const activeData = activeTab.getAttribute("data-value");
+
+  const response = await fetch(
+    `https://api.coinmarketscore.io/api/v2/toko-demo/${activeData}`
+  );
+  const data = await response.json();
+
+  //수집된 데이터를 전역에서 관리
+  priceData = data;
+
+  currentPage = 0;
+  loadListData();
+  metricsData();
+
+  const chartData = createChartData();
+  chartDraw(chartData);
 }
 
 init();
