@@ -1,0 +1,71 @@
+.time-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 19px;
+  gap: 6px;
+}
+.time-list .time-list-row {
+  display: flex;
+  border: 1px solid #dddddd;
+  padding: 10px 0px;
+  border-radius: 2px;
+}
+.time-list .time-list-row > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.time-list .time-list-row > div:nth-child(1) {
+  width: 145px;
+}
+.time-list .time-list-row > div:nth-child(2) {
+  width: 345px;
+}
+.time-list .time-list-row > div:nth-child(3) {
+  width: 197px;
+}
+.time-list .time-list-row > div:nth-child(4) {
+  width: 198px;
+}
+.time-list .time-list-row > div:nth-child(5) {
+  width: 198px;
+}
+
+.time-list .time-list-row > div:not(:last-child) {
+  border-right: 1px solid #d9d9d9;
+}
+.time-list .time-list-row > div > span {
+  font-size: 12px;
+  /* line-height: 22px; */
+}
+.header > div > span,
+.footer > div > span {
+  font-weight: 700;
+  color: #444444;
+}
+
+.time-list .time-list-row.footer:hover {
+  cursor: pointer;
+}
+.time-list .time-list-row.footer > div {
+  flex: 1;
+}
+
+.time-list .time-list-row.footer > div > span {
+  font-size: 14px;
+}
+
+#price-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.text-start {
+  justify-content: flex-start !important;
+}
+.bold {
+  font-weight: 700;
+}

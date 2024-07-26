@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>toko crypto</title>
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/time_list.css" />
     <script
       type="text/javascript"
       src="https://www.gstatic.com/charts/loader.js"
@@ -15,8 +16,8 @@
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/date-fns@latest"></script>
     <!-- <script type="text/javascript" src="assets/js/chart.js"></script> -->
-    <script type="text/javascript" src="assets/js/main.js"></script>
-    <script type="text/javascript" src="assets/js/highchart.js"></script>
+    <script type="text/javascript" src="./assets/js/main.js"></script>
+    <script type="text/javascript" src="./assets/js/highchart.js"></script>
   </head>
   <body class="layout">
     <div class="main">
@@ -56,10 +57,50 @@
         </div>
       </section>
       <section>
+        <div class="time-list">
+          <div class="time-list-row header">
+            <div>
+              <span> Time </span>
+            </div>
+            <div>
+              <span> Time Range </span>
+            </div>
+            <div>
+              <span> Actual </span>
+            </div>
+            <div>
+              <span> Prediction </span>
+            </div>
+            <div>
+              <span> Mape </span>
+            </div>
+          </div>
+          <div id="price-list"></div>
+
+          <div class="time-list-row footer" onclick="loadListData()">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 448 512"
+              >
+                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path
+                  d="M246.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 402.7 361.4 265.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-160 160zm160-352l-160 160c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 210.7 361.4 73.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3z"
+                />
+              </svg>
+              <span style="margin-left: 10px"> see more </span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
         <figure class="highcharts-figure">
           <div id="container"></div>
         </figure>
       </section>
     </div>
+    <script type="text/javascript" src="./assets/js/timePrediction.js"></script>
   </body>
 </html>

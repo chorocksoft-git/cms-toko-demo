@@ -1,6 +1,8 @@
 const TEN_MINUTES = 10 * 60 * 1000;
 const tickInterval = TEN_MINUTES;
 
+let priceData = {};
+
 const createChartData = (data) => {
   const {
     week_price_chart: weekPriceChart,
@@ -36,9 +38,16 @@ const createChartData = (data) => {
 };
 
 (async () => {
-  const response = await fetch("data.json");
+  const response = await fetch(
+    "https://chorocksoft-git.github.io/cms-toko-demo/data.json"
+  );
   const data = await response.json();
   const { format } = dateFns;
+
+  //수집된 데이터를 전역에서 관리
+  priceData = data;
+
+  loadListData();
 
   const chartData = createChartData(data);
   const {
