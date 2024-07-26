@@ -1,0 +1,26 @@
+header {
+  display: flex;
+  flex: 1;
+  gap: 37px;
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 55px;
+}
+
+header .tab:hover {
+  cursor: pointer;
+}
+
+header span {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 21px;
+  color: #707a8a;
+}
+
+header .active {
+  border-bottom: 3px solid #26a950;
+}
+
+header .active span {
+  color: #26a950;
+}

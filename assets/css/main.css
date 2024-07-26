@@ -54,9 +54,9 @@ h6 a {
 .main {
   flex: 1;
   background-color: #fff;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   /* width: 1086px; */
-  width: 65vw;
+  /* width: 65vw; */
 }
 
 .title {
@@ -106,14 +106,24 @@ h6 a {
   margin-top: 19px;
 }
 
+.metric:nth-child(1) {
+  background-color: #ecfcec;
+}
+.metric:nth-child(2) {
+  background-color: #eaf6fd;
+}
+.metric:nth-child(3) {
+  background-color: #f3f3f3;
+}
+
 .metric {
-  background: #fff;
+  /* background: #fff; */
   flex: 1;
   width: 352px;
   height: 109px;
   border-radius: 14px;
   text-align: center;
-  border: 2px solid #d9d9d9;
+  /* border: 2px solid #d9d9d9; */
   padding-top: 10px;
 }
 .metric .click {

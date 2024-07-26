@@ -1,0 +1,10 @@
+body {
+}
+
+.container {
+  width: 80%; /* 원하는 너비로 설정 */
+  width: 1200px; /* 최대 너비 설정 */
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
