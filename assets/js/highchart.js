@@ -5,6 +5,8 @@ const ONE_HOUR = 1000 * 60 * 60;
 const TEN_MINUTES = 1000 * 60 * 10;
 const tickInterval = ONE_HOUR;
 
+let priceData = {};
+
 const createChartData = (data) => {
   const {
     week_price_chart: weekPriceChart,
@@ -59,11 +61,23 @@ const findMinValue = (...dataArrays) => {
   return Math.min(...dataArrays.flat().map((point) => point[1]));
 };
 
-(async () => {
-  const response = await fetch("data.json");
+async function init() {
+  const activeTab = document.querySelector("header .tab.active");
+  const activeData = activeTab.getAttribute("data-value");
+
+  const response = await fetch(
+    `https://api.coinmarketscore.io/api/v2/toko-demo/${activeData}`
+  );
   const data = await response.json();
 
   const { format } = dateFns;
+
+  //수집된 데이터를 전역에서 관리
+  priceData = data;
+
+  currentPage = 0;
+  loadListData();
+  metricsData();
 
   const chartData = createChartData(data);
   const {
@@ -288,4 +302,6 @@ const findMinValue = (...dataArrays) => {
     //   ],
     // },
   });
-})();
+}
+
+init();
