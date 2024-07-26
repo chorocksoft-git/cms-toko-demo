@@ -2,10 +2,11 @@
 ## cms-toko-demo
 
 - 목표: 토코크립토에게 AI기능을 보여주기 위한 데모사이트 제작
-- 데모 환경:  동시 다발적으로 누르지 않고, 한 공간에서 다같이 보는 상황
+- 데모 환경: 동시 다발적으로 누르지 않고, 한 공간에서 다같이 보는 상황
 - 기한: 8월 2일 (9일)까지
 - 산출물: 웹 링크
-- backend, frontend 같이 관리
+- backend 의 경우 기존 cms-backend쪽 api 추가
+- frontend 해당 backend api 연동
 
 -----
 
@@ -22,15 +23,8 @@
 (설치조건 : linux 서버에서만 된다든지, 모델 weight 파일을 따로 NAS 에서 다운받아야 한다던지)
 
 ```sh
-(backend)
-$ git clone https://github.com/chorocksoft-git/cms-toko-demo
-$ cd cms-toko-demo/backend
-$ pip install -r requirements.txt
-$ python run.py
-```
-```sh
 (frontend)
-$ sudo service apache2 restart (예시)
+$ sudo service nginx restart (예시)
 ```
 
 
