@@ -16,5 +16,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4.0.5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.TOKODEMO_ACCESS_TOKEN }}
           publish_dir: ./
