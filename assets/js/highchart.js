@@ -1,5 +1,5 @@
-const HOUR = "1h";
-const DAY = "24h";
+const HOUR = "1D";
+const DAY = "7D";
 
 const ONE_HOUR = 1000 * 60 * 60;
 const TEN_MINUTES = 1000 * 60 * 10;
@@ -7,14 +7,14 @@ const tickInterval = ONE_HOUR;
 
 let priceData = {};
 
-const createChartData = (data) => {
+const createChartData = (period = "1D") => {
   const {
     week_price_chart: weekPriceChart,
     ai_price_chart: aiPriceChart,
     timecode_datetime: timecodeDatetime,
     is_same_timecode: isSameTimecode,
-  } = data;
-  let period = "1h";
+  } = priceData;
+  // let period = "1h";
   const timeCode = timecodeDatetime?.split(" ").join("T");
   const now = new Date(timeCode);
   const baseTime = new Date(timeCode).setHours(
@@ -29,8 +29,11 @@ const createChartData = (data) => {
   return {
     is_same_timecode: isSameTimecode,
     last_ai_price_point: [
-      (parseInt(baseTime / tickInterval, 10) + 25) * tickInterval +
-        parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES,
+      period === HOUR
+        ? (parseInt(baseTime / tickInterval, 10) + (24 + 1)) * tickInterval +
+          parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES
+        : (parseInt(baseTime / tickInterval, 10) + 170) * tickInterval +
+          parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES,
       lastAiPricePoint,
     ],
     week_price_chart: calcWeepPrice.map((price, idx) => {
@@ -61,38 +64,16 @@ const findMinValue = (...dataArrays) => {
   return Math.min(...dataArrays.flat().map((point) => point[1]));
 };
 
-async function init() {
-  const activeTab = document.querySelector("header .tab.active");
-  const activeData = activeTab.getAttribute("data-value");
+async function changeChart() {}
 
-  const response = await fetch(
-    `https://api.coinmarketscore.io/api/v2/toko-demo/${activeData}`
-  );
-  const data = await response.json();
-
-  const { format } = dateFns;
-
-  //수집된 데이터를 전역에서 관리
-  priceData = data;
-
-  currentPage = 0;
-  loadListData();
-  metricsData();
-
-  const chartData = createChartData(data);
-  const {
-    week_price_chart: weekPriceData,
-    ai_price_chart: aiPriceData,
-    last_ai_price_point: lastAiPricePoint,
-    timestamps,
-  } = chartData;
-
+function chartDraw({
+  week_price_chart: weekPriceData,
+  ai_price_chart: aiPriceData,
+  last_ai_price_point: lastAiPricePoint,
+  timestamps,
+}) {
   const minValue = findMinValue(weekPriceData, aiPriceData);
-  console.log("Minimum Value:", minValue);
-
-  console.log("weekPriceData", weekPriceData);
-  console.log("aiPriceData", aiPriceData);
-  console.log("lastAiPricePoint", lastAiPricePoint);
+  const { format } = dateFns;
 
   Highcharts.chart("container", {
     chart: {
@@ -304,6 +285,26 @@ async function init() {
     //   ],
     // },
   });
+}
+
+async function init() {
+  const activeTab = document.querySelector("header .tab.active");
+  const activeData = activeTab.getAttribute("data-value");
+
+  const response = await fetch(
+    `https://api.coinmarketscore.io/api/v2/toko-demo/${activeData}`
+  );
+  const data = await response.json();
+
+  //수집된 데이터를 전역에서 관리
+  priceData = data;
+
+  currentPage = 0;
+  loadListData();
+  metricsData();
+
+  const chartData = createChartData();
+  chartDraw(chartData);
 }
 
 init();
