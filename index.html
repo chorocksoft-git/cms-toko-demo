@@ -19,24 +19,23 @@
     <script src="https://cdn.jsdelivr.net/npm/date-fns@latest"></script>
     <!-- <script type="text/javascript" src="assets/js/chart.js"></script> -->
     <script type="text/javascript" src="./assets/js/main.js"></script>
-    <script type="text/javascript" src="./assets/js/highchart.js"></script>
   </head>
   <body class="layout">
     <div class="container">
       <header>
-        <div class="tab active">
+        <div class="tab active" data-value="125347">
           <span>TKO_IDR</span>
         </div>
-        <div class="tab">
+        <div class="tab" data-value="125438">
           <span>BTC_IDR</span>
         </div>
-        <div class="tab">
+        <div class="tab" data-value="125442">
           <span>ETH_IDR</span>
         </div>
-        <div class="tab">
+        <div class="tab" data-value="125346">
           <span>BNB_IDR</span>
         </div>
-        <div class="tab">
+        <div class="tab" data-value="125439">
           <span>SOL_IDR</span>
         </div>
       </header>
@@ -53,19 +52,19 @@
             </div>
             <!-- 표 -->
             <div class="metrics">
-              <div class="metric">
+              <div id="price" class="metric">
                 <p class="title">Price</p>
                 <p class="content">₩83,412088.427</p>
               </div>
-              <div class="metric">
+              <div id="prediction" class="metric">
                 <div class="click">
                   <p class="title">Prediction</p>
                   <p class="title" id="prediction-title">(1h)</p>
                 </div>
                 <p class="content">₩83,412088.427</p>
-                <p class="negative">▼ 0.018%</p>
+                <p id="percent">▼ 0.018%</p>
               </div>
-              <div class="metric">
+              <div id="ave-mape" class="metric">
                 <p class="title">Ave Mape</p>
                 <p class="content">0.248%</p>
               </div>
@@ -122,8 +121,9 @@
         </section>
       </div>
     </div>
-
+    <script type="text/javascript" src="./assets/js/highchart.js"></script>
     <script type="text/javascript" src="./assets/js/timePrediction.js"></script>
     <script type="text/javascript" src="./assets/js/tab.js"></script>
+    <script type="text/javascript" src="./assets/js/predict.js"></script>
   </body>
 </html>

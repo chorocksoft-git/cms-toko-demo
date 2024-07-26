@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
       tabs.forEach((t) => t.classList.remove("active"));
 
       tab.classList.add("active");
+
+      init();
     });
   });
 });
