@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleAIPrediction = true;
       } else if (this.id === "24h-button") {
         predictionTitle.textContent = "(24h)";
-        oggleAIPrediction = false;
+        toggleAIPrediction = false;
       }
     });
   });

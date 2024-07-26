@@ -14,7 +14,7 @@ const createChartData = (data) => {
     timecode_datetime: timecodeDatetime,
     is_same_timecode: isSameTimecode,
   } = data;
-  let period = "1h";
+  let period = "24h";
   const timeCode = timecodeDatetime?.split(" ").join("T");
   const now = new Date(timeCode);
   const baseTime = new Date(timeCode).setHours(
@@ -29,8 +29,11 @@ const createChartData = (data) => {
   return {
     is_same_timecode: isSameTimecode,
     last_ai_price_point: [
-      (parseInt(baseTime / tickInterval, 10) + 25) * tickInterval +
-        parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES,
+      period === HOUR
+        ? (parseInt(baseTime / tickInterval, 10) + (25 + 1)) * tickInterval +
+          parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES
+        : (parseInt(baseTime / tickInterval, 10) + 170) * tickInterval +
+          parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES,
       lastAiPricePoint,
     ],
     week_price_chart: calcWeepPrice.map((price, idx) => {
@@ -84,7 +87,6 @@ async function init() {
     week_price_chart: weekPriceData,
     ai_price_chart: aiPriceData,
     last_ai_price_point: lastAiPricePoint,
-    timestamps,
   } = chartData;
 
   const minValue = findMinValue(weekPriceData, aiPriceData);
@@ -162,6 +164,14 @@ async function init() {
     tooltip: {
       shared: true,
       crosshairs: true,
+      split: true,
+      backgroundColor: "#fff",
+      borderWidth: 2,
+      borderColor: this.color,
+      useHTML: true,
+      style: {
+        fontSize: "12px",
+      },
     },
 
     legend: {
@@ -180,17 +190,7 @@ async function init() {
       symbolWidth: 10,
 
       labelFormatter: function () {
-        let color;
-        if (this.name === "Price Trend") {
-          color = "#45B341";
-        } else if (this.name === "Prediction Trend") {
-          color = "#AFD1E3";
-        } else if (this.name === "1h Prediction") {
-          color = "#007EC8";
-        } else {
-          color = this.color;
-        }
-        return `<span style="color:${color}">${this.name}</span>`;
+        return `<span style="color:${this.color}">${this.name}</span>`;
       },
     },
     plotOptions: {
