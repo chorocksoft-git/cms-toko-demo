@@ -1,40 +1,64 @@
-const TEN_MINUTES = 10 * 60 * 1000;
-const tickInterval = TEN_MINUTES;
+const HOUR = "1h";
+const DAY = "24h";
+
+const ONE_HOUR = 1000 * 60 * 60;
+const TEN_MINUTES = 1000 * 60 * 10;
+const tickInterval = ONE_HOUR;
 
 let priceData = {};
 
 const createChartData = (data) => {
   const {
     week_price_chart: weekPriceChart,
-    week_volume_chart: weekVolumeChart,
     ai_price_chart: aiPriceChart,
-    ai_volume_chart: aiVolumeChart,
     timecode_datetime: timecodeDatetime,
     is_same_timecode: isSameTimecode,
   } = data;
-  const baseTime = new Date(timecodeDatetime).getTime();
-  console.log("baseTime", baseTime);
-
-  const generateTimestamps = (count) => {
-    return Array.from({ length: count }, (_, i) => baseTime + i * TEN_MINUTES);
-  };
-
-  const timestamps = generateTimestamps(12);
-
-  const calcWeepPrice = weekPriceChart.slice(-24);
-  const calcWeepVolume = weekVolumeChart.slice(-24);
-
-  const calcAiPrice = aiPriceChart.slice(-24);
+  let period = "1h";
+  const timeCode = timecodeDatetime?.split(" ").join("T");
+  const now = new Date(timeCode);
+  const baseTime = new Date(timeCode).setHours(
+    period === HOUR
+      ? now.getHours() - 24
+      : now.getHours() - weekPriceChart.length + 1
+  );
+  const calcWeepPrice =
+    period === HOUR ? weekPriceChart.slice(-24) : weekPriceChart;
+  const calcAiPrice = period === HOUR ? aiPriceChart.slice(-25) : aiPriceChart;
   const lastAiPricePoint = aiPriceChart[aiPriceChart.length - 1];
-
   return {
     is_same_timecode: isSameTimecode,
-    timestamps,
-    week_price_chart: calcWeepPrice.map((price, idx) => [idx, price]),
-    week_volume_chart: calcWeepVolume.map((volume, idx) => [idx, volume]),
-    ai_price_chart: calcAiPrice.map((price, idx) => [idx, price]),
-    last_ai_price_point: [calcAiPrice.length, lastAiPricePoint],
+    last_ai_price_point: [
+      (parseInt(baseTime / tickInterval, 10) + 25) * tickInterval +
+        parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES,
+      lastAiPricePoint,
+    ],
+    week_price_chart: calcWeepPrice.map((price, idx) => {
+      return [
+        period === HOUR
+          ? (parseInt(baseTime / tickInterval, 10) + (idx + 1)) * tickInterval +
+            parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES
+          : (parseInt(baseTime / tickInterval, 10) + idx) * tickInterval +
+            parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES,
+        price,
+      ];
+    }),
+
+    ai_price_chart: calcAiPrice.map((price, idx) => {
+      return [
+        period === HOUR
+          ? (parseInt(baseTime / tickInterval, 10) + (idx + 1)) * tickInterval +
+            parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES
+          : (parseInt(baseTime / tickInterval, 10) + idx) * tickInterval +
+            parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES,
+        price,
+      ];
+    }),
   };
+};
+
+const findMinValue = (...dataArrays) => {
+  return Math.min(...dataArrays.flat().map((point) => point[1]));
 };
 
 (async () => {
@@ -42,6 +66,7 @@ const createChartData = (data) => {
     "https://chorocksoft-git.github.io/cms-toko-demo/data.json"
   );
   const data = await response.json();
+
   const { format } = dateFns;
 
   //수집된 데이터를 전역에서 관리
@@ -57,6 +82,9 @@ const createChartData = (data) => {
     timestamps,
   } = chartData;
 
+  const minValue = findMinValue(weekPriceData, aiPriceData);
+  console.log("Minimum Value:", minValue);
+
   console.log("weekPriceData", weekPriceData);
   console.log("aiPriceData", aiPriceData);
   console.log("lastAiPricePoint", lastAiPricePoint);
@@ -64,6 +92,13 @@ const createChartData = (data) => {
   Highcharts.chart("container", {
     chart: {
       backgroundColor: "rgba(255, 255, 255, 0)",
+      type: "areaspline",
+      height: 600,
+      spacingRight: 0,
+      spacingLeft: 0,
+      style: {
+        fontSize: "13px",
+      },
     },
     stockTools: {
       gui: {
@@ -85,7 +120,9 @@ const createChartData = (data) => {
     navigator: {
       enabled: false,
     },
-
+    credits: {
+      enabled: false,
+    },
     xAxis: {
       type: "datetime",
       labels: {
@@ -93,11 +130,14 @@ const createChartData = (data) => {
           return format(new Date(this.value), "MM-dd HH:mm");
         },
       },
-      tickInterval: TEN_MINUTES,
-      categories: timestamps,
+      allowDecimals: false,
+      endOnTick: false,
+      ordinal: false,
+      startOnTick: false,
     },
     yAxis: [
       {
+        tickAmount: 10,
         labels: {
           format: `{value}`,
         },
@@ -105,27 +145,20 @@ const createChartData = (data) => {
           text: "",
           margin: 0,
         },
-        height: "30%",
-        top: "70%",
         zIndex: 0,
-        gridLineWidth: 0,
+        gridLineWidth: 1,
         offset: 30,
         opposite: true,
-      },
-      {
-        labels: {
-          format: `{value}`,
-        },
-        title: {
-          text: "",
-        },
-        height: "70%",
-        top: "5%",
-        offset: 30,
-        zIndex: 2,
+        min: minValue - 300,
+        startOnTick: false,
       },
     ],
-    // ㅋㅋ
+
+    tooltip: {
+      shared: true,
+      crosshairs: true,
+    },
+
     legend: {
       layout: "horizontal",
       align: "left",
@@ -133,76 +166,137 @@ const createChartData = (data) => {
       itemStyle: {
         fontWeight: 400,
         fontSize: "13px",
+        textShadow: "none",
+      },
+      itemHoverStyle: {
+        textShadow: "0 4px 4px rgba(0, 0, 0, 0.3)",
       },
       symbolHeight: 10,
       symbolWidth: 10,
+
       labelFormatter: function () {
-        return `<span style="color:${this.color}">${this.name}</span>`;
+        let color;
+        if (this.name === "Price Trend") {
+          color = "#45B341";
+        } else if (this.name === "Prediction Trend") {
+          color = "#AFD1E3";
+        } else if (this.name === "1h Prediction") {
+          color = "#007EC8";
+        } else {
+          color = this.color;
+        }
+        return `<span style="color:${color}">${this.name}</span>`;
       },
     },
     plotOptions: {
       areaspline: {
         marker: {
-          radius: 2,
+          radius: 3,
         },
-        lineWidth: 1,
+        lineWidth: 2,
         states: {
           hover: {
-            lineWidth: 1,
+            lineWidth: 4,
           },
         },
         threshold: null,
       },
-      spline: {
+      line: {
         marker: {
-          radius: 2,
-        },
-        lineWidth: 1,
-        states: {
-          hover: {
-            lineWidth: 1,
+          enabled: true,
+          states: {
+            hover: {
+              enabled: false,
+            },
           },
         },
-        threshold: null,
       },
     },
     series: [
       {
-        name: "Real Data",
+        name: "Price Trend",
         data: weekPriceData,
-        color: "#45B341",
-        type: "spline",
+        color: "#45B34180",
+        fillColor: {
+          linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+          stops: [
+            [0, "rgba(69, 179, 65, 0.2)"],
+            [1, "rgba(69, 179, 65, 0.1)"],
+          ],
+        },
       },
+
       {
-        name: "Real Data",
-        data: weekPriceData,
-        color: "#45B341",
-        type: "column",
-      },
-      {
-        name: "Past Predictions",
+        name: "Prediction Trend",
         data: aiPriceData,
+
         color: "#AFD1E3",
-        type: "spline",
-      },
-      {
-        name: "Past Predictions",
-        data: aiPriceData,
-        color: "#AFD1E3",
-        type: "column",
+        fillColor: {
+          linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+          stops: [
+            [0, "rgba(175, 209, 227, 0.5)"],
+            [1, "rgba(175, 209, 227, 0.1)"],
+          ],
+        },
       },
       {
         name: "1h Prediction",
+        type: "line",
         data: [lastAiPricePoint],
-        type: "column",
-        color: "#0000FF",
+        color: "rgba(0, 126, 200, 1)",
         marker: {
           symbol: "circle",
-        },
-        tooltip: {
-          pointFormat: "1h Prediction: <b>{point.y}</b>",
+          radius: 20,
+          states: {
+            hover: {
+              enabled: true,
+            },
+          },
+
+          fillColor: {
+            radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
+            stops: [
+              [0, "rgba(0, 126, 200, 1)"],
+              [0.3, "rgba(101, 193, 247, 1)"],
+              [1, "rgba(255, 255, 255, 1)"],
+            ],
+          },
+          filter: "url(#blur)",
         },
       },
     ],
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 360,
+          },
+          chartOptions: {
+            rangeSelector: {
+              buttonPosition: {
+                align: "left",
+              },
+            },
+          },
+        },
+      ],
+    },
+
+    // responsive: {
+    //   rules: [
+    //     {
+    //       condition: {
+    //         maxWidth: 500,
+    //       },
+    //       chartOptions: {
+    //         legend: {
+    //           layout: "horizontal",
+    //           align: "center",
+    //           verticalAlign: "bottom",
+    //         },
+    //       },
+    //     },
+    //   ],
+    // },
   });
 })();
