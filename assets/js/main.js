@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   const buttons = document.querySelectorAll(".toggle-buttons button");
   const predictionTitle = document.getElementById("prediction-title");
+  const toggleAIPrediction =
+    document.getElementsByClassName("highcharts-figure");
 
   buttons.forEach((button) => {
     button.addEventListener("click", function () {
@@ -8,10 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
       this.classList.add("active");
       if (this.id === "1h-button") {
         predictionTitle.textContent = "(1h)";
-        console.log("1h button clicked");
+        toggleAIPrediction = true;
       } else if (this.id === "24h-button") {
         predictionTitle.textContent = "(24h)";
-        console.log("24h button clicked");
+        oggleAIPrediction = false;
       }
     });
   });
