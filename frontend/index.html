@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>toko crypto</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@latest"></script>
+    <!-- <script type="text/javascript" src="assets/js/chart.js"></script> -->
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" src="assets/js/highchart.js"></script>
+  </head>
+  <body class="layout">
+    <div class="main">
+      <section>
+        <div>
+          <!-- 제목 -->
+          <p class="title">AI Price Prediction</p>
+          <div class="row">
+            <p class="content">
+              Predict the price and volume a day later based on the current
+              price. The exchange rate is updated every five minutes.
+            </p>
+            <div class="toggle-buttons">
+              <button id="1h-button" class="active">1h</button>
+              <button id="24h-button">24h</button>
+            </div>
+          </div>
+          <!-- 표 -->
+          <div class="metrics">
+            <div class="metric">
+              <p class="title">Price</p>
+              <p class="content">₩83,412088.427</p>
+            </div>
+            <div class="metric">
+              <div class="click">
+                <p class="title">Prediction</p>
+                <p class="title" id="prediction-title">(1h)</p>
+              </div>
+              <p class="content">₩83,412088.427</p>
+              <p class="negative">▼ 0.018%</p>
+            </div>
+            <div class="metric">
+              <p class="title">Ave Mape</p>
+              <p class="content">0.248%</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <figure class="highcharts-figure">
+          <div id="container"></div>
+        </figure>
+      </section>
+    </div>
+  </body>
+</html>
