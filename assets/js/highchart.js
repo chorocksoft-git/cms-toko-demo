@@ -6,15 +6,15 @@ const TEN_MINUTES = 1000 * 60 * 10;
 const tickInterval = ONE_HOUR;
 
 let priceData = {};
+let period = "1D";
 
-const createChartData = (period = "1D") => {
+const createChartData = () => {
   const {
     week_price_chart: weekPriceChart,
     ai_price_chart: aiPriceChart,
     timecode_datetime: timecodeDatetime,
     is_same_timecode: isSameTimecode,
   } = priceData;
-  // let period = "1h";
   const timeCode = timecodeDatetime?.split(" ").join("T");
   const now = new Date(timeCode);
   const baseTime = new Date(timeCode).setHours(
@@ -63,8 +63,6 @@ const createChartData = (period = "1D") => {
 const findMinValue = (...dataArrays) => {
   return Math.min(...dataArrays.flat().map((point) => point[1]));
 };
-
-async function changeChart() {}
 
 function chartDraw({
   week_price_chart: weekPriceData,
@@ -140,11 +138,6 @@ function chartDraw({
       },
     ],
 
-    tooltip: {
-      shared: true,
-      crosshairs: true,
-    },
-
     legend: {
       layout: "horizontal",
       align: "left",
@@ -161,17 +154,20 @@ function chartDraw({
       symbolWidth: 10,
 
       labelFormatter: function () {
-        let color;
-        if (this.name === "Price Trend") {
-          color = "#45B341";
-        } else if (this.name === "Prediction Trend") {
-          color = "#AFD1E3";
-        } else if (this.name === "1h Prediction") {
-          color = "#007EC8";
-        } else {
-          color = this.color;
-        }
-        return `<span style="color:${color}">${this.name}</span>`;
+        return `<span style="color:${this.color}">${this.name}</span>`;
+      },
+    },
+
+    tooltip: {
+      shared: true,
+      crosshairs: true,
+      split: true,
+      backgroundColor: "#fff",
+      borderWidth: 2,
+      borderColor: this.color,
+      useHTML: true,
+      style: {
+        fontSize: "12px",
       },
     },
     plotOptions: {
@@ -229,16 +225,10 @@ function chartDraw({
         name: "1h Prediction",
         type: "line",
         data: [lastAiPricePoint],
-        color: "rgba(0, 126, 200, 1)",
+        color: "#007EC8",
         marker: {
           symbol: "circle",
           radius: 20,
-          states: {
-            hover: {
-              enabled: true,
-            },
-          },
-
           fillColor: {
             radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
             stops: [

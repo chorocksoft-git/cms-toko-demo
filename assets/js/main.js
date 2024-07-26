@@ -11,14 +11,12 @@ document.addEventListener("DOMContentLoaded", function () {
       this.classList.add("active");
       if (this.id === "1h-button") {
         predictionTitle.textContent = "(1h)";
-        console.log("1h-button");
-        // toggleAIPrediction = true;
+        period = "1D";
         const chartData = createChartData("1D");
         chartDraw(chartData);
       } else if (this.id === "24h-button") {
         predictionTitle.textContent = "(24h)";
-        console.log("24h-button");
-        // toggleAIPrediction = false;
+        period = "7D";
         const chartData = createChartData("7D");
         chartDraw(chartData);
       }
