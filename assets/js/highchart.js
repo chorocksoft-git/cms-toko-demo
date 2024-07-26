@@ -148,6 +148,14 @@ const findMinValue = (...dataArrays) => {
     tooltip: {
       shared: true,
       crosshairs: true,
+      split: true,
+      backgroundColor: "#fff",
+      borderWidth: 2,
+      borderColor: this.color,
+      useHTML: true,
+      style: {
+        fontSize: "12px",
+      },
     },
 
     legend: {
@@ -166,17 +174,7 @@ const findMinValue = (...dataArrays) => {
       symbolWidth: 10,
 
       labelFormatter: function () {
-        let color;
-        if (this.name === "Price Trend") {
-          color = "#45B341";
-        } else if (this.name === "Prediction Trend") {
-          color = "#AFD1E3";
-        } else if (this.name === "1h Prediction") {
-          color = "#007EC8";
-        } else {
-          color = this.color;
-        }
-        return `<span style="color:${color}">${this.name}</span>`;
+        return `<span style="color:${this.color}">${this.name}</span>`;
       },
     },
     plotOptions: {
