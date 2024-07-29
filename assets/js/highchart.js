@@ -35,7 +35,7 @@ const createChartData = (period = "1D") => {
       period === HOUR
         ? (parseInt(baseTime / tickInterval, 10) + (24 + 1)) * tickInterval +
           parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES
-        : (parseInt(baseTime / tickInterval, 10) + 170) * tickInterval +
+        : (parseInt(baseTime / tickInterval, 10) + 169) * tickInterval +
           parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES,
       lastAiPricePoint,
     ],
@@ -51,6 +51,7 @@ const createChartData = (period = "1D") => {
     }),
 
     ai_price_chart: calcAiPrice.map((price, idx) => {
+      console.log("period", period === HOUR);
       return [
         period === HOUR
           ? (parseInt(baseTime / tickInterval, 10) + (idx + 1)) * tickInterval +
@@ -74,6 +75,7 @@ function chartDraw({
   const minValue = findMinValue(weekPriceData, aiPriceData);
   const { format } = dateFns;
   const ccName = priceData.cc_code;
+  console.log("aiPriceData", aiPriceData);
 
   Highcharts.chart("container", {
     chart: {
@@ -370,7 +372,7 @@ async function init() {
 
   //수집된 데이터를 전역에서 관리
   priceData = data;
-
+  console.log(data);
   currentPage = 0;
 
   //AI Price Prediction 대표 데이터 구성
