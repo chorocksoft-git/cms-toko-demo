@@ -1,19 +1,25 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".toggle-buttons button");
+  const periodMap = {
+    "1h-button": "1D",
+    "24h-button": "7D",
+  };
+
+  const updateChart = (period) => {
+    const scrollPosition = window.scrollY; // 스크롤 위치 저장
+    const chartData = createChartData(period);
+    chartDraw(chartData);
+    window.scrollTo(0, scrollPosition); // 스크롤 위치 복원
+  };
 
   buttons.forEach((button) => {
-    button.addEventListener("click", function () {
+    button.addEventListener("click", function (event) {
+      console.log("Button clicked");
+      event.preventDefault();
       buttons.forEach((btn) => btn.classList.remove("active"));
       this.classList.add("active");
-      if (this.id === "1h-button") {
-        period = "1D";
-        const chartData = createChartData("1D");
-        chartDraw(chartData);
-      } else if (this.id === "24h-button") {
-        period = "7D";
-        const chartData = createChartData("7D");
-        chartDraw(chartData);
-      }
+      const period = periodMap[this.id];
+      if (period) updateChart(period);
     });
   });
 });
