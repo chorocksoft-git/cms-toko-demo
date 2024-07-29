@@ -78,6 +78,10 @@ h6 a {
   display: inline-flex;
   border-radius: 5px;
   overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
 }
 .toggle-buttons button {
   width: 44px;
