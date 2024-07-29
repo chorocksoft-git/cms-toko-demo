@@ -1,0 +1,44 @@
+.tab > span::before {
+  content: "";
+  display: inline-block;
+  background-size: 22px 22px;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.tko > span::before {
+  background-image: url("../../assets/img/tko-disable-logo.svg");
+}
+.tko.active > span::before {
+  background-image: url("../../assets/img/tko-logo.svg");
+}
+
+.btc > span::before {
+  background-image: url("../../assets/img/btc-disable-logo.svg");
+}
+.btc.active > span::before {
+  background-image: url("../../assets/img/btc-logo.svg");
+}
+
+.eth > span::before {
+  background-image: url("../../assets/img/eth-disable-logo.svg");
+}
+.eth.active > span::before {
+  background-image: url("../../assets/img/eth-logo.svg");
+}
+
+.bnb > span::before {
+  background-image: url("../../assets/img/bnb-disable-logo.svg");
+}
+.bnb.active > span::before {
+  background-image: url("../../assets/img/bnb-logo.svg");
+}
+
+.sol > span::before {
+  background-image: url("../../assets/img/sol-disable-logo.svg");
+}
+.sol.active > span::before {
+  background-image: url("../../assets/img/sol-logo.svg");
+}
