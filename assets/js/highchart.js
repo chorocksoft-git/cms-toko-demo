@@ -22,9 +22,11 @@ const createChartData = () => {
       ? now.getHours() - 24
       : now.getHours() - weekPriceChart.length + 1
   );
+
   const calcWeepPrice =
-    period === HOUR ? weekPriceChart.slice(-24) : weekPriceChart;
-  const calcAiPrice = period === HOUR ? aiPriceChart.slice(-25) : aiPriceChart;
+    period === HOUR ? weekPriceChart.slice(145, 169) : weekPriceChart;
+  const calcAiPrice =
+    period === HOUR ? aiPriceChart.slice(145, 169) : aiPriceChart;
   const lastAiPricePoint = aiPriceChart[aiPriceChart.length - 1];
   return {
     is_same_timecode: isSameTimecode,
@@ -50,7 +52,7 @@ const createChartData = () => {
     ai_price_chart: calcAiPrice.map((price, idx) => {
       return [
         period === HOUR
-          ? (parseInt(baseTime / tickInterval, 10) + idx) * tickInterval +
+          ? (parseInt(baseTime / tickInterval, 10) + (idx + 1)) * tickInterval +
             parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES
           : (parseInt(baseTime / tickInterval, 10) + idx) * tickInterval +
             parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES,
@@ -72,22 +74,17 @@ function chartDraw({
   const { format } = dateFns;
   const ccName = priceData.cc_code;
 
-  const lastAiPriceDatd = aiPriceData.map(function (point, index) {
-    const dataPoint = {
-      x: point[0],
-      y: point[1],
-    };
-
-    if (index === aiPriceData.length - 1) {
-      return {
-        x: point[0],
-        y: point[1],
-        name: "Point 1",
-      };
-    } else {
-      return dataPoint;
-    }
-  });
+  console.log(
+    "aiPriceData[aiPriceData.length - 1], lastAiPricePoint",
+    aiPriceData[aiPriceData.length - 1],
+    lastAiPricePoint
+  );
+  console.log(
+    "aiPriceData[aiPriceData.length - 1], lastAiPricePoint",
+    aiPriceData
+  );
+  console.log(" lastAiPricePoint", lastAiPricePoint);
+  console.log(" weekPriceData", weekPriceData);
 
   Highcharts.chart("container", {
     chart: {
@@ -273,7 +270,7 @@ function chartDraw({
 
     series: [
       {
-        name: `${ccName}Price`,
+        name: `${ccName} Price`,
         data: weekPriceData,
         id: "series1",
         color: "#45B341",
@@ -281,8 +278,8 @@ function chartDraw({
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
           stops: [
             [0, "rgba(69, 179, 65, 0.4)"],
-            [0.3, "rgba(69, 179, 65, 0.1)"],
-            [0.7, "rgba(255, 255, 255, 0.4)"],
+            // [0.3, "rgba(69, 179, 65, 0.1)"],
+            // [0.7, "rgba(255, 255, 255, 0.4)"],
             [1, "rgba(255, 255, 255, 0.3)"],
           ],
         },
@@ -296,17 +293,16 @@ function chartDraw({
         fillColor: {
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
           stops: [
-            [0, "rgba(175, 209, 227, 0.4)"],
+            [0, "rgba(175, 209, 227, 0.6)"],
             // [0.3, "rgba(175, 209, 227, 0.1)"],
             // [0.7, "rgba(255, 255, 255, 0.3)"],
-            [1, "rgba(255, 255, 255, 0.3)"],
+            [1, "rgba(255, 255, 255, 0.5)"],
           ],
         },
       },
       {
         name: "line",
         data: [aiPriceData[aiPriceData.length - 1], lastAiPricePoint],
-        id: "series2",
         color: "#AFD1E3",
         fillColor: {
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
@@ -319,9 +315,12 @@ function chartDraw({
         },
         showInLegend: false,
         enableMouseTracking: false,
+        marker: {
+          enabled: false,
+        },
       },
       {
-        name: `${ccName}price in 1 hour`,
+        name: `${ccName} price in 1 hour`,
 
         type: "line",
         id: "series3",
