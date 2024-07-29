@@ -181,15 +181,59 @@ async function init() {
       },
     },
 
+    // tooltip: {
+    //   shared: this.color === "#007EC8" ? false : true,
+    //   crosshairs: this.color === "#007EC8" ? false : true,
+    //   split: this.color === "#007EC8" ? false : true,
+    //   backgroundColor: "#fff",
+    //   borderWidth: 2,
+    //   borderColor: this.color,
+    //   useHTML: true,
+    //   style: {
+    //     fontSize: "12px",
+    //   },
+    // },
+
+    // tooltip: {
+    //   shared: true,
+    //   crosshairs: true,
+    //   split: true,
+    //   formatter: function () {
+    //     return "<b>X 값:</b> " + this.x + "<br/><b>Y 값:</b> " + this.y;
+    //   },
+    //   backgroundColor: "rgba(255, 255, 255, 0.8)",
+    //   borderColor: "black",
+    //   borderRadius: 10,
+    //   borderWidth: 2,
+    //   style: {
+    //     color: "black",
+    //     fontSize: "12px",
+    //   },
+    // },
+
     tooltip: {
+      formatter: function () {
+        const { x, y, points, color } = this;
+
+        // 기본 포매터 호출
+        const formatHtml = tooltip.defaultFormatter.call(this, tooltip);
+
+        return formatHtml.map((html, idx, arr) => {
+          if (html === "") return "";
+
+          return `<span style="color:${color}">●</span> 
+        ${code}: <b>${currencySymbol}${numberWithCommas(
+            dropDecimalPoint(points[idx - 1].y)
+          )}</b><br/>`;
+        });
+      },
       shared: true,
-      crosshairs: true,
-      split: true,
-      backgroundColor: "#fff",
+      backgroundColor: "rgba(255, 255, 255, 0.8)",
+      borderColor: "black",
+      borderRadius: 10,
       borderWidth: 2,
-      borderColor: this.color,
-      useHTML: true,
       style: {
+        color: "black",
         fontSize: "12px",
       },
     },
@@ -206,13 +250,14 @@ async function init() {
         },
         threshold: null,
       },
+
       line: {
-        marker: {
+        dataLabels: {
           enabled: true,
-          states: {
-            hover: {
-              enabled: false,
-            },
+          format: "{y}",
+          style: {
+            color: "black",
+            fontSize: "12px",
           },
         },
       },
@@ -221,7 +266,7 @@ async function init() {
       {
         name: "Price Trend",
         data: weekPriceData,
-        color: "#45B34180",
+        color: "#40A942",
         fillColor: {
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
           stops: [
@@ -235,7 +280,7 @@ async function init() {
         name: "Prediction Trend",
         data: aiPriceData,
 
-        color: "#AFD1E3",
+        color: "#A6CBDE",
         fillColor: {
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
           stops: [
@@ -256,47 +301,15 @@ async function init() {
             radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
             stops: [
               [0, "rgba(0, 126, 200, 1)"],
-              [0.3, "rgba(101, 193, 247, 1)"],
-              [1, "rgba(255, 255, 255, 1)"],
+              [0.3, "rgba(101, 193, 247, 0.7)"],
+              [0.7, "rgba(101, 193, 247, 0.3)"],
+              [1, "rgba(255, 255, 255, 0.3)"],
             ],
           },
           filter: "url(#blur)",
         },
       },
     ],
-    responsive: {
-      rules: [
-        {
-          condition: {
-            maxWidth: 360,
-          },
-          chartOptions: {
-            rangeSelector: {
-              buttonPosition: {
-                align: "left",
-              },
-            },
-          },
-        },
-      ],
-    },
-
-    // responsive: {
-    //   rules: [
-    //     {
-    //       condition: {
-    //         maxWidth: 500,
-    //       },
-    //       chartOptions: {
-    //         legend: {
-    //           layout: "horizontal",
-    //           align: "center",
-    //           verticalAlign: "bottom",
-    //         },
-    //       },
-    //     },
-    //   ],
-    // },
   });
 }
 
