@@ -23,9 +23,11 @@ function formatPercentageChange(percentageChange) {
   let symbol = "-";
   if (percentageChange >= 0) {
     symbol = "▲";
+    predictionPercent.classList.remove("negative");
     predictionPercent.classList.add("positive");
   } else {
     symbol = "▼";
+    predictionPercent.classList.remove("positive");
     predictionPercent.classList.add("negative");
   }
 
