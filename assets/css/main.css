@@ -59,7 +59,7 @@ h6 a {
   /* width: 65vw; */
 }
 
-.title {
+.main .title {
   font-size: 18px;
   font-weight: 600;
 }
@@ -110,55 +110,81 @@ h6 a {
   margin-top: 19px;
 }
 
-.metric:nth-child(1) {
-  background-color: #ecfcec;
+/* .metric:nth-child(1) {
+  background-color: #45ae691a;
 }
 .metric:nth-child(2) {
   background-color: #eaf6fd;
 }
 .metric:nth-child(3) {
   background-color: #f3f3f3;
-}
+} */
 
 .metric {
   /* background: #fff; */
-  flex: 1;
-  width: 352px;
+  /* flex: 1; */
+  width: 420px;
   height: 109px;
   border-radius: 14px;
   text-align: center;
   /* border: 2px solid #d9d9d9; */
   padding-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 23px 20px;
+  background-color: #45ae691a;
 }
+
+.metric img {
+  width: 50px;
+  height: 50px;
+  margin-right: 14px;
+}
+
+.metric .content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 .metric .click {
   display: flex;
   justify-content: center;
 }
 
 .metric .title {
-  font-size: 12px;
-  color: #363636;
-  font-weight: 600;
+  font-size: 15px;
+  color: #6f6f6f;
+  font-weight: 500;
+  margin-right: 8px;
   /* background-color: #ff0000; */
+  /* line-height: 17px; */
 }
 
 .metric .content {
-  font-size: 21px;
-  color: #444;
-  font-weight: 400;
-  padding: 10px 0;
+  font-size: 27px;
+  color: #003c4e;
+  font-weight: 500;
+  /* line-height: 21px; */
+}
+
+#ave-mape {
+  flex: 1;
+  width: 224px;
 }
 
 .metric .negative {
-  font-size: 14px;
-  color: red;
-  font-weight: 400;
+  font-size: 15px;
+  color: #f75467;
+  font-weight: 700;
 }
 
 .metric .positive {
-  font-size: 14px;
+  font-size: 15px;
   color: green;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .highcharts-figure,

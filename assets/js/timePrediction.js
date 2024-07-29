@@ -1,6 +1,7 @@
 let currentPage = 0;
 const itemsPerPage = 3;
 const footer = document.querySelector(".footer");
+const footerTitle = document.querySelector(".footer > .footer-title");
 const listContainer = document.getElementById("price-list");
 
 function addComma(price) {
@@ -80,11 +81,17 @@ function loadListData() {
 
   const nextData = priceData.price_mape_list.slice(end, end + itemsPerPage);
   if (nextData.length === 0) {
-    if (footer) {
-      footer.style.display = "none";
+    if (footerTitle.classList.contains("down")) {
+      // footer.style.display = "none";
+      footerTitle.classList.remove("down");
+      footerTitle.classList.add("up");
+      footerTitle.innerHTML = "reset";
+      currentPage = 0;
     }
-  } else if (footer.style.display === "none") {
-    footer.style.display = "flex";
+  } else if (footerTitle.classList.contains("up")) {
+    footerTitle.classList.remove("up");
+    footerTitle.classList.add("down");
+    footerTitle.innerHTML = "see more";
   }
 }
 

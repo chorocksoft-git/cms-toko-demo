@@ -1,7 +1,7 @@
-const price = document.querySelector("#price > .content");
-const prediction = document.querySelector("#prediction > .content");
-const predictionPercent = document.querySelector("#prediction > #percent");
-const aveMape = document.querySelector("#ave-mape > .content");
+const price = document.querySelector("#price .content");
+const prediction = document.querySelector("#prediction .content");
+const predictionPercent = document.querySelector("#prediction #percent");
+const aveMape = document.querySelector("#ave-mape .content");
 
 function metricsData() {
   const now = priceData.week_price_chart[priceData.week_price_chart.length - 1];
@@ -23,9 +23,11 @@ function formatPercentageChange(percentageChange) {
   let symbol = "-";
   if (percentageChange >= 0) {
     symbol = "▲";
+    predictionPercent.classList.remove("negative");
     predictionPercent.classList.add("positive");
   } else {
     symbol = "▼";
+    predictionPercent.classList.remove("positive");
     predictionPercent.classList.add("negative");
   }
 
