@@ -206,25 +206,25 @@ function chartDraw({
         threshold: null,
       },
 
-      line: {
-        dataLabels: {
-          enabled: true,
-          formatter: function () {
-            return `   <div style="width:80px; hegint:40px; padding: 8px; border-radius: 3px; background-color: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-            <span style="color:${this.color}">●</span>
-            <b style="font-weight: 400; font-size: 11px;">${ccName}: </b> 
-            <b style="font-weight: 700">Rp ${numberWithCommas(
-              dropDecimalPoint(this.y)
-            )}</b>
-            </div>
-            `;
-          },
-          style: {
-            color: "black",
-            fontSize: "12px",
-          },
-        },
-      },
+      // line: {
+      //   dataLabels: {
+      //     enabled: true,
+      //     formatter: function () {
+      //       return `   <div style="width:80px; hegint:40px; padding: 8px; border-radius: 3px; background-color: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+      //       <span style="color:${this.color}">●</span>
+      //       <b style="font-weight: 400; font-size: 11px;">${ccName}: </b>
+      //       <b style="font-weight: 700">Rp ${numberWithCommas(
+      //         dropDecimalPoint(this.y)
+      //       )}</b>
+      //       </div>
+      //       `;
+      //     },
+      //     style: {
+      //       color: "black",
+      //       fontSize: "12px",
+      //     },
+      //   },
+      // },
     },
     series: [
       {
