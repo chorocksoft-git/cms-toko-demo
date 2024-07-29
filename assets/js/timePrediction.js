@@ -24,7 +24,7 @@ function loadListData() {
 
     const timeDiv = document.createElement("div");
     const timeSpan = document.createElement("span");
-    timeSpan.textContent = `${globalIndex}0 분 전`;
+    timeSpan.textContent = `${globalIndex}0 minutes ago`;
     timeDiv.appendChild(timeSpan);
 
     const timeRangeDiv = document.createElement("div");
@@ -37,7 +37,7 @@ function loadListData() {
 
     let startTime = new Date(endTime);
     startTime.setHours(startTime.getHours() - 1);
-    startTime.setMinutes(startTime.getMinutes() - 10);
+    // startTime.setMinutes(startTime.getMinutes() - 10);
 
     timeRangeSpan.textContent = `${formatDateTime(
       startTime
@@ -47,7 +47,7 @@ function loadListData() {
     const actualPriceDiv = document.createElement("div");
     const actualPriceSpan = document.createElement("span");
 
-    actualPriceSpan.textContent = `Rp${numberWithCommas(
+    actualPriceSpan.textContent = `Rp ${numberWithCommas(
       dropDecimalPoint(priceData.mape_week_price_chat[index], 3)
     )}`;
     actualPriceDiv.appendChild(actualPriceSpan);
@@ -57,7 +57,7 @@ function loadListData() {
     // predictedPriceDiv.className = "text-start";
 
     predictedPriceSpan.className = "bold";
-    predictedPriceSpan.textContent = `Rp${numberWithCommas(
+    predictedPriceSpan.textContent = `Rp ${numberWithCommas(
       dropDecimalPoint(priceData.mape_ai_price_chat[index], 3)
     )}`;
     predictedPriceDiv.appendChild(predictedPriceSpan);
