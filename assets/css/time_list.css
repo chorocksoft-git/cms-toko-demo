@@ -41,7 +41,7 @@
   /* line-height: 22px; */
 }
 .header > div > span,
-.footer > div > span {
+.footer > span {
   font-weight: 700;
   color: #444444;
 }
@@ -49,12 +49,32 @@
 .time-list .time-list-row.footer:hover {
   cursor: pointer;
 }
-.time-list .time-list-row.footer > div {
+.time-list .time-list-row.footer {
+  display: flex;
   flex: 1;
+  justify-content: center;
 }
 
-.time-list .time-list-row.footer > div > span {
+.time-list .time-list-row.footer > span {
   font-size: 14px;
+}
+
+.time-list .time-list-row.footer > span::before {
+  content: "";
+  display: inline-block;
+  background-size: 18px 18px;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.time-list .time-list-row.footer > span.down::before {
+  background-image: url("../../assets/img/angles-down-solid.svg");
+}
+
+.time-list .time-list-row.footer > span.up::before {
+  background-image: url("../../assets/img/angles-up-solid.svg");
 }
 
 #price-list {
