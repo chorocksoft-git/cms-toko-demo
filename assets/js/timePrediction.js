@@ -46,8 +46,8 @@ function loadListData() {
 
     const actualPriceDiv = document.createElement("div");
     const actualPriceSpan = document.createElement("span");
-    actualPriceSpan.textContent = `Rp${addComma(
-      priceData.mape_week_price_chat[index]
+    actualPriceSpan.textContent = `Rp${numberWithCommas(
+      dropDecimalPoint(priceData.mape_week_price_chat[index], 3)
     )}`;
     actualPriceDiv.appendChild(actualPriceSpan);
 
@@ -55,11 +55,9 @@ function loadListData() {
     const predictedPriceSpan = document.createElement("span");
     // predictedPriceDiv.className = "text-start";
     predictedPriceSpan.className = "bold";
-    predictedPriceSpan.textContent = `Rp${addComma(
-      priceData.mape_ai_price_chat[index]
+    predictedPriceSpan.textContent = `Rp${numberWithCommas(
+      dropDecimalPoint(priceData.mape_ai_price_chat[index], 3)
     )}`;
-    predictedPriceDiv.appendChild(predictedPriceSpan);
-
     const aveMapeDiv = document.createElement("div");
     const aveMapeSpan = document.createElement("span");
     aveMapeSpan.textContent = `${item.toFixed(3)}%`;

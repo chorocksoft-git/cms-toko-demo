@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const buttons = document.querySelectorAll(".toggle-buttons button");
   const predictionTitle = document.getElementById("prediction-title");
-  const toggleAIPrediction =
-    document.getElementsByClassName("highcharts-figure");
 
   buttons.forEach((button) => {
     button.addEventListener("click", function () {

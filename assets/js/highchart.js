@@ -68,10 +68,10 @@ function chartDraw({
   week_price_chart: weekPriceData,
   ai_price_chart: aiPriceData,
   last_ai_price_point: lastAiPricePoint,
-  timestamps,
 }) {
   const minValue = findMinValue(weekPriceData, aiPriceData);
   const { format } = dateFns;
+  const ccName = priceData.cc_code;
 
   Highcharts.chart("container", {
     chart: {
@@ -123,7 +123,9 @@ function chartDraw({
       {
         tickAmount: 10,
         labels: {
-          format: `{value}`,
+          formatter() {
+            return numberWithCommas(this.value);
+          },
         },
         title: {
           text: "",
@@ -159,12 +161,32 @@ function chartDraw({
     },
 
     tooltip: {
-      shared: true,
       crosshairs: true,
       split: true,
-      backgroundColor: "#fff",
-      borderWidth: 2,
+      formatter: function (tooltip) {
+        const { x, points, color } = this;
+        console.log("color", color);
+        console.log("points", points);
+        const formatHtml = tooltip.defaultFormatter.call(this, tooltip);
+        return formatHtml.map((html, idx, arr) => {
+          if (html === "") return "";
+
+          if (idx === 0)
+            return `<span style="font-size: 10px">${format(
+              x,
+              "yyyy-MM-dd HH:mm"
+            )}</span><br/>`;
+          return `<span style="color:${color}">●</span>
+          <b style="font-weight: 400; font-size: 11px;">${ccName}: </b> 
+           <b style="font-weight: 700">Rp ${numberWithCommas(
+             dropDecimalPoint(points[idx - 1].y)
+           )}</b><br/>`;
+        });
+      },
+      shared: true,
+      borderWidth: 1,
       borderColor: this.color,
+      borderRadius: 4,
       useHTML: true,
       style: {
         fontSize: "12px",
@@ -183,13 +205,23 @@ function chartDraw({
         },
         threshold: null,
       },
+
       line: {
-        marker: {
+        dataLabels: {
           enabled: true,
-          states: {
-            hover: {
-              enabled: false,
-            },
+          formatter: function () {
+            return `   <div style="width:80px; hegint:40px; padding: 8px; border-radius: 3px; background-color: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+            <span style="color:${this.color}">●</span>
+            <b style="font-weight: 400; font-size: 11px;">${ccName}: </b> 
+            <b style="font-weight: 700">Rp ${numberWithCommas(
+              dropDecimalPoint(this.y)
+            )}</b>
+            </div>
+            `;
+          },
+          style: {
+            color: "black",
+            fontSize: "12px",
           },
         },
       },
@@ -198,7 +230,7 @@ function chartDraw({
       {
         name: "Price Trend",
         data: weekPriceData,
-        color: "#45B34180",
+        color: "#40A942",
         fillColor: {
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
           stops: [
@@ -212,7 +244,7 @@ function chartDraw({
         name: "Prediction Trend",
         data: aiPriceData,
 
-        color: "#AFD1E3",
+        color: "#A6CBDE",
         fillColor: {
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
           stops: [
@@ -233,8 +265,9 @@ function chartDraw({
             radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
             stops: [
               [0, "rgba(0, 126, 200, 1)"],
-              [0.3, "rgba(101, 193, 247, 1)"],
-              [1, "rgba(255, 255, 255, 1)"],
+              [0.3, "rgba(101, 193, 247, 0.7)"],
+              [0.7, "rgba(101, 193, 247, 0.3)"],
+              [1, "rgba(255, 255, 255, 0.3)"],
             ],
           },
           filter: "url(#blur)",
@@ -277,6 +310,7 @@ async function init() {
     `https://api.coinmarketscore.io/api/v2/toko-demo/${activeData}`
   );
   const data = await response.json();
+  console.log(data);
 
   //수집된 데이터를 전역에서 관리
   priceData = data;
