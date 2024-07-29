@@ -6,9 +6,9 @@ const TEN_MINUTES = 1000 * 60 * 10;
 const tickInterval = ONE_HOUR;
 
 let priceData = {};
-let period = "1D";
+// let period = "1D";
 
-const createChartData = () => {
+const createChartData = (period = "1D") => {
   const {
     week_price_chart: weekPriceChart,
     ai_price_chart: aiPriceChart,
@@ -22,6 +22,7 @@ const createChartData = () => {
       ? now.getHours() - 24
       : now.getHours() - weekPriceChart.length + 1
   );
+  console.log("period", period);
 
   const calcWeepPrice =
     period === HOUR ? weekPriceChart.slice(145, 169) : weekPriceChart;
@@ -73,18 +74,6 @@ function chartDraw({
   const minValue = findMinValue(weekPriceData, aiPriceData);
   const { format } = dateFns;
   const ccName = priceData.cc_code;
-
-  console.log(
-    "aiPriceData[aiPriceData.length - 1], lastAiPricePoint",
-    aiPriceData[aiPriceData.length - 1],
-    lastAiPricePoint
-  );
-  console.log(
-    "aiPriceData[aiPriceData.length - 1], lastAiPricePoint",
-    aiPriceData
-  );
-  console.log(" lastAiPricePoint", lastAiPricePoint);
-  console.log(" weekPriceData", weekPriceData);
 
   Highcharts.chart("container", {
     chart: {
@@ -381,7 +370,7 @@ async function init() {
 
   //수집된 데이터를 전역에서 관리
   priceData = data;
-  console.log(priceData);
+
   currentPage = 0;
 
   //AI Price Prediction 대표 데이터 구성
