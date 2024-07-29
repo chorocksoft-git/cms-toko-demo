@@ -50,7 +50,7 @@ const createChartData = () => {
     ai_price_chart: calcAiPrice.map((price, idx) => {
       return [
         period === HOUR
-          ? (parseInt(baseTime / tickInterval, 10) + idx) * tickInterval +
+          ? (parseInt(baseTime / tickInterval, 10) + (idx + 1)) * tickInterval +
             parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES
           : (parseInt(baseTime / tickInterval, 10) + idx) * tickInterval +
             parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES,
@@ -87,7 +87,13 @@ function chartDraw({
     } else {
       return dataPoint;
     }
+
+    // return {
+    //   ...dataPoint,
+    //   tracking,
+    // };
   });
+  console.log("lastAiPriceDatd", lastAiPriceDatd);
 
   Highcharts.chart("container", {
     chart: {
@@ -184,8 +190,9 @@ function chartDraw({
         const formatHtml = tooltip.defaultFormatter.call(this, tooltip);
         return formatHtml.map((html, idx, arr) => {
           if (html === "") return "";
+
           if (idx === 0)
-            return `<span style="font-size: 10px;">${format(
+            return `<span style="font-size: 10px">${format(
               x,
               "yyyy-MM-dd HH:mm"
             )}</span><br/>`;
@@ -197,7 +204,7 @@ function chartDraw({
         });
       },
       shared: true,
-      borderWidth: 1.5,
+      borderWidth: 1,
       borderColor: this.color,
       borderRadius: 4,
       useHTML: true,
@@ -205,46 +212,50 @@ function chartDraw({
         fontSize: "12px",
       },
     },
+    // plotOptions: {
+    //   series: {
+    //     events: {
+    //       legendItemClick: function () {
+    //         const series = this.chart.get(this.options.id);
+    //         console.log("series", series);
+    //         if (series.visible) {
+    //           series.hide();
+    //         } else {
+    //           series.show();
+    //         }
+    //         return false; // 클릭 이벤트 중단
+    //       },
+    //       mouseOver: function () {
+    //         if (this.name === "Point 1") {
+    //           return false;
+    //         }
+    //       },
+    //     },
+    //     areaspline: {
+    //       marker: {
+    //         radius: 3,
+    //       },
+    //       lineWidth: 1.5,
+    //       states: {
+    //         hover: {
+    //           lineWidth: 2.5,
+    //         },
+    //       },
+    //       threshold: null,
+    //     },
+    //   },
+    // },
+
     plotOptions: {
       series: {
-        events: {
-          legendItemClick: function () {
-            const series = this.chart.get(this.options.id);
-
-            if (series.visible) {
-              series.hide();
-            } else {
-              series.show();
-            }
-            return false;
-          },
-        },
-        // point: {
-        //   events: {
-        //     mouseOver: function () {
-        //       // 마지막 포인트를 찾기 위한 인덱스
-        //       let series = this.series;
-        //       let lastIndex = series.data.length - 1;
-        //       console.log("series", series.name);
-        //       console.log("lastIndex", lastIndex);
-        //       if (this.index === lastIndex) {
-        //         // 마지막 데이터 포인트일 때 아무 것도 하지 않음
-        //         return false;
-        //       }
-        //     },
-        //   },
-        // },
-        areaspline: {
-          marker: {
-            radius: 3,
-          },
-          lineWidth: 1.5,
-          states: {
-            hover: {
-              lineWidth: 2.5,
+        point: {
+          events: {
+            mouseOver: function () {
+              if (this.name === "Point 1") {
+                return false;
+              }
             },
           },
-          threshold: null,
         },
       },
     },
@@ -276,7 +287,7 @@ function chartDraw({
         name: `${ccName}Price`,
         data: weekPriceData,
         id: "series1",
-        color: "#45B341",
+        color: "#40A942",
         fillColor: {
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
           stops: [
@@ -290,39 +301,22 @@ function chartDraw({
 
       {
         name: "Past Prediction",
-        data: aiPriceData,
+        data: lastAiPriceDatd,
         id: "series2",
-        color: "#AFD1E3",
-        fillColor: {
-          linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
-          stops: [
-            [0, "rgba(175, 209, 227, 0.4)"],
-            // [0.3, "rgba(175, 209, 227, 0.1)"],
-            // [0.7, "rgba(255, 255, 255, 0.3)"],
-            [1, "rgba(255, 255, 255, 0.3)"],
-          ],
-        },
-      },
-      {
-        name: "line",
-        data: [aiPriceData[aiPriceData.length - 1], lastAiPricePoint],
-        id: "series2",
-        color: "#AFD1E3",
+        color: "#A6CBDE",
         fillColor: {
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
           stops: [
             [0, "rgba(175, 209, 227, 0.6)"],
-            // [0.3, "rgba(175, 209, 227, 0.1)"],
-            // [0.7, "rgba(255, 255, 255, 0.3)"],
-            [1, "rgba(255, 255, 255, 0.5)"],
+            [0.3, "rgba(175, 209, 227, 0.1)"],
+            [0.7, "rgba(255, 255, 255, 0.3)"],
+            [1, "rgba(255, 255, 255, 0.3)"],
           ],
         },
-        showInLegend: false,
-        enableMouseTracking: false,
+        enableMouseTracking: lastAiPriceDatd.map((point) => point.tracking),
       },
       {
         name: `${ccName}price in 1 hour`,
-
         type: "line",
         id: "series3",
         data: [lastAiPricePoint],
