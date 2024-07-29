@@ -6,8 +6,8 @@ const aveMape = document.querySelector("#ave-mape > .content");
 function metricsData() {
   const now = priceData.week_price_chart[priceData.week_price_chart.length - 1];
   const next = priceData.ai_price_chart[priceData.ai_price_chart.length - 1];
-  price.innerText = `Rp${now}`;
-  prediction.innerText = `Rp${next}`;
+  price.innerText = `Rp${addComma(now)}`;
+  prediction.innerText = `Rp${addComma(next)}`;
   aveMape.innerText = `${priceData.price_mape_avg.toFixed(3)}%`;
 
   predictionPercent.innerText = formatPercentageChange(

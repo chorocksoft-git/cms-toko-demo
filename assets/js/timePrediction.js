@@ -3,6 +3,11 @@ const itemsPerPage = 3;
 const footer = document.querySelector(".footer");
 const listContainer = document.getElementById("price-list");
 
+function addComma(price) {
+  price = price.toFixed(3);
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function loadListData() {
   const start = currentPage * itemsPerPage;
   const end = start + itemsPerPage;
@@ -41,14 +46,18 @@ function loadListData() {
 
     const actualPriceDiv = document.createElement("div");
     const actualPriceSpan = document.createElement("span");
-    actualPriceSpan.textContent = `Rp${priceData.mape_week_price_chat[index]}`;
+    actualPriceSpan.textContent = `Rp${addComma(
+      priceData.mape_week_price_chat[index]
+    )}`;
     actualPriceDiv.appendChild(actualPriceSpan);
 
     const predictedPriceDiv = document.createElement("div");
     const predictedPriceSpan = document.createElement("span");
     // predictedPriceDiv.className = "text-start";
     predictedPriceSpan.className = "bold";
-    predictedPriceSpan.textContent = `Rp${priceData.mape_ai_price_chat[index]}`;
+    predictedPriceSpan.textContent = `Rp${addComma(
+      priceData.mape_ai_price_chat[index]
+    )}`;
     predictedPriceDiv.appendChild(predictedPriceSpan);
 
     const aveMapeDiv = document.createElement("div");
