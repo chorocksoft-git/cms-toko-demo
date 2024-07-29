@@ -22,108 +22,2534 @@
   <body class="layout">
     <div class="container">
       <header>
-        <div class="tab active" data-value="125347">
-          <span>TKO_IDR</span>
+        <div class="tab_list">
+          <div class="tab active" data-value="125347">
+            <span>TKO_IDR</span>
+          </div>
+          <div class="tab" data-value="125438">
+            <span>BTC_IDR</span>
+          </div>
+          <div class="tab" data-value="125442">
+            <span>ETH_IDR</span>
+          </div>
+          <div class="tab" data-value="125346">
+            <span>BNB_IDR</span>
+          </div>
+          <div class="tab" data-value="125439">
+            <span>SOL_IDR</span>
+          </div>
         </div>
-        <div class="tab" data-value="125438">
-          <span>BTC_IDR</span>
-        </div>
-        <div class="tab" data-value="125442">
-          <span>ETH_IDR</span>
-        </div>
-        <div class="tab" data-value="125346">
-          <span>BNB_IDR</span>
-        </div>
-        <div class="tab" data-value="125439">
-          <span>SOL_IDR</span>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 15px;
+            align-items: flex-end;
+          "
+        >
+          <span style="font-size: 14px">Demo created for</span>
+          <img src="./assets/img/logo.png" alt="logo" />
         </div>
       </header>
       <div class="main">
         <section>
-          <div>
-            <!-- 제목 -->
-            <p class="title">AI Price Prediction</p>
-            <div class="row">
-              <p class="content">
-                Predict the price and volume a day later based on the current
-                price. The exchange rate is updated every five minutes.
-              </p>
-            </div>
-            <!-- 표 -->
-            <div class="metrics">
-              <div id="price" class="metric">
-                <p class="title">Price</p>
-                <p class="content">₩83,412088.427</p>
-              </div>
-              <div id="prediction" class="metric">
-                <div class="click">
-                  <p class="title">Prediction</p>
-                  <p class="title" id="prediction-title">(1h)</p>
+          <p class="title">AI Price Prediction</p>
+          <div class="row">
+            <p class="content">
+              Predict the price and volume a day later based on the current
+              price. The exchange rate is updated every five minutes.
+            </p>
+          </div>
+        </section>
+        <!-- 실데이터 -->
+        <div class="real_data" style="display: none">
+          <section>
+            <div>
+              <!-- 표 -->
+              <div class="metrics">
+                <div id="price" class="metric">
+                  <p class="title">Price</p>
+                  <p class="content">₩83,412088.427</p>
                 </div>
-                <p class="content">₩83,412088.427</p>
-                <p id="percent">▼ 0.018%</p>
-              </div>
-              <div id="ave-mape" class="metric">
-                <p class="title">Ave Mape</p>
-                <p class="content">0.248%</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section>
-          <div class="time-list">
-            <div class="time-list-row header">
-              <div>
-                <span> Time </span>
-              </div>
-              <div>
-                <span> Time Range </span>
-              </div>
-              <div>
-                <span> Actual </span>
-              </div>
-              <div>
-                <span> Prediction </span>
-              </div>
-              <div>
-                <span> Mape </span>
+                <div id="prediction" class="metric">
+                  <div class="click">
+                    <p class="title">Prediction</p>
+                    <p class="title" id="prediction-title">(1h)</p>
+                  </div>
+                  <p class="content">₩83,412088.427</p>
+                  <p id="percent">▼ 0.018%</p>
+                </div>
+                <div id="ave-mape" class="metric">
+                  <p class="title">Ave Mape</p>
+                  <p class="content">0.248%</p>
+                </div>
               </div>
             </div>
-            <div id="price-list"></div>
+          </section>
+          <section>
+            <div class="time-list">
+              <div class="time-list-row header">
+                <div>
+                  <span> Time </span>
+                </div>
+                <div>
+                  <span> Time Range </span>
+                </div>
+                <div>
+                  <span> Actual </span>
+                </div>
+                <div>
+                  <span> Prediction </span>
+                </div>
+                <div>
+                  <span> Mape </span>
+                </div>
+              </div>
+              <div id="price-list"></div>
 
-            <div class="time-list-row footer" onclick="loadListData()">
-              <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 448 512"
-                >
-                  <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                  <path
-                    d="M246.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 402.7 361.4 265.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-160 160zm160-352l-160 160c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 210.7 361.4 73.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3z"
-                  />
-                </svg>
-                <span style="margin-left: 10px"> see more </span>
+              <div class="time-list-row footer" onclick="loadListData()">
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 448 512"
+                  >
+                    <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path
+                      d="M246.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 402.7 361.4 265.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-160 160zm160-352l-160 160c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 210.7 361.4 73.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3z"
+                    />
+                  </svg>
+                  <span style="margin-left: 10px"> see more </span>
+                </div>
               </div>
             </div>
+          </section>
+        </div>
+        <!-- 데이터 로딩바 -->
+        <div class="data_loading" style="display: none; position: relative">
+          <div style="filter: blur(5px)">
+            <section>
+              <div>
+                <!-- 표 -->
+                <div class="metrics">
+                  <div id="price" class="metric">
+                    <p class="title">Price</p>
+                    <p class="content">Rp4975.784897335593</p>
+                  </div>
+                  <div id="prediction" class="metric">
+                    <div class="click">
+                      <p class="title">Prediction</p>
+                      <p class="title" id="prediction-title">(1h)</p>
+                    </div>
+                    <p class="content">Rp4971.69096162803</p>
+                    <p id="percent" class="negative">▼ 0.082%</p>
+                  </div>
+                  <div id="ave-mape" class="metric">
+                    <p class="title">Ave Mape</p>
+                    <p class="content">0.761%</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section>
+              <div class="time-list">
+                <div class="time-list-row header" style="border: none">
+                  <div>
+                    <span> Time </span>
+                  </div>
+                  <div>
+                    <span> Time Range </span>
+                  </div>
+                  <div>
+                    <span> Actual </span>
+                  </div>
+                  <div>
+                    <span> Prediction </span>
+                  </div>
+                  <div>
+                    <span> Mape </span>
+                  </div>
+                </div>
+                <div id="price-list">
+                  <div class="time-list-row" style="border: none">
+                    <div><span>10 분 전</span></div>
+                    <div><span>07/29 09:10 ~ 07/29 10:20</span></div>
+                    <div><span>Rp4956.199176772502</span></div>
+                    <div><span class="bold">Rp4972.743206610207</span></div>
+                    <div><span>0.334%</span></div>
+                  </div>
+                  <div class="time-list-row" style="border: none">
+                    <div><span>20 분 전</span></div>
+                    <div><span>07/29 09:00 ~ 07/29 10:10</span></div>
+                    <div><span>Rp4979.949617231696</span></div>
+                    <div><span class="bold">Rp4945.842919591441</span></div>
+                    <div><span>0.685%</span></div>
+                  </div>
+                  <div class="time-list-row" style="border: none">
+                    <div><span>30 분 전</span></div>
+                    <div><span>07/29 08:50 ~ 07/29 10:00</span></div>
+                    <div><span>Rp4980.024207497117</span></div>
+                    <div><span class="bold">Rp4987.031444706632</span></div>
+                    <div><span>0.141%</span></div>
+                  </div>
+                </div>
+
+                <div class="time-list-row footer" style="border: none">
+                  <div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 448 512"
+                    >
+                      <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                      <path
+                        d="M246.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 402.7 361.4 265.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-160 160zm160-352l-160 160c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 210.7 361.4 73.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3z"
+                      ></path>
+                    </svg>
+                    <span style="margin-left: 10px"> see more </span>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
-        </section>
-        <section>
-          <div class="toggle-buttons">
-            <button id="1h-button" class="active">1D</button>
-            <button id="24h-button">7D</button>
+          <div
+            style="
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              top: 0;
+              left: 0;
+            "
+          >
+            <div
+              style="
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+              "
+            >
+              <img
+                src="./assets/img/loding.gif"
+                alt="Computer man"
+                style="width: 48px; height: 48px; margin-bottom: 13px"
+              />
+
+              <span style="font-size: 14px">Collecting Accurate Data...</span>
+            </div>
           </div>
-          <figure class="highcharts-figure">
-            <div id="container"></div>
-          </figure>
-        </section>
+        </div>
+
+        <!-- 그래프 -->
+        <div class="real_graph" style="display: none">
+          <section style="position: relative; margin-top: 80px">
+            <div class="toggle-buttons">
+              <button id="1h-button" class="active">1D</button>
+              <button id="24h-button">7D</button>
+            </div>
+            <figure class="highcharts-figure">
+              <div id="container"></div>
+            </figure>
+          </section>
+        </div>
+
+        <!-- 그래프 로딩 -->
+        <div class="graph_loading" style="position: relative; display: none">
+          <section
+            style="position: relative; margin-top: 80px; filter: blur(5px)"
+          >
+            <div class="toggle-buttons">
+              <button id="1h-button" class="active">1D</button>
+              <button id="24h-button">7D</button>
+            </div>
+            <figure class="highcharts-figure">
+              <div
+                id="container"
+                data-highcharts-chart="0"
+                aria-hidden="false"
+                role="region"
+                aria-label="Chart. Highcharts interactive chart."
+                style="overflow: hidden; pointer-events: fill"
+              >
+                <div
+                  id="highcharts-screen-reader-region-before-0"
+                  aria-hidden="false"
+                  style="position: relative"
+                >
+                  <div
+                    aria-hidden="false"
+                    style="
+                      position: absolute;
+                      width: 1px;
+                      height: 1px;
+                      overflow: hidden;
+                      white-space: nowrap;
+                      clip: rect(1px, 1px, 1px, 1px);
+                      margin-top: -3px;
+                      opacity: 0.01;
+                    "
+                  >
+                    <p>Chart</p>
+                    <div>Combination chart with 3 data series.</div>
+                    <div>
+                      <button
+                        id="hc-linkto-highcharts-data-table-0"
+                        tabindex="-1"
+                        aria-expanded="false"
+                      >
+                        View as data table, Chart
+                      </button>
+                    </div>
+                    <div>
+                      The chart has 1 X axis displaying Time. Data ranges from
+                      2024-07-28 02:30:00 to 2024-07-29 02:30:00.
+                    </div>
+                    <div>
+                      The chart has 1 Y axis displaying values. Data ranges from
+                      4910.999923358756 to 5082.389963366649.
+                    </div>
+                  </div>
+                </div>
+                <div
+                  aria-hidden="false"
+                  class="highcharts-announcer-container"
+                  style="position: relative"
+                >
+                  <div
+                    aria-hidden="false"
+                    aria-live="polite"
+                    aria-atomic="true"
+                    style="
+                      position: absolute;
+                      width: 1px;
+                      height: 1px;
+                      overflow: hidden;
+                      white-space: nowrap;
+                      clip: rect(1px, 1px, 1px, 1px);
+                      margin-top: -3px;
+                      opacity: 0.01;
+                    "
+                  ></div>
+                  <div
+                    aria-hidden="false"
+                    aria-live="assertive"
+                    aria-atomic="true"
+                    style="
+                      position: absolute;
+                      width: 1px;
+                      height: 1px;
+                      overflow: hidden;
+                      white-space: nowrap;
+                      clip: rect(1px, 1px, 1px, 1px);
+                      margin-top: -3px;
+                      opacity: 0.01;
+                    "
+                  ></div>
+                  <div
+                    aria-hidden="false"
+                    aria-live="polite"
+                    aria-atomic="true"
+                    style="
+                      position: absolute;
+                      width: 1px;
+                      height: 1px;
+                      overflow: hidden;
+                      white-space: nowrap;
+                      clip: rect(1px, 1px, 1px, 1px);
+                      margin-top: -3px;
+                      opacity: 0.01;
+                    "
+                  ></div>
+                  <div
+                    aria-hidden="false"
+                    aria-live="polite"
+                    aria-atomic="true"
+                    style="
+                      position: absolute;
+                      width: 1px;
+                      height: 1px;
+                      overflow: hidden;
+                      white-space: nowrap;
+                      clip: rect(1px, 1px, 1px, 1px);
+                      margin-top: -3px;
+                      opacity: 0.01;
+                    "
+                  ></div>
+                </div>
+                <div
+                  id="highcharts-ajj97u8-0"
+                  dir="ltr"
+                  style="
+                    position: relative;
+                    overflow: hidden;
+                    width: 1160px;
+                    height: 600px;
+                    text-align: left;
+                    line-height: normal;
+                    z-index: 0;
+                    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                    user-select: none;
+                    touch-action: manipulation;
+                    outline: none;
+                    font-size: 13px;
+                  "
+                  class="highcharts-container"
+                  aria-hidden="false"
+                  tabindex="0"
+                >
+                  <div
+                    aria-hidden="false"
+                    class="highcharts-a11y-proxy-container-before"
+                    style="
+                      top: 0px;
+                      left: 0px;
+                      white-space: nowrap;
+                      position: absolute;
+                    "
+                  ></div>
+                  <svg
+                    version="1.1"
+                    class="highcharts-root"
+                    style="
+                      font-family: Helvetica, Arial, sans-serif;
+                      font-size: 13px;
+                    "
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1160"
+                    height="600"
+                    viewBox="0 0 1160 600"
+                    aria-hidden="false"
+                    aria-label="Interactive chart"
+                  >
+                    <desc aria-hidden="true">
+                      Created with Highcharts 11.4.6
+                    </desc>
+                    <defs aria-hidden="true">
+                      <linearGradient
+                        x1="0"
+                        x2="0"
+                        y1="0"
+                        y2="1"
+                        id="highcharts-ajj97u8-1"
+                      >
+                        <stop
+                          offset="0"
+                          stop-color="rgb(69,179,65)"
+                          stop-opacity="0.2"
+                        ></stop>
+                        <stop
+                          offset="1"
+                          stop-color="rgb(69,179,65)"
+                          stop-opacity="0.1"
+                        ></stop>
+                      </linearGradient>
+                      <linearGradient
+                        x1="0"
+                        x2="0"
+                        y1="0"
+                        y2="1"
+                        id="highcharts-ajj97u8-2"
+                      >
+                        <stop
+                          offset="0"
+                          stop-color="rgb(175,209,227)"
+                          stop-opacity="0.5"
+                        ></stop>
+                        <stop
+                          offset="1"
+                          stop-color="rgb(175,209,227)"
+                          stop-opacity="0.1"
+                        ></stop>
+                      </linearGradient>
+                      <radialGradient
+                        cx="0.5"
+                        cy="0.5"
+                        r="0.5"
+                        id="highcharts-ajj97u8-3"
+                      >
+                        <stop
+                          offset="0"
+                          stop-color="rgb(0,126,200)"
+                          stop-opacity="1"
+                        ></stop>
+                        <stop
+                          offset="0.3"
+                          stop-color="rgb(101,193,247)"
+                          stop-opacity="1"
+                        ></stop>
+                        <stop
+                          offset="1"
+                          stop-color="rgb(255,255,255)"
+                          stop-opacity="1"
+                        ></stop>
+                      </radialGradient>
+                      <filter id="highcharts-drop-shadow-0">
+                        <feDropShadow
+                          dx="1"
+                          dy="1"
+                          flood-color="#000000"
+                          flood-opacity="0.75"
+                          stdDeviation="2.5"
+                        ></feDropShadow>
+                      </filter>
+                      <clipPath id="highcharts-ajj97u8-28-">
+                        <rect
+                          x="0"
+                          y="0"
+                          width="1092"
+                          height="505"
+                          fill="none"
+                        ></rect>
+                      </clipPath>
+                    </defs>
+                    <rect
+                      fill="rgba(255, 255, 255, 0)"
+                      class="highcharts-background"
+                      filter="none"
+                      x="0"
+                      y="0"
+                      width="1160"
+                      height="600"
+                      rx="0"
+                      ry="0"
+                      aria-hidden="true"
+                    ></rect>
+                    <rect
+                      fill="none"
+                      class="highcharts-plot-background"
+                      x="0"
+                      y="53"
+                      width="1092"
+                      height="505"
+                      filter="none"
+                      aria-hidden="true"
+                    ></rect>
+                    <g
+                      class="highcharts-axis highcharts-yaxis"
+                      data-z-index="0"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill="none"
+                        class="highcharts-axis-line"
+                        stroke="#333333"
+                        stroke-width="0"
+                        data-z-index="7"
+                        d="M 1122 53 L 1122 558"
+                      ></path>
+                    </g>
+                    <g
+                      class="highcharts-grid highcharts-xaxis-grid"
+                      data-z-index="1"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="0"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 77.5 53 L 77.5 558"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="0"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 166.5 53 L 166.5 558"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="0"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 256.5 53 L 256.5 558"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="0"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 345.5 53 L 345.5 558"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="0"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 434.5 53 L 434.5 558"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="0"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 523.5 53 L 523.5 558"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="0"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 612.5 53 L 612.5 558"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="0"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 702.5 53 L 702.5 558"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="0"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 791.5 53 L 791.5 558"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="0"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 880.5 53 L 880.5 558"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="0"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 969.5 53 L 969.5 558"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="0"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 1058.5 53 L 1058.5 558"
+                        opacity="1"
+                      ></path>
+                    </g>
+                    <g
+                      class="highcharts-grid highcharts-yaxis-grid"
+                      data-z-index="1"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="1"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 0 558.5 L 1092 558.5"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="1"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 0 501.5 L 1092 501.5"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="1"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 0 445.5 L 1092 445.5"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="1"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 0 389.5 L 1092 389.5"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="1"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 0 333.5 L 1092 333.5"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="1"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 0 277.5 L 1092 277.5"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="1"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 0 221.5 L 1092 221.5"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="1"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 0 165.5 L 1092 165.5"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="1"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 0 109.5 L 1092 109.5"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        stroke="#e6e6e6"
+                        stroke-width="1"
+                        stroke-dasharray="none"
+                        data-z-index="1"
+                        class="highcharts-grid-line"
+                        d="M 0 53.5 L 1092 53.5"
+                        opacity="1"
+                      ></path>
+                    </g>
+                    <rect
+                      fill="none"
+                      class="highcharts-plot-border"
+                      data-z-index="1"
+                      stroke="#cccccc"
+                      stroke-width="0"
+                      x="0"
+                      y="53"
+                      width="1092"
+                      height="505"
+                      aria-hidden="true"
+                    ></rect>
+                    <g
+                      class="highcharts-axis highcharts-xaxis"
+                      data-z-index="2"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill="none"
+                        class="highcharts-tick"
+                        stroke="#333333"
+                        stroke-width="1"
+                        d="M 77.5 558 L 77.5 568"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        class="highcharts-tick"
+                        stroke="#333333"
+                        stroke-width="1"
+                        d="M 166.5 558 L 166.5 568"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        class="highcharts-tick"
+                        stroke="#333333"
+                        stroke-width="1"
+                        d="M 256.5 558 L 256.5 568"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        class="highcharts-tick"
+                        stroke="#333333"
+                        stroke-width="1"
+                        d="M 345.5 558 L 345.5 568"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        class="highcharts-tick"
+                        stroke="#333333"
+                        stroke-width="1"
+                        d="M 434.5 558 L 434.5 568"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        class="highcharts-tick"
+                        stroke="#333333"
+                        stroke-width="1"
+                        d="M 523.5 558 L 523.5 568"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        class="highcharts-tick"
+                        stroke="#333333"
+                        stroke-width="1"
+                        d="M 612.5 558 L 612.5 568"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        class="highcharts-tick"
+                        stroke="#333333"
+                        stroke-width="1"
+                        d="M 702.5 558 L 702.5 568"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        class="highcharts-tick"
+                        stroke="#333333"
+                        stroke-width="1"
+                        d="M 791.5 558 L 791.5 568"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        class="highcharts-tick"
+                        stroke="#333333"
+                        stroke-width="1"
+                        d="M 880.5 558 L 880.5 568"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        class="highcharts-tick"
+                        stroke="#333333"
+                        stroke-width="1"
+                        d="M 969.5 558 L 969.5 568"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        class="highcharts-tick"
+                        stroke="#333333"
+                        stroke-width="1"
+                        d="M 1058.5 558 L 1058.5 568"
+                        opacity="1"
+                      ></path>
+                      <path
+                        fill="none"
+                        class="highcharts-axis-line"
+                        stroke="#333333"
+                        stroke-width="1"
+                        data-z-index="7"
+                        d="M 0 558.5 L 1092 558.5"
+                      ></path>
+                    </g>
+                    <path
+                      fill="none"
+                      class="highcharts-crosshair highcharts-crosshair-thin"
+                      data-z-index="2"
+                      stroke="#cccccc"
+                      stroke-width="1"
+                      d="M 367.5 53 L 367.5 558"
+                      style="pointer-events: none"
+                      visibility="hidden"
+                    ></path>
+                    <g
+                      class="highcharts-series-group"
+                      data-z-index="3"
+                      filter="none"
+                      aria-hidden="false"
+                    >
+                      <g
+                        class="highcharts-series highcharts-series-0 highcharts-areaspline-series"
+                        data-z-index="0.1"
+                        opacity="1"
+                        transform="translate(0,53) scale(1 1)"
+                        clip-path="url(#highcharts-ajj97u8-28-)"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill="url(#highcharts-ajj97u8-1)"
+                          d="M 10.705882352941 158.84355046799 C 10.705882352941 158.84355046799 37.470588235294 162.121825229156 55.313725490196 169.49061897223 C 73.156862745098 176.85941271530402 82.07843137254899 181.32867710171067 99.921568627451 195.68751918336 C 117.7647058823546 210.04636126501063 126.6862745098064 241.28482938048 144.52941176471 241.28482938048 C 162.37254901961 241.28482938048 171.29411764706 215.93656130908 189.13725490196 215.93656130908 C 206.98039215686404 215.93656130908 215.901960784316 225.69568225388144 233.74509803922 230.60962942409 C 251.58823529412 235.52357659429748 260.50980392157 240.21880744185 278.35294117647 240.50629716012 C 296.196078431374 240.79378687839 305.117647058826 240.79378687839 322.96078431373 240.79378687839 C 340.80392156863 240.79378687839 349.72549019608005 210.71120125073 367.56862745098 210.71120125073 C 385.411764705884 210.71120125073 394.333333333336 245.48613596742 412.17647058824 245.48613596742 C 430.01960784313997 245.48613596742 438.94117647059 210.47277004047 456.78431372549 210.47277004047 C 474.62745098039403 210.47277004047 483.549019607846 210.47277004047 501.39215686275 210.47277004047 C 519.23529411765 210.47277004047 528.1568627450999 214.83257334560003 546 224.50053008857 C 563.8431372549001 234.16848683153998 572.7647058823501 258.81255375532 590.60784313725 258.81255375532 C 608.450980392154 258.81255375532 617.3725490196059 252.50001599147 635.21568627451 252.50001599147 C 653.0588235294099 252.50001599147 661.98039215686 252.50001599147 679.82352941176 252.50001599147 C 697.666666666664 252.50001599147 706.588235294116 242.9765131117149 724.43137254902 234.78989459967 C 742.2745098039201 226.6032760876269 751.19607843137 230.80460554566986 769.03921568627 211.56692343125 C 786.8823529411741 192.32924131682583 795.803921568626 138.60148402756 813.64705882353 138.60148402756 C 831.49019607843 138.60148402756 840.4117647058799 177.9552909657646 858.25490196078 201.43071371493 C 876.098039215684 224.9061364641006 885.019607843136 255.9785977734 902.86274509804 255.9785977734 C 920.70588235294 255.9785977734 929.6274509803901 242.009860306657 947.47058823529 232.89828294141 C 965.313725490194 223.78670557616098 974.2352941176462 210.42071094716 992.07843137255 210.42071094716 C 1009.9215686274499 210.42071094716 1036.6862745098 213.37309284101 1036.6862745098 213.37309284101 L 1036.6862745098 505 C 1036.6862745098 505 1009.9215686274499 505 992.07843137255 505 C 974.2352941176462 505 965.313725490194 505 947.47058823529 505 C 929.6274509803901 505 920.70588235294 505 902.86274509804 505 C 885.019607843136 505 876.098039215684 505 858.25490196078 505 C 840.4117647058799 505 831.49019607843 505 813.64705882353 505 C 795.803921568626 505 786.8823529411741 505 769.03921568627 505 C 751.19607843137 505 742.2745098039201 505 724.43137254902 505 C 706.588235294116 505 697.666666666664 505 679.82352941176 505 C 661.98039215686 505 653.0588235294099 505 635.21568627451 505 C 617.3725490196059 505 608.450980392154 505 590.60784313725 505 C 572.7647058823501 505 563.8431372549001 505 546 505 C 528.1568627450999 505 519.23529411765 505 501.39215686275 505 C 483.549019607846 505 474.62745098039403 505 456.78431372549 505 C 438.94117647059 505 430.01960784313997 505 412.17647058824 505 C 394.333333333336 505 385.411764705884 505 367.56862745098 505 C 349.72549019608005 505 340.80392156863 505 322.96078431373 505 C 305.117647058826 505 296.196078431374 505 278.35294117647 505 C 260.50980392157 505 251.58823529412 505 233.74509803922 505 C 215.901960784316 505 206.98039215686404 505 189.13725490196 505 C 171.29411764706 505 162.37254901961 505 144.52941176471 505 C 126.6862745098064 505 117.7647058823546 505 99.921568627451 505 C 82.07843137254899 505 73.156862745098 505 55.313725490196 505 C 37.470588235294 505 10.705882352941 505 10.705882352941 505 Z"
+                          class="highcharts-area"
+                          data-z-index="0"
+                          fill-opacity="1"
+                          style="pointer-events: none"
+                        ></path>
+                        <path
+                          fill="none"
+                          d="M 10.705882352941 158.84355046799 C 10.705882352941 158.84355046799 37.470588235294 162.121825229156 55.313725490196 169.49061897223 C 73.156862745098 176.85941271530402 82.07843137254899 181.32867710171067 99.921568627451 195.68751918336 C 117.7647058823546 210.04636126501063 126.6862745098064 241.28482938048 144.52941176471 241.28482938048 C 162.37254901961 241.28482938048 171.29411764706 215.93656130908 189.13725490196 215.93656130908 C 206.98039215686404 215.93656130908 215.901960784316 225.69568225388144 233.74509803922 230.60962942409 C 251.58823529412 235.52357659429748 260.50980392157 240.21880744185 278.35294117647 240.50629716012 C 296.196078431374 240.79378687839 305.117647058826 240.79378687839 322.96078431373 240.79378687839 C 340.80392156863 240.79378687839 349.72549019608005 210.71120125073 367.56862745098 210.71120125073 C 385.411764705884 210.71120125073 394.333333333336 245.48613596742 412.17647058824 245.48613596742 C 430.01960784313997 245.48613596742 438.94117647059 210.47277004047 456.78431372549 210.47277004047 C 474.62745098039403 210.47277004047 483.549019607846 210.47277004047 501.39215686275 210.47277004047 C 519.23529411765 210.47277004047 528.1568627450999 214.83257334560003 546 224.50053008857 C 563.8431372549001 234.16848683153998 572.7647058823501 258.81255375532 590.60784313725 258.81255375532 C 608.450980392154 258.81255375532 617.3725490196059 252.50001599147 635.21568627451 252.50001599147 C 653.0588235294099 252.50001599147 661.98039215686 252.50001599147 679.82352941176 252.50001599147 C 697.666666666664 252.50001599147 706.588235294116 242.9765131117149 724.43137254902 234.78989459967 C 742.2745098039201 226.6032760876269 751.19607843137 230.80460554566986 769.03921568627 211.56692343125 C 786.8823529411741 192.32924131682583 795.803921568626 138.60148402756 813.64705882353 138.60148402756 C 831.49019607843 138.60148402756 840.4117647058799 177.9552909657646 858.25490196078 201.43071371493 C 876.098039215684 224.9061364641006 885.019607843136 255.9785977734 902.86274509804 255.9785977734 C 920.70588235294 255.9785977734 929.6274509803901 242.009860306657 947.47058823529 232.89828294141 C 965.313725490194 223.78670557616098 974.2352941176462 210.42071094716 992.07843137255 210.42071094716 C 1009.9215686274499 210.42071094716 1036.6862745098 213.37309284101 1036.6862745098 213.37309284101"
+                          class="highcharts-graph"
+                          data-z-index="1"
+                          stroke="#45B34180"
+                          stroke-width="2"
+                          stroke-linejoin="round"
+                          stroke-linecap="round"
+                          filter="none"
+                        ></path>
+                        <path
+                          fill="none"
+                          d="M 10.705882352941 158.84355046799 C 10.705882352941 158.84355046799 37.470588235294 162.121825229156 55.313725490196 169.49061897223 C 73.156862745098 176.85941271530402 82.07843137254899 181.32867710171067 99.921568627451 195.68751918336 C 117.7647058823546 210.04636126501063 126.6862745098064 241.28482938048 144.52941176471 241.28482938048 C 162.37254901961 241.28482938048 171.29411764706 215.93656130908 189.13725490196 215.93656130908 C 206.98039215686404 215.93656130908 215.901960784316 225.69568225388144 233.74509803922 230.60962942409 C 251.58823529412 235.52357659429748 260.50980392157 240.21880744185 278.35294117647 240.50629716012 C 296.196078431374 240.79378687839 305.117647058826 240.79378687839 322.96078431373 240.79378687839 C 340.80392156863 240.79378687839 349.72549019608005 210.71120125073 367.56862745098 210.71120125073 C 385.411764705884 210.71120125073 394.333333333336 245.48613596742 412.17647058824 245.48613596742 C 430.01960784313997 245.48613596742 438.94117647059 210.47277004047 456.78431372549 210.47277004047 C 474.62745098039403 210.47277004047 483.549019607846 210.47277004047 501.39215686275 210.47277004047 C 519.23529411765 210.47277004047 528.1568627450999 214.83257334560003 546 224.50053008857 C 563.8431372549001 234.16848683153998 572.7647058823501 258.81255375532 590.60784313725 258.81255375532 C 608.450980392154 258.81255375532 617.3725490196059 252.50001599147 635.21568627451 252.50001599147 C 653.0588235294099 252.50001599147 661.98039215686 252.50001599147 679.82352941176 252.50001599147 C 697.666666666664 252.50001599147 706.588235294116 242.9765131117149 724.43137254902 234.78989459967 C 742.2745098039201 226.6032760876269 751.19607843137 230.80460554566986 769.03921568627 211.56692343125 C 786.8823529411741 192.32924131682583 795.803921568626 138.60148402756 813.64705882353 138.60148402756 C 831.49019607843 138.60148402756 840.4117647058799 177.9552909657646 858.25490196078 201.43071371493 C 876.098039215684 224.9061364641006 885.019607843136 255.9785977734 902.86274509804 255.9785977734 C 920.70588235294 255.9785977734 929.6274509803901 242.009860306657 947.47058823529 232.89828294141 C 965.313725490194 223.78670557616098 974.2352941176462 210.42071094716 992.07843137255 210.42071094716 C 1009.9215686274499 210.42071094716 1036.6862745098 213.37309284101 1036.6862745098 213.37309284101"
+                          data-z-index="2"
+                          class="highcharts-tracker-line"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke="rgba(192,192,192,0.0001)"
+                          stroke-width="22"
+                        ></path>
+                      </g>
+                      <g
+                        class="highcharts-markers highcharts-series-0 highcharts-areaspline-series highcharts-tracker"
+                        data-z-index="0.1"
+                        opacity="1"
+                        transform="translate(0,53) scale(1 1)"
+                        clip-path="none"
+                        aria-hidden="false"
+                        role="region"
+                        tabindex="-1"
+                        aria-label="Price Trend, series 1 of 3 with 24 data points."
+                        style="outline: none"
+                      >
+                        <path
+                          fill="#45B34180"
+                          d="M 367.5 210.71120125073 A 0 0 0 1 1 367.5 210.71120125073 Z"
+                          class="highcharts-halo highcharts-color-undefined"
+                          data-z-index="-1"
+                          fill-opacity="0.25"
+                          visibility="hidden"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 10.5 161.84355046799 A 3 3 0 1 1 10.500199999999854 161.84355046132336 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 02:30, 5,053.529987451582. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 55.5 172.49061897223 A 3 3 0 1 1 55.50019999999986 172.49061896556336 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 03:30, 5,038.350008594048. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 99.5 198.68751918336 A 3 3 0 1 1 99.50019999999985 198.68751917669334 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 04:30, 5,000.999972649462. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 144.5 244.28482938048 A 3 3 0 1 1 144.50019999999986 244.28482937381335 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 05:30, 4,935.989946229813. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 189.5 218.93656130908 A 3 3 0 1 1 189.50019999999986 218.93656130241334 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 06:30, 4,972.130051202896. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 233.5 233.60962942409 A 3 3 0 1 1 233.50019999999986 233.60962941742335 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 07:30, 4,951.210033296348. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 278.5 243.50629716012 A 3 3 0 1 1 278.50019999999984 243.50629715345335 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 08:30, 4,937.099932761816. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 322.5 243.79378687839 A 3 3 0 1 1 322.50019999999984 243.79378687172334 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 09:30, 4,936.6900464308155. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 367.5 213.71120125073 A 3 3 0 1 1 367.50019999999984 213.71120124406335 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 10:30, 4,979.580069503913. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 412.5 248.48613596742 A 3 3 0 1 1 412.50019999999984 248.48613596075336 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 11:30, 4,929.9999645613. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 456.5 213.47277004047 A 3 3 0 1 1 456.50019999999984 213.47277003380336 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 12:30, 4,979.920011031414. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 501.5 213.47277004047 A 3 3 0 1 1 501.50019999999984 213.47277003380336 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 13:30, 4,979.920011031414. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 546.5 227.50053008857 A 3 3 0 1 1 546.5001999999998 227.50053008190335 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 14:30, 4,959.920036309368. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 590.5 261.81255375532 A 3 3 0 1 1 590.5001999999998 261.81255374865333 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 15:30, 4,910.999923358756. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 635.5 255.50001599147 A 3 3 0 1 1 635.5001999999998 255.50001598480335 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 16:30, 4,919.999977200277. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 679.5 255.50001599147 A 3 3 0 1 1 679.5001999999998 255.50001598480335 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 17:30, 4,919.999977200277. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 724.5 237.78989459967 A 3 3 0 1 1 724.5001999999998 237.78989459300334 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 18:30, 4,945.250051263834. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 769.5 214.56692343125 A 3 3 0 1 1 769.5001999999998 214.56692342458334 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 19:30, 4,978.360029959411. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 813.5 141.60148402756 A 3 3 0 1 1 813.5001999999998 141.60148402089334 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 20:30, 5,082.389963366649. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 858.5 204.43071371493 A 3 3 0 1 1 858.5001999999998 204.43071370826334 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 21:30, 4,992.811655693558. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 902.5 258.9785977734 A 3 3 0 1 1 902.5001999999998 258.97859776673334 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 22:30, 4,915.040415055746. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 947.5 235.89828294141 A 3 3 0 1 1 947.5001999999998 235.89828293474335 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 23:30, 4,947.947002538981. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 992.5 213.42071094716 A 3 3 0 1 1 992.5001999999998 213.42071094049334 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Monday, 29 Jul, 00:30, 4,979.99423389712. Price Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#45B34180"
+                          d="M 1036.5 216.37309284101 A 3 3 0 1 1 1036.5002 216.37309283434334 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Monday, 29 Jul, 01:30, 4,975.784897335593. Price Trend."
+                          style="outline: none"
+                        ></path>
+                      </g>
+                      <g
+                        class="highcharts-series highcharts-series-1 highcharts-areaspline-series"
+                        data-z-index="0.1"
+                        opacity="1"
+                        transform="translate(0,53) scale(1 1)"
+                        clip-path="url(#highcharts-ajj97u8-28-)"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill="url(#highcharts-ajj97u8-2)"
+                          d="M 10.705882352941 171.52014915394 C 10.705882352941 171.52014915394 37.470588235294 158.37448758378 55.313725490196 158.37448758378 C 73.156862745098 158.37448758378 82.07843137254899 162.2009641273003 99.921568627451 168.36626293411 C 117.7647058823546 174.53156174092027 126.6862745098064 178.75824178271094 144.52941176471 189.20098161783 C 162.37254901961 199.64372145294692 171.29411764706 220.5799621097 189.13725490196 220.5799621097 C 206.98039215686404 220.5799621097 215.901960784316 204.01588409669 233.74509803922 204.01588409669 C 251.58823529412 204.01588409669 260.50980392157 207.20559669236624 278.35294117647 209.54395976812 C 296.196078431374 211.8823228438743 305.117647058826 214.13826080881782 322.96078431373 215.70769947546 C 340.80392156863 217.27713814210185 349.72549019608005 217.39115310133 367.56862745098 217.39115310133 C 385.411764705884 217.39115310133 394.333333333336 205.64731685719 412.17647058824 205.64731685719 C 430.01960784313997 205.64731685719 438.94117647059 225.93298473739 456.78431372549 225.93298473739 C 474.62745098039403 225.93298473739 483.549019607846 209.37913121478 501.39215686275 209.37913121478 C 519.23529411765 209.37913121478 528.1568627450999 209.37913121478 546 210.52012694627 C 563.8431372549001 211.66112267776003 572.7647058823501 212.50363295440465 590.60784313725 218.10819322724 C 608.450980392154 223.71275350007662 617.3725490196059 238.54292831045 635.21568627451 238.54292831045 C 653.0588235294099 238.54292831045 661.98039215686 237.58382054664 679.82352941176 237.58382054664 C 697.666666666664 237.58382054664 706.588235294116 238.67375374883 724.43137254902 238.67375374883 C 742.2745098039201 238.67375374883 751.19607843137 236.39812395818564 769.03921568627 233.34882296969 C 786.8823529411741 230.29952198119366 795.803921568626 233.34882296969 813.64705882353 223.42724880635 C 831.49019607843 213.50567464301002 840.4117647058799 181.2445286805 858.25490196078 181.2445286805 C 876.098039215684 181.2445286805 885.019607843136 195.22311129993466 902.86274509804 206.95867396521 C 920.70588235294 218.69423663048266 929.6274509803901 239.92234200687 947.47058823529 239.92234200687 C 965.313725490194 239.92234200687 974.2352941176462 233.77260326914052 992.07843137255 228.85086328805 C 1009.9215686274499 223.92912330696055 1018.8431372549 215.31364210142 1036.6862745098 215.31364210142 C 1054.52941176472 215.31364210142 1081.2941176471 216.24453385812 1081.2941176471 216.24453385812 L 1081.2941176471 505 C 1081.2941176471 505 1054.52941176472 505 1036.6862745098 505 C 1018.8431372549 505 1009.9215686274499 505 992.07843137255 505 C 974.2352941176462 505 965.313725490194 505 947.47058823529 505 C 929.6274509803901 505 920.70588235294 505 902.86274509804 505 C 885.019607843136 505 876.098039215684 505 858.25490196078 505 C 840.4117647058799 505 831.49019607843 505 813.64705882353 505 C 795.803921568626 505 786.8823529411741 505 769.03921568627 505 C 751.19607843137 505 742.2745098039201 505 724.43137254902 505 C 706.588235294116 505 697.666666666664 505 679.82352941176 505 C 661.98039215686 505 653.0588235294099 505 635.21568627451 505 C 617.3725490196059 505 608.450980392154 505 590.60784313725 505 C 572.7647058823501 505 563.8431372549001 505 546 505 C 528.1568627450999 505 519.23529411765 505 501.39215686275 505 C 483.549019607846 505 474.62745098039403 505 456.78431372549 505 C 438.94117647059 505 430.01960784313997 505 412.17647058824 505 C 394.333333333336 505 385.411764705884 505 367.56862745098 505 C 349.72549019608005 505 340.80392156863 505 322.96078431373 505 C 305.117647058826 505 296.196078431374 505 278.35294117647 505 C 260.50980392157 505 251.58823529412 505 233.74509803922 505 C 215.901960784316 505 206.98039215686404 505 189.13725490196 505 C 171.29411764706 505 162.37254901961 505 144.52941176471 505 C 126.6862745098064 505 117.7647058823546 505 99.921568627451 505 C 82.07843137254899 505 73.156862745098 505 55.313725490196 505 C 37.470588235294 505 10.705882352941 505 10.705882352941 505 Z"
+                          class="highcharts-area"
+                          data-z-index="0"
+                          fill-opacity="1"
+                          style="pointer-events: none"
+                        ></path>
+                        <path
+                          fill="none"
+                          d="M 10.705882352941 171.52014915394 C 10.705882352941 171.52014915394 37.470588235294 158.37448758378 55.313725490196 158.37448758378 C 73.156862745098 158.37448758378 82.07843137254899 162.2009641273003 99.921568627451 168.36626293411 C 117.7647058823546 174.53156174092027 126.6862745098064 178.75824178271094 144.52941176471 189.20098161783 C 162.37254901961 199.64372145294692 171.29411764706 220.5799621097 189.13725490196 220.5799621097 C 206.98039215686404 220.5799621097 215.901960784316 204.01588409669 233.74509803922 204.01588409669 C 251.58823529412 204.01588409669 260.50980392157 207.20559669236624 278.35294117647 209.54395976812 C 296.196078431374 211.8823228438743 305.117647058826 214.13826080881782 322.96078431373 215.70769947546 C 340.80392156863 217.27713814210185 349.72549019608005 217.39115310133 367.56862745098 217.39115310133 C 385.411764705884 217.39115310133 394.333333333336 205.64731685719 412.17647058824 205.64731685719 C 430.01960784313997 205.64731685719 438.94117647059 225.93298473739 456.78431372549 225.93298473739 C 474.62745098039403 225.93298473739 483.549019607846 209.37913121478 501.39215686275 209.37913121478 C 519.23529411765 209.37913121478 528.1568627450999 209.37913121478 546 210.52012694627 C 563.8431372549001 211.66112267776003 572.7647058823501 212.50363295440465 590.60784313725 218.10819322724 C 608.450980392154 223.71275350007662 617.3725490196059 238.54292831045 635.21568627451 238.54292831045 C 653.0588235294099 238.54292831045 661.98039215686 237.58382054664 679.82352941176 237.58382054664 C 697.666666666664 237.58382054664 706.588235294116 238.67375374883 724.43137254902 238.67375374883 C 742.2745098039201 238.67375374883 751.19607843137 236.39812395818564 769.03921568627 233.34882296969 C 786.8823529411741 230.29952198119366 795.803921568626 233.34882296969 813.64705882353 223.42724880635 C 831.49019607843 213.50567464301002 840.4117647058799 181.2445286805 858.25490196078 181.2445286805 C 876.098039215684 181.2445286805 885.019607843136 195.22311129993466 902.86274509804 206.95867396521 C 920.70588235294 218.69423663048266 929.6274509803901 239.92234200687 947.47058823529 239.92234200687 C 965.313725490194 239.92234200687 974.2352941176462 233.77260326914052 992.07843137255 228.85086328805 C 1009.9215686274499 223.92912330696055 1018.8431372549 215.31364210142 1036.6862745098 215.31364210142 C 1054.52941176472 215.31364210142 1081.2941176471 216.24453385812 1081.2941176471 216.24453385812"
+                          class="highcharts-graph"
+                          data-z-index="1"
+                          stroke="#AFD1E3"
+                          stroke-width="2"
+                          stroke-linejoin="round"
+                          stroke-linecap="round"
+                          filter="none"
+                        ></path>
+                        <path
+                          fill="none"
+                          d="M 10.705882352941 171.52014915394 C 10.705882352941 171.52014915394 37.470588235294 158.37448758378 55.313725490196 158.37448758378 C 73.156862745098 158.37448758378 82.07843137254899 162.2009641273003 99.921568627451 168.36626293411 C 117.7647058823546 174.53156174092027 126.6862745098064 178.75824178271094 144.52941176471 189.20098161783 C 162.37254901961 199.64372145294692 171.29411764706 220.5799621097 189.13725490196 220.5799621097 C 206.98039215686404 220.5799621097 215.901960784316 204.01588409669 233.74509803922 204.01588409669 C 251.58823529412 204.01588409669 260.50980392157 207.20559669236624 278.35294117647 209.54395976812 C 296.196078431374 211.8823228438743 305.117647058826 214.13826080881782 322.96078431373 215.70769947546 C 340.80392156863 217.27713814210185 349.72549019608005 217.39115310133 367.56862745098 217.39115310133 C 385.411764705884 217.39115310133 394.333333333336 205.64731685719 412.17647058824 205.64731685719 C 430.01960784313997 205.64731685719 438.94117647059 225.93298473739 456.78431372549 225.93298473739 C 474.62745098039403 225.93298473739 483.549019607846 209.37913121478 501.39215686275 209.37913121478 C 519.23529411765 209.37913121478 528.1568627450999 209.37913121478 546 210.52012694627 C 563.8431372549001 211.66112267776003 572.7647058823501 212.50363295440465 590.60784313725 218.10819322724 C 608.450980392154 223.71275350007662 617.3725490196059 238.54292831045 635.21568627451 238.54292831045 C 653.0588235294099 238.54292831045 661.98039215686 237.58382054664 679.82352941176 237.58382054664 C 697.666666666664 237.58382054664 706.588235294116 238.67375374883 724.43137254902 238.67375374883 C 742.2745098039201 238.67375374883 751.19607843137 236.39812395818564 769.03921568627 233.34882296969 C 786.8823529411741 230.29952198119366 795.803921568626 233.34882296969 813.64705882353 223.42724880635 C 831.49019607843 213.50567464301002 840.4117647058799 181.2445286805 858.25490196078 181.2445286805 C 876.098039215684 181.2445286805 885.019607843136 195.22311129993466 902.86274509804 206.95867396521 C 920.70588235294 218.69423663048266 929.6274509803901 239.92234200687 947.47058823529 239.92234200687 C 965.313725490194 239.92234200687 974.2352941176462 233.77260326914052 992.07843137255 228.85086328805 C 1009.9215686274499 223.92912330696055 1018.8431372549 215.31364210142 1036.6862745098 215.31364210142 C 1054.52941176472 215.31364210142 1081.2941176471 216.24453385812 1081.2941176471 216.24453385812"
+                          data-z-index="2"
+                          class="highcharts-tracker-line"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke="rgba(192,192,192,0.0001)"
+                          stroke-width="22"
+                        ></path>
+                      </g>
+                      <g
+                        class="highcharts-markers highcharts-series-1 highcharts-areaspline-series highcharts-tracker"
+                        data-z-index="0.1"
+                        opacity="1"
+                        transform="translate(0,53) scale(1 1)"
+                        clip-path="none"
+                        aria-hidden="false"
+                        role="region"
+                        tabindex="-1"
+                        aria-label="Prediction Trend, series 2 of 3 with 25 data points."
+                        style="outline: none"
+                      >
+                        <path
+                          fill="#AFD1E3"
+                          d="M 367.5 217.39115310133 A 0 0 0 1 1 367.5 217.39115310133 Z"
+                          class="highcharts-halo highcharts-color-undefined"
+                          data-z-index="-1"
+                          fill-opacity="0.25"
+                          visibility="hidden"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 10.5 168.52014915394 L 13.5 171.52014915394 L 10.5 174.52014915394 L 7.5 171.52014915394 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 02:30, 5,035.456421008248. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 55.5 155.37448758378 L 58.5 158.37448758378 L 55.5 161.37448758378 L 52.5 158.37448758378 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 03:30, 5,054.198750375604. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 99.5 165.36626293411 L 102.5 168.36626293411 L 99.5 171.36626293411 L 96.5 168.36626293411 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 04:30, 5,039.953050866225. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 144.5 186.20098161783 L 147.5 189.20098161783 L 144.5 192.20098161783 L 141.5 189.20098161783 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 05:30, 5,010.248105416162. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 189.5 217.5799621097 L 192.5 220.5799621097 L 189.5 223.5799621097 L 186.5 220.5799621097 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 06:30, 4,965.509756992112. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 233.5 201.01588409669 L 236.5 204.01588409669 L 233.5 207.01588409669 L 230.5 204.01588409669 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 07:30, 4,989.125868218582. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 278.5 206.54395976812 L 281.5 209.54395976812 L 278.5 212.54395976812 L 275.5 209.54395976812 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 08:30, 4,981.244255380107. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 322.5 212.70769947546 L 325.5 215.70769947546 L 322.5 218.70769947546 L 319.5 215.70769947546 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 09:30, 4,972.456349262715. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 367.5 214.39115310133 L 370.5 217.39115310133 L 367.5 220.39115310133 L 364.5 217.39115310133 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 10:30, 4,970.056177756514. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 412.5 202.64731685719 L 415.5 205.64731685719 L 412.5 208.64731685719 L 409.5 205.64731685719 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 11:30, 4,986.799865074894. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 456.5 222.93298473739 L 459.5 225.93298473739 L 456.5 228.93298473739 L 453.5 225.93298473739 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 12:30, 4,957.87772473085. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 501.5 206.37913121478 L 504.5 209.37913121478 L 501.5 212.37913121478 L 498.5 209.37913121478 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 13:30, 4,981.479258466061. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 546.5 207.52012694627 L 549.5 210.52012694627 L 546.5 213.52012694627 L 543.5 210.52012694627 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 14:30, 4,979.852492274623. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 590.5 215.10819322724 L 593.5 218.10819322724 L 590.5 221.10819322724 L 587.5 218.10819322724 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 15:30, 4,969.033863121558. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 635.5 235.54292831045 L 638.5 238.54292831045 L 635.5 241.54292831045 L 632.5 238.54292831045 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 16:30, 4,939.899191319753. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 679.5 234.58382054664 L 682.5 237.58382054664 L 679.5 240.58382054664 L 676.5 237.58382054664 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 17:30, 4,941.2666320919125. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 724.5 235.67375374883 L 727.5 238.67375374883 L 724.5 241.67375374883 L 721.5 238.67375374883 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 18:30, 4,939.712667922462. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 769.5 230.34882296969 L 772.5 233.34882296969 L 769.5 236.34882296969 L 766.5 233.34882296969 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 19:30, 4,947.304648439249. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 813.5 220.42724880635 L 816.5 223.42724880635 L 813.5 226.42724880635 L 810.5 223.42724880635 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 20:30, 4,961.4502591275805. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 858.5 178.2445286805 L 861.5 181.2445286805 L 858.5 184.2445286805 L 855.5 181.2445286805 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 21:30, 5,021.591959108985. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 902.5 203.95867396521 L 905.5 206.95867396521 L 902.5 209.95867396521 L 899.5 206.95867396521 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 22:30, 4,984.930207415933. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 947.5 236.92234200687 L 950.5 239.92234200687 L 947.5 242.92234200687 L 944.5 239.92234200687 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Sunday, 28 Jul, 23:30, 4,937.932502485252. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 992.5 225.85086328805 L 995.5 228.85086328805 L 992.5 231.85086328805 L 989.5 228.85086328805 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Monday, 29 Jul, 00:30, 4,953.717581054663. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 1036.5 212.31364210142 L 1039.5 215.31364210142 L 1036.5 218.31364210142 L 1033.5 215.31364210142 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Monday, 29 Jul, 01:30, 4,973.018173637573. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                        <path
+                          fill="#AFD1E3"
+                          d="M 1081.5 213.24453385812 L 1084.5 216.24453385812 L 1081.5 219.24453385812 L 1078.5 216.24453385812 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Monday, 29 Jul, 02:30, 4,971.69096162803. Prediction Trend."
+                          style="outline: none"
+                        ></path>
+                      </g>
+                      <g
+                        class="highcharts-series highcharts-series-2 highcharts-line-series"
+                        data-z-index="0.1"
+                        opacity="1"
+                        transform="translate(0,53) scale(1 1)"
+                        clip-path="url(#highcharts-ajj97u8-28-)"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill="none"
+                          d="M 1081.2941176471 216.24453385812"
+                          class="highcharts-graph"
+                          data-z-index="1"
+                          stroke="#007EC8"
+                          stroke-width="2"
+                          stroke-linejoin="round"
+                          stroke-linecap="round"
+                          filter="none"
+                        ></path>
+                        <path
+                          fill="none"
+                          d="M 1081.2941176471 216.24453385812"
+                          data-z-index="2"
+                          class="highcharts-tracker-line"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke="rgba(192,192,192,0.0001)"
+                          stroke-width="22"
+                        ></path>
+                      </g>
+                      <g
+                        class="highcharts-markers highcharts-series-2 highcharts-line-series highcharts-tracker"
+                        data-z-index="0.1"
+                        opacity="1"
+                        transform="translate(0,53) scale(1 1)"
+                        clip-path="none"
+                        aria-hidden="false"
+                        role="region"
+                        tabindex="-1"
+                        aria-label="1h Prediction, series 3 of 3. Line with 1 data point."
+                        style="outline: none"
+                      >
+                        <path
+                          fill="url(#highcharts-ajj97u8-3)"
+                          d="M 1081.5 236.24453385812 A 20 20 0 1 1 1081.5002 236.24453385712002 Z"
+                          stroke="#ffffff"
+                          stroke-width="0"
+                          opacity="1"
+                          class="highcharts-point"
+                          tabindex="-1"
+                          role="img"
+                          aria-label="Monday, 29 Jul, 02:30, 4,971.69096162803. 1h Prediction."
+                          style="outline: none"
+                        ></path>
+                      </g>
+                    </g>
+                    <text
+                      x="580"
+                      text-anchor="middle"
+                      class="highcharts-title"
+                      data-z-index="4"
+                      style="
+                        font-size: 1.2em;
+                        color: rgb(51, 51, 51);
+                        font-weight: bold;
+                        fill: rgb(51, 51, 51);
+                      "
+                      y="21"
+                      aria-hidden="true"
+                    ></text>
+                    <text
+                      x="580"
+                      text-anchor="middle"
+                      class="highcharts-subtitle"
+                      data-z-index="4"
+                      style="
+                        color: rgb(102, 102, 102);
+                        font-size: 0.8em;
+                        fill: rgb(102, 102, 102);
+                      "
+                      y="22"
+                      aria-hidden="true"
+                    ></text>
+                    <text
+                      x="0"
+                      text-anchor="start"
+                      class="highcharts-caption"
+                      data-z-index="4"
+                      style="
+                        color: rgb(102, 102, 102);
+                        font-size: 0.8em;
+                        fill: rgb(102, 102, 102);
+                      "
+                      y="595"
+                      aria-hidden="true"
+                    ></text>
+                    <g
+                      class="highcharts-legend highcharts-no-tooltip"
+                      data-z-index="7"
+                      transform="translate(0,10)"
+                      aria-hidden="true"
+                    >
+                      <rect
+                        fill="none"
+                        class="highcharts-legend-box"
+                        rx="0"
+                        ry="0"
+                        stroke="#999999"
+                        stroke-width="0"
+                        filter="none"
+                        x="0"
+                        y="0"
+                        width="338"
+                        height="31"
+                      ></rect>
+                      <g data-z-index="1">
+                        <g>
+                          <g
+                            class="highcharts-legend-item highcharts-areaspline-series highcharts-color-undefined highcharts-series-0"
+                            data-z-index="1"
+                            transform="translate(8,3)"
+                          >
+                            <path
+                              fill="none"
+                              class="highcharts-graph"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              d="M 1 14 L 9 14"
+                              stroke="#45B34180"
+                            ></path>
+                            <path
+                              fill="url(#highcharts-ajj97u8-1)"
+                              class="highcharts-area"
+                              d="M 1 14 L 9 14 L 9 18 L 1 18"
+                              fill-opacity="1"
+                            ></path>
+                            <path
+                              fill="#45B34180"
+                              d="M 5 17 A 3 3 0 1 1 5.000199999999854 16.999999993333333 Z"
+                              class="highcharts-point"
+                              stroke="#ffffff"
+                              stroke-width="0"
+                              opacity="1"
+                            ></path>
+                            <text
+                              x="15"
+                              text-anchor="start"
+                              data-z-index="2"
+                              style="
+                                color: rgb(51, 51, 51);
+                                cursor: pointer;
+                                font-size: 13px;
+                                text-decoration: none;
+                                font-weight: 400;
+                                text-shadow: none;
+                                fill: rgb(51, 51, 51);
+                              "
+                              y="18"
+                            >
+                              <tspan
+                                style="
+                                  color: rgba(69, 179, 65, 0.5);
+                                  fill: rgba(69, 179, 65, 0.5);
+                                "
+                              >
+                                Price Trend
+                              </tspan>
+                            </text>
+                          </g>
+                          <g
+                            class="highcharts-legend-item highcharts-areaspline-series highcharts-color-undefined highcharts-series-1"
+                            data-z-index="1"
+                            transform="translate(109.5,3)"
+                          >
+                            <path
+                              fill="none"
+                              class="highcharts-graph"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              d="M 1 14 L 9 14"
+                              stroke="#AFD1E3"
+                            ></path>
+                            <path
+                              fill="url(#highcharts-ajj97u8-2)"
+                              class="highcharts-area"
+                              d="M 1 14 L 9 14 L 9 18 L 1 18"
+                              fill-opacity="1"
+                            ></path>
+                            <path
+                              fill="#AFD1E3"
+                              d="M 5 11 L 8 14 L 5 17 L 2 14 Z"
+                              class="highcharts-point"
+                              stroke="#ffffff"
+                              stroke-width="0"
+                              opacity="1"
+                            ></path>
+                            <text
+                              x="15"
+                              y="18"
+                              text-anchor="start"
+                              data-z-index="2"
+                              style="
+                                color: rgb(51, 51, 51);
+                                cursor: pointer;
+                                font-size: 13px;
+                                text-decoration: none;
+                                font-weight: 400;
+                                text-shadow: none;
+                                fill: rgb(51, 51, 51);
+                              "
+                            >
+                              <tspan
+                                style="
+                                  color: rgb(175, 209, 227);
+                                  fill: rgb(175, 209, 227);
+                                "
+                              >
+                                Prediction Trend
+                              </tspan>
+                            </text>
+                          </g>
+                          <g
+                            class="highcharts-legend-item highcharts-line-series highcharts-color-undefined highcharts-series-2"
+                            data-z-index="1"
+                            transform="translate(239.1875,3)"
+                          >
+                            <path
+                              fill="none"
+                              class="highcharts-graph"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              d="M 1 15 L 9 15"
+                              stroke="#007EC8"
+                            ></path>
+                            <path
+                              fill="url(#highcharts-ajj97u8-3)"
+                              d="M 5 20 A 5 5 0 1 1 5.00019999999995 19.999999996 Z"
+                              class="highcharts-point"
+                              stroke="#ffffff"
+                              stroke-width="0"
+                              opacity="1"
+                            ></path>
+                            <text
+                              x="15"
+                              y="18"
+                              text-anchor="start"
+                              data-z-index="2"
+                              style="
+                                color: rgb(51, 51, 51);
+                                cursor: pointer;
+                                font-size: 13px;
+                                text-decoration: none;
+                                font-weight: 400;
+                                text-shadow: none;
+                                fill: rgb(51, 51, 51);
+                              "
+                            >
+                              <tspan
+                                style="
+                                  color: rgb(0, 126, 200);
+                                  fill: rgb(0, 126, 200);
+                                "
+                              >
+                                1h Prediction
+                              </tspan>
+                            </text>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <g
+                      class="highcharts-axis-labels highcharts-xaxis-labels"
+                      data-z-index="7"
+                      aria-hidden="true"
+                    >
+                      <text
+                        x="77.617647058824"
+                        text-anchor="middle"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="583"
+                        opacity="1"
+                      >
+                        07-28 13:00
+                      </text>
+                      <text
+                        x="166.83333333333"
+                        text-anchor="middle"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="583"
+                        opacity="1"
+                      >
+                        07-28 15:00
+                      </text>
+                      <text
+                        x="256.04901960784"
+                        text-anchor="middle"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="583"
+                        opacity="1"
+                      >
+                        07-28 17:00
+                      </text>
+                      <text
+                        x="345.26470588235"
+                        text-anchor="middle"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="583"
+                        opacity="1"
+                      >
+                        07-28 19:00
+                      </text>
+                      <text
+                        x="434.48039215686"
+                        text-anchor="middle"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="583"
+                        opacity="1"
+                      >
+                        07-28 21:00
+                      </text>
+                      <text
+                        x="523.69607843137"
+                        text-anchor="middle"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="583"
+                        opacity="1"
+                      >
+                        07-28 23:00
+                      </text>
+                      <text
+                        x="612.91176470588"
+                        text-anchor="middle"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="583"
+                        opacity="1"
+                      >
+                        07-29 01:00
+                      </text>
+                      <text
+                        x="702.12745098039"
+                        text-anchor="middle"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="583"
+                        opacity="1"
+                      >
+                        07-29 03:00
+                      </text>
+                      <text
+                        x="791.3431372549"
+                        text-anchor="middle"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="583"
+                        opacity="1"
+                      >
+                        07-29 05:00
+                      </text>
+                      <text
+                        x="880.55882352941"
+                        text-anchor="middle"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="583"
+                        opacity="1"
+                      >
+                        07-29 07:00
+                      </text>
+                      <text
+                        x="969.77450980392"
+                        text-anchor="middle"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="583"
+                        opacity="1"
+                      >
+                        07-29 09:00
+                      </text>
+                      <text
+                        x="1058.9901960784"
+                        text-anchor="middle"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="583"
+                        opacity="1"
+                      >
+                        07-29 11:00
+                      </text>
+                    </g>
+                    <g
+                      class="highcharts-axis-labels highcharts-yaxis-labels"
+                      data-z-index="7"
+                      aria-hidden="true"
+                    >
+                      <text
+                        x="1137"
+                        text-anchor="start"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="562"
+                        opacity="1"
+                      >
+                        4560
+                      </text>
+                      <text
+                        x="1137"
+                        text-anchor="start"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="506"
+                        opacity="1"
+                      >
+                        4640
+                      </text>
+                      <text
+                        x="1137"
+                        text-anchor="start"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="450"
+                        opacity="1"
+                      >
+                        4720
+                      </text>
+                      <text
+                        x="1137"
+                        text-anchor="start"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="394"
+                        opacity="1"
+                      >
+                        4800
+                      </text>
+                      <text
+                        x="1137"
+                        text-anchor="start"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="338"
+                        opacity="1"
+                      >
+                        4880
+                      </text>
+                      <text
+                        x="1137"
+                        text-anchor="start"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="281"
+                        opacity="1"
+                      >
+                        4960
+                      </text>
+                      <text
+                        x="1137"
+                        text-anchor="start"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="225"
+                        opacity="1"
+                      >
+                        5040
+                      </text>
+                      <text
+                        x="1137"
+                        text-anchor="start"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="169"
+                        opacity="1"
+                      >
+                        5120
+                      </text>
+                      <text
+                        x="1137"
+                        text-anchor="start"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="113"
+                        opacity="1"
+                      >
+                        5200
+                      </text>
+                      <text
+                        x="1137"
+                        text-anchor="start"
+                        transform="translate(0,0)"
+                        style="
+                          color: rgb(51, 51, 51);
+                          cursor: default;
+                          font-size: 0.8em;
+                          fill: rgb(51, 51, 51);
+                        "
+                        y="57"
+                        opacity="1"
+                      >
+                        5280
+                      </text>
+                    </g>
+                    <g
+                      class="highcharts-tooltip"
+                      data-z-index="8"
+                      filter="url(#highcharts-drop-shadow-0)"
+                      opacity="0"
+                      aria-hidden="true"
+                      visibility="hidden"
+                    >
+                      <g
+                        class="highcharts-label highcharts-tooltip-header highcharts-tooltip-box"
+                        transform="translate(313,557)"
+                        style="cursor: default"
+                      >
+                        <path
+                          fill="#fff"
+                          class="highcharts-label-box"
+                          d="M 3 0 L 49 0 L 55 -6 L 61 0 L 105 0 A 3 3 0 0 1 108 3 L 108 27 A 3 3 0 0 1 105 30 L 3 30 A 3 3 0 0 1 0 27 L 0 3 A 3 3 0 0 1 3 0 Z"
+                          stroke-width="2"
+                          stroke="#333333"
+                        ></path>
+                      </g>
+                      <g
+                        class="highcharts-label highcharts-tooltip-box highcharts-color-undefined"
+                        transform="translate(142,236)"
+                        style="cursor: default"
+                      >
+                        <path
+                          fill="#fff"
+                          class="highcharts-label-box"
+                          d="M 3 0 L 205 0 A 3 3 0 0 1 208 3 L 208 15 L 226 27.711201250730028 L 208 15 L 208 27 A 3 3 0 0 1 205 30 L 3 30 A 3 3 0 0 1 0 27 L 0 3 A 3 3 0 0 1 3 0 Z"
+                          stroke-width="2"
+                          stroke="#45B34180"
+                        ></path>
+                      </g>
+                      <g
+                        class="highcharts-label highcharts-tooltip-box highcharts-color-undefined"
+                        transform="translate(116,267)"
+                        style="cursor: default"
+                      >
+                        <path
+                          fill="#fff"
+                          class="highcharts-label-box"
+                          d="M 3 0 L 231 0 A 3 3 0 0 1 234 3 L 234 15 L 252 3.391153101330019 L 234 15 L 234 27 A 3 3 0 0 1 231 30 L 3 30 A 3 3 0 0 1 0 27 L 0 3 A 3 3 0 0 1 3 0 Z"
+                          stroke-width="2"
+                          stroke="#AFD1E3"
+                        ></path>
+                      </g>
+                    </g>
+                  </svg>
+                  <div
+                    aria-hidden="false"
+                    class="highcharts-a11y-proxy-container-after"
+                    style="
+                      top: 0px;
+                      left: 0px;
+                      white-space: nowrap;
+                      position: absolute;
+                    "
+                  >
+                    <div
+                      class="highcharts-a11y-proxy-group highcharts-a11y-proxy-group-zoom"
+                    ></div>
+                    <div
+                      class="highcharts-a11y-proxy-group highcharts-a11y-proxy-group-legend"
+                      aria-label="Toggle series visibility, Chart"
+                      role="region"
+                    >
+                      <ul role="list">
+                        <li style="list-style: none">
+                          <button
+                            class="highcharts-a11y-proxy-element"
+                            tabindex="-1"
+                            aria-pressed="true"
+                            aria-label="Show Price Trend"
+                            style="
+                              border-width: 0px;
+                              background-color: transparent;
+                              cursor: pointer;
+                              outline: none;
+                              opacity: 0.001;
+                              z-index: 999;
+                              overflow: hidden;
+                              padding: 0px;
+                              margin: 0px;
+                              display: block;
+                              position: absolute;
+                              width: 80.5px;
+                              height: 15px;
+                              left: 9px;
+                              top: -43px;
+                            "
+                          ></button>
+                        </li>
+                        <li style="list-style: none">
+                          <button
+                            class="highcharts-a11y-proxy-element"
+                            tabindex="-1"
+                            aria-pressed="true"
+                            aria-label="Show Prediction Trend"
+                            style="
+                              border-width: 0px;
+                              background-color: transparent;
+                              cursor: pointer;
+                              outline: none;
+                              opacity: 0.001;
+                              z-index: 999;
+                              overflow: hidden;
+                              padding: 0px;
+                              margin: 0px;
+                              display: block;
+                              position: absolute;
+                              width: 108.688px;
+                              height: 15px;
+                              left: 111px;
+                              top: -43px;
+                            "
+                          ></button>
+                        </li>
+                        <li style="list-style: none">
+                          <button
+                            class="highcharts-a11y-proxy-element"
+                            tabindex="-1"
+                            aria-pressed="true"
+                            aria-label="Show 1h Prediction"
+                            style="
+                              border-width: 0px;
+                              background-color: transparent;
+                              cursor: pointer;
+                              outline: none;
+                              opacity: 0.001;
+                              z-index: 999;
+                              overflow: hidden;
+                              padding: 0px;
+                              margin: 0px;
+                              display: block;
+                              position: absolute;
+                              width: 90.8905px;
+                              height: 15px;
+                              left: 239px;
+                              top: -43px;
+                            "
+                          ></button>
+                        </li>
+                      </ul>
+                    </div>
+                    <div
+                      class="highcharts-a11y-proxy-group highcharts-a11y-proxy-group-chartMenu"
+                    ></div>
+                  </div>
+                  <div
+                    class="highcharts-tooltip"
+                    style="
+                      position: absolute;
+                      left: 0px;
+                      top: 0px;
+                      opacity: 0;
+                      visibility: hidden;
+                    "
+                  >
+                    <div
+                      class="highcharts-label highcharts-tooltip-header highcharts-tooltip-box"
+                      style="
+                        position: absolute;
+                        left: 313px;
+                        top: 557px;
+                        opacity: 1;
+                        cursor: default;
+                        visibility: inherit;
+                      "
+                    >
+                      <span
+                        data-z-index="1"
+                        style="
+                          position: absolute;
+                          font-family: Helvetica, Arial, sans-serif;
+                          font-size: 12px;
+                          white-space: nowrap;
+                          margin-left: 0px;
+                          margin-top: 0px;
+                          left: 8px;
+                          top: 7px;
+                          transform-origin: 8px 21px;
+                          color: rgb(51, 51, 51);
+                        "
+                        ><span style="font-size: 0.8em"
+                          >Sunday, 28 Jul, 10:30</span
+                        ><br
+                      /></span>
+                    </div>
+                    <div
+                      class="highcharts-label highcharts-tooltip-box highcharts-color-undefined"
+                      style="
+                        position: absolute;
+                        left: 142px;
+                        top: 236px;
+                        opacity: 1;
+                        cursor: default;
+                        visibility: inherit;
+                      "
+                    >
+                      <span
+                        data-z-index="1"
+                        style="
+                          position: absolute;
+                          font-family: Helvetica, Arial, sans-serif;
+                          font-size: 12px;
+                          white-space: nowrap;
+                          margin-left: 0px;
+                          margin-top: 0px;
+                          left: 8px;
+                          top: 7px;
+                          transform-origin: 8px 21px;
+                          color: rgb(51, 51, 51);
+                        "
+                        ><span style="color: rgba(69, 179, 65, 0.5)">●</span>
+                        Price Trend: <b>4 979.580069503913</b><br
+                      /></span>
+                    </div>
+                    <div
+                      class="highcharts-label highcharts-tooltip-box highcharts-color-undefined"
+                      style="
+                        position: absolute;
+                        left: 116px;
+                        top: 267px;
+                        opacity: 1;
+                        cursor: default;
+                        visibility: inherit;
+                      "
+                    >
+                      <span
+                        data-z-index="1"
+                        style="
+                          position: absolute;
+                          font-family: Helvetica, Arial, sans-serif;
+                          font-size: 12px;
+                          white-space: nowrap;
+                          margin-left: 0px;
+                          margin-top: 0px;
+                          left: 8px;
+                          top: 7px;
+                          transform-origin: 8px 21px;
+                          color: rgb(51, 51, 51);
+                        "
+                        ><span style="color: rgb(175, 209, 227)">●</span>
+                        Prediction Trend: <b>4 970.056177756514</b><br
+                      /></span>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  id="highcharts-screen-reader-region-after-0"
+                  aria-hidden="false"
+                  style="position: relative"
+                >
+                  <div
+                    aria-hidden="false"
+                    style="
+                      position: absolute;
+                      width: 1px;
+                      height: 1px;
+                      overflow: hidden;
+                      white-space: nowrap;
+                      clip: rect(1px, 1px, 1px, 1px);
+                      margin-top: -3px;
+                      opacity: 0.01;
+                    "
+                  >
+                    <div
+                      id="highcharts-end-of-chart-marker-0"
+                      class="highcharts-exit-anchor"
+                      tabindex="0"
+                      aria-hidden="false"
+                    >
+                      End of interactive chart.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </figure>
+          </section>
+          <div
+            style="
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              top: 0;
+              left: 0;
+            "
+          >
+            <div
+              style="
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+              "
+            >
+              <img
+                src="./assets/img/loding.gif"
+                alt="Computer man"
+                style="width: 48px; height: 48px; margin-bottom: 13px"
+              />
+
+              <span style="font-size: 14px">Collecting Accurate Data...</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div class="container">
+      <div class="main"></div>
+    </div>
+
     <script type="text/javascript" src="./assets/js/main.js"></script>
     <script type="text/javascript" src="./assets/js/highchart.js"></script>
     <script type="text/javascript" src="./assets/js/timePrediction.js"></script>
-    <script type="text/javascript" src="./assets/js/tab.js"></script>
     <script type="text/javascript" src="./assets/js/predict.js"></script>
+    <script type="text/javascript" src="./assets/js/tab.js"></script>
   </body>
 </html>

@@ -3,6 +3,11 @@ const itemsPerPage = 3;
 const footer = document.querySelector(".footer");
 const listContainer = document.getElementById("price-list");
 
+function addComma(price) {
+  price = price.toFixed(3);
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function loadListData() {
   const start = currentPage * itemsPerPage;
   const end = start + itemsPerPage;
@@ -53,10 +58,6 @@ function loadListData() {
     predictedPriceSpan.textContent = `Rp${numberWithCommas(
       dropDecimalPoint(priceData.mape_ai_price_chat[index], 3)
     )}`;
-    predictedPriceDiv.appendChild(predictedPriceSpan);
-
-    const aveMapeDiv = document.createElement("div");
-    const aveMapeSpan = document.createElement("span");
     aveMapeSpan.textContent = `${item.toFixed(3)}%`;
     aveMapeDiv.appendChild(aveMapeSpan);
 
