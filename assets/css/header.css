@@ -7,8 +7,15 @@ header {
 header .tab_list {
   display: flex;
   flex: 1;
-  gap: 37px;
+  gap: 15px;
   align-items: flex-end;
+}
+
+header .tab {
+  padding: 0px 5px 4px 5px;
+  border-bottom: 4px solid transparent;
+  display: inline-flex;
+  align-items: center;
 }
 
 header .tab:hover {
@@ -18,14 +25,17 @@ header .tab:hover {
 header span {
   font-size: 18px;
   font-weight: 600;
-  line-height: 21px;
+  /* line-height: 21px; */
   color: #707a8a;
+  text-align: center;
+  display: inline-flex;
+  align-items: center; /* 중앙 정렬 */
 }
 
 header .active {
-  border-bottom: 3px solid #26a950;
+  border-bottom: 4px solid #26a950;
 }
 
 header .active span {
-  color: #26a950;
+  color: #333333;
 }
