@@ -6,14 +6,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   buttons.forEach((button) => {
     button.addEventListener("click", function () {
+      console.log("button.addEventListener", this.id);
       buttons.forEach((btn) => btn.classList.remove("active"));
       this.classList.add("active");
       if (this.id === "1h-button") {
         predictionTitle.textContent = "(1h)";
-        toggleAIPrediction = true;
+        period = "1D";
+        const chartData = createChartData("1D");
+        chartDraw(chartData);
       } else if (this.id === "24h-button") {
         predictionTitle.textContent = "(24h)";
-        toggleAIPrediction = false;
+        period = "7D";
+        const chartData = createChartData("7D");
+        chartDraw(chartData);
       }
     });
   });
