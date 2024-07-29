@@ -70,8 +70,10 @@ function loadListData() {
   const nextData = priceData.price_mape_list.slice(end, end + itemsPerPage);
   if (nextData.length === 0) {
     if (footer) {
-      footer.remove();
+      footer.style.display = "none";
     }
+  } else if (footer.style.display === "none") {
+    footer.style.display = "flex";
   }
 }
 
