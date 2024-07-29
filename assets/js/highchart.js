@@ -257,29 +257,21 @@ function chartDraw({
         },
       ],
     },
-
-    // responsive: {
-    //   rules: [
-    //     {
-    //       condition: {
-    //         maxWidth: 500,
-    //       },
-    //       chartOptions: {
-    //         legend: {
-    //           layout: "horizontal",
-    //           align: "center",
-    //           verticalAlign: "bottom",
-    //         },
-    //       },
-    //     },
-    //   ],
-    // },
   });
 }
 
 async function init() {
   const activeTab = document.querySelector("header .tab.active");
   const activeData = activeTab.getAttribute("data-value");
+  const dataLoading = document.querySelector(".data_loading");
+  const realData = document.querySelector(".real_data");
+  const graphLoading = document.querySelector(".graph_loading");
+  const realGraph = document.querySelector(".real_graph");
+
+  dataLoading.style.display = "block";
+  graphLoading.style.display = "block";
+  realData.style.display = "none";
+  realGraph.style.display = "none";
 
   const response = await fetch(
     `https://api.coinmarketscore.io/api/v2/toko-demo/${activeData}`
@@ -290,11 +282,18 @@ async function init() {
   priceData = data;
 
   currentPage = 0;
-  loadListData();
-  metricsData();
 
+  //AI Price Prediction 대표 데이터 구성
+  metricsData();
+  loadListData();
+  dataLoading.style.display = "none";
+  realData.style.display = "block";
+
+  //차트 그리기
   const chartData = createChartData();
   chartDraw(chartData);
+  graphLoading.style.display = "none";
+  realGraph.style.display = "block";
 }
 
 init();

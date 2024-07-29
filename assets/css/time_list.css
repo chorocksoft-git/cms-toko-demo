@@ -24,10 +24,10 @@
   width: 345px;
 }
 .time-list .time-list-row > div:nth-child(3) {
-  width: 197px;
+  flex: 1;
 }
 .time-list .time-list-row > div:nth-child(4) {
-  width: 198px;
+  flex: 1;
 }
 .time-list .time-list-row > div:nth-child(5) {
   width: 198px;
