@@ -58,6 +58,8 @@ function loadListData() {
     predictedPriceSpan.textContent = `Rp${numberWithCommas(
       dropDecimalPoint(priceData.mape_ai_price_chat[index], 3)
     )}`;
+    const aveMapeDiv = document.createElement("div");
+    const aveMapeSpan = document.createElement("span");
     aveMapeSpan.textContent = `${item.toFixed(3)}%`;
     aveMapeDiv.appendChild(aveMapeSpan);
 
