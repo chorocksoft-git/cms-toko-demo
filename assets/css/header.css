@@ -1,9 +1,14 @@
 header {
   display: flex;
-  flex: 1;
-  gap: 37px;
   border-bottom: 1px solid #dddddd;
   margin-bottom: 55px;
+}
+
+header .tab_list {
+  display: flex;
+  flex: 1;
+  gap: 37px;
+  align-items: flex-end;
 }
 
 header .tab:hover {
