@@ -68,10 +68,10 @@ function chartDraw({
   week_price_chart: weekPriceData,
   ai_price_chart: aiPriceData,
   last_ai_price_point: lastAiPricePoint,
-  timestamps,
 }) {
   const minValue = findMinValue(weekPriceData, aiPriceData);
   const { format } = dateFns;
+  const ccName = priceData.cc_code;
 
   Highcharts.chart("container", {
     chart: {
@@ -123,7 +123,9 @@ function chartDraw({
       {
         tickAmount: 10,
         labels: {
-          format: `{value}`,
+          formatter() {
+            return numberWithCommas(this.value);
+          },
         },
         title: {
           text: "",
@@ -158,59 +160,35 @@ function chartDraw({
       },
     },
 
-    // tooltip: {
-    //   shared: this.color === "#007EC8" ? false : true,
-    //   crosshairs: this.color === "#007EC8" ? false : true,
-    //   split: this.color === "#007EC8" ? false : true,
-    //   backgroundColor: "#fff",
-    //   borderWidth: 2,
-    //   borderColor: this.color,
-    //   useHTML: true,
-    //   style: {
-    //     fontSize: "12px",
-    //   },
-    // },
-
-    // tooltip: {
-    //   shared: true,
-    //   crosshairs: true,
-    //   split: true,
-    //   formatter: function () {
-    //     return "<b>X 값:</b> " + this.x + "<br/><b>Y 값:</b> " + this.y;
-    //   },
-    //   backgroundColor: "rgba(255, 255, 255, 0.8)",
-    //   borderColor: "black",
-    //   borderRadius: 10,
-    //   borderWidth: 2,
-    //   style: {
-    //     color: "black",
-    //     fontSize: "12px",
-    //   },
-    // },
-
     tooltip: {
-      formatter: function () {
-        const { x, y, points, color } = this;
-
-        // 기본 포매터 호출
+      crosshairs: true,
+      split: true,
+      formatter: function (tooltip) {
+        const { x, points, color } = this;
+        console.log("color", color);
+        console.log("points", points);
         const formatHtml = tooltip.defaultFormatter.call(this, tooltip);
-
         return formatHtml.map((html, idx, arr) => {
           if (html === "") return "";
 
-          return `<span style="color:${color}">●</span> 
-        ${code}: <b>${currencySymbol}${numberWithCommas(
-            dropDecimalPoint(points[idx - 1].y)
-          )}</b><br/>`;
+          if (idx === 0)
+            return `<span style="font-size: 10px">${format(
+              x,
+              "yyyy-MM-dd HH:mm"
+            )}</span><br/>`;
+          return `<span style="color:${color}">●</span>
+          <b style="font-weight: 400; font-size: 11px;">${ccName}: </b> 
+           <b style="font-weight: 700">Rp ${numberWithCommas(
+             dropDecimalPoint(points[idx - 1].y)
+           )}</b><br/>`;
         });
       },
       shared: true,
-      backgroundColor: "rgba(255, 255, 255, 0.8)",
-      borderColor: "black",
-      borderRadius: 10,
-      borderWidth: 2,
+      borderWidth: 1,
+      borderColor: this.color,
+      borderRadius: 4,
+      useHTML: true,
       style: {
-        color: "black",
         fontSize: "12px",
       },
     },
@@ -231,7 +209,16 @@ function chartDraw({
       line: {
         dataLabels: {
           enabled: true,
-          format: "{y}",
+          formatter: function () {
+            return `   <div style="width:80px; hegint:40px; padding: 8px; border-radius: 3px; background-color: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+            <span style="color:${this.color}">●</span>
+            <b style="font-weight: 400; font-size: 11px;">${ccName}: </b> 
+            <b style="font-weight: 700">Rp ${numberWithCommas(
+              dropDecimalPoint(this.y)
+            )}</b>
+            </div>
+            `;
+          },
           style: {
             color: "black",
             fontSize: "12px",
@@ -298,6 +285,7 @@ async function init() {
     `https://api.coinmarketscore.io/api/v2/toko-demo/${activeData}`
   );
   const data = await response.json();
+  console.log(data);
 
   //수집된 데이터를 전역에서 관리
   priceData = data;
