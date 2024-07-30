@@ -18,19 +18,16 @@
   text-overflow: ellipsis;
 }
 .time-list .time-list-row > div:nth-child(1) {
-  width: 145px;
+  flex: 1;
 }
 .time-list .time-list-row > div:nth-child(2) {
-  width: 345px;
+  width: 243px;
 }
 .time-list .time-list-row > div:nth-child(3) {
-  flex: 1;
+  width: 226px;
 }
 .time-list .time-list-row > div:nth-child(4) {
-  flex: 1;
-}
-.time-list .time-list-row > div:nth-child(5) {
-  width: 198px;
+  width: 166px;
 }
 
 .time-list .time-list-row > div:not(:last-child) {
