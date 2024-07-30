@@ -55,11 +55,11 @@
       </header>
       <div class="main">
         <section>
-          <p class="title">AI Price Prediction</p>
+          <p class="content-title">AI prediction price in 1 hour</p>
           <div class="row">
             <p class="content">
-              Predict the price and volume a day later based on the current
-              price. The exchange rate is updated every five minutes.
+              This shows the one hour forecasted price and accuracy, based on
+              the current price. Updated every 10 minutes.
             </p>
           </div>
         </section>
@@ -72,8 +72,13 @@
                 <div id="price" class="metric">
                   <img src="./assets/img/price-logo.svg" alt="price-logo" />
                   <div class="content-wrapper">
-                    <span class="title">Price</span>
-                    <span class="content">₩83,412088.427</span>
+                    <div style="display: flex; margin-bottom: 6px">
+                      <span class="title">Price</span>
+                    </div>
+                    <div style="display: flex; margin-bottom: 6px">
+                      <span class="content">₩83,412088.427</span>
+                    </div>
+                    <div style="height: 20px"></div>
                   </div>
                 </div>
                 <div id="prediction" class="metric">
@@ -82,21 +87,45 @@
                     alt="price-logo"
                   />
                   <div class="content-wrapper">
-                    <div style="display: flex; align-items: center">
-                      <span class="title">Prediction (1h)</span>
+                    <div style="display: flex; margin-bottom: 6px">
+                      <span class="title">
+                        AI prediction price for 05/07 14:30
+                      </span>
+                    </div>
+                    <div style="display: flex; margin-bottom: 6px">
+                      <span class="content">₩83,412088.427</span>
+                    </div>
+                    <div style="display: flex">
                       <span id="percent">▼ 0.018%</span>
                     </div>
-                    <span class="content">₩83,412088.427</span>
                   </div>
                 </div>
                 <div id="ave-mape" class="metric">
                   <img src="./assets/img/accuracy-icon.svg" alt="price-logo" />
                   <div class="content-wrapper">
-                    <span class="title">Ave Accuracy</span>
-                    <span class="content">0.248%</span>
+                    <div style="display: flex; margin-bottom: 6px">
+                      <span class="title">Accuracy</span>
+                    </div>
+                    <div style="display: flex; margin-bottom: 6px">
+                      <span class="content">0.248%</span>
+                    </div>
+                    <div style="height: 20px"></div>
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
+          <section style="margin-top: 45px">
+            <p class="content-title">
+              Recent predicted prices and their accuracy
+            </p>
+            <div class="row">
+              <p class="content">
+                This is a list of prices forecasted for 1 hour ahead, updated
+                every 10 minutes over the past 240 minutes. <br />
+                The accuracy is calculated by comparing the forecasted price
+                with the actual price 1 hour later.
+              </p>
             </div>
           </section>
           <section>

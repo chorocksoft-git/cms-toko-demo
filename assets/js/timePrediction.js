@@ -43,10 +43,10 @@ function loadListData() {
     // startTime.setMinutes(startTime.getMinutes() - 10);
 
     //at 05/07 14:20, predicted the price for 05/07 15:20
-    timeRangeSpan.textContent = `at ${format(
-      startTime,
+    timeRangeSpan.innerHTML = `predicted the price for <span style="font-weight: 700;">${format(
+      endTime,
       "MM/dd HH:mm"
-    )}, predicted the price for ${format(endTime, "MM/dd HH:mm")}`;
+    )}</span> at ${format(startTime, "MM/dd HH:mm")}`;
     timeRangeDiv.appendChild(timeRangeSpan);
 
     const actualPriceDiv = document.createElement("div");
