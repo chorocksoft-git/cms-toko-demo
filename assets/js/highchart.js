@@ -17,9 +17,7 @@ const createChartData = (period = "1D") => {
     is_same_timecode: isSameTimecode,
   } = priceData;
   const timeCode = timecodeDatetime?.split(" ").join("T");
-  const timezone = new Date().toLocaleTimeString("ko-KR", {
-    timeZoneName: "short",
-  });
+
   const now = new Date(timeCode);
   // const timeCodeKST = now.setHours(now.getHours() + 9);
   const baseTime = new Date(timeCode).setHours(
@@ -46,25 +44,37 @@ const createChartData = (period = "1D") => {
       lastAiPricePoint,
     ],
     week_price_chart: calcWeepPrice.map((price, idx) => {
-      return [
+      // 기본 시간 계산
+      let time =
         period === HOUR
           ? (parseInt(baseTime / tickInterval, 10) + (idx + 1)) * tickInterval +
             parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES
           : (parseInt(baseTime / tickInterval, 10) + idx) * tickInterval +
-            parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES,
-        price,
-      ];
+            parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES;
+
+      // 마지막 5개의 데이터 포인트의 시간을 10분 단위로 조정
+      if (idx >= calcAiPrice.length - 5) {
+        time = Math.round(time / TEN_MINUTES) * TEN_MINUTES;
+      }
+
+      return [time, price];
     }),
 
     ai_price_chart: calcAiPrice.map((price, idx) => {
-      return [
+      // 기본 시간 계산
+      let time =
         period === HOUR
           ? (parseInt(baseTime / tickInterval, 10) + (idx + 1)) * tickInterval +
             parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES
           : (parseInt(baseTime / tickInterval, 10) + idx) * tickInterval +
-            parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES,
-        price,
-      ];
+            parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES;
+
+      // 마지막 5개의 데이터 포인트의 시간을 10분 단위로 조정
+      if (idx >= calcAiPrice.length - 5) {
+        time = Math.round(time / TEN_MINUTES) * TEN_MINUTES;
+      }
+
+      return [time, price];
     }),
   };
 };
@@ -80,6 +90,8 @@ function chartDraw({
   const minValue = findMinValue(weekPriceData, aiPriceData);
   const { format } = dateFns;
   const ccName = priceData.cc_code;
+  console.log(weekPriceData);
+  console.log(lastAiPricePoint);
 
   Highcharts.chart("container", {
     chart: {
@@ -118,6 +130,12 @@ function chartDraw({
     },
     xAxis: {
       type: "datetime",
+      events: {
+        setExtremes: function (event) {
+          console.log("The new minimum is: " + event.min);
+          console.log("The new maximum is: " + event.max);
+        },
+      },
       labels: {
         formatter() {
           return format(new Date(this.value), "MM-dd HH:mm");
@@ -125,7 +143,7 @@ function chartDraw({
       },
       plotBands: [
         {
-          color: "rgba(216, 240, 255, 1)",
+          color: "rgba(216, 240, 255, 0.7)",
           from: aiPriceData[aiPriceData.length - 1][0],
           to: lastAiPricePoint[0],
           label: {
@@ -139,26 +157,26 @@ function chartDraw({
           },
         },
       ],
-      // plotLines: [
-      //   {
-      //     color: "rgba(0, 126, 200, 1)",
-      //     width: 2,
-      //     value: new Date(),
-      //     zIndex: 5,
-      //     label: {
-      //       text: "",
-      //     },
-      //   },
-      //   {
-      //     color: "rgba(0, 126, 200, 1)",
-      //     width: 2,
-      //     value: new Date().setHours(new Date().getHours() + 1),
-      //     zIndex: 5,
-      //     label: {
-      //       text: "",
-      //     },
-      //   },
-      // ],
+      plotLines: [
+        {
+          color: "#007EC8",
+          width: 2,
+          value: aiPriceData[aiPriceData.length - 1][0],
+          zIndex: 5,
+          label: {
+            text: "",
+          },
+        },
+        // {
+        //   color: "rgba(0, 126, 200, 1)",
+        //   width: 2,
+        //   value: lastAiPricePoint[0],
+        //   zIndex: 5,
+        //   label: {
+        //     text: "",
+        //   },
+        // },
+      ],
       allowDecimals: false,
       endOnTick: false,
       ordinal: false,
@@ -316,7 +334,7 @@ function chartDraw({
       {
         name: "line",
         data: [aiPriceData[aiPriceData.length - 1], lastAiPricePoint],
-        color: "#AFD1E3",
+        color: "rgba(0, 126, 200, 1)",
         fillColor: {
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
           stops: [
@@ -344,6 +362,7 @@ function chartDraw({
             radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
             stops: [
               [0, "rgba(0, 126, 200, 1)"],
+              [0.2, "rgba(0, 126, 200, 1)"],
               [0.3, "rgba(101, 193, 247, 0.7)"],
               [0.7, "rgba(101, 193, 247, 0.3)"],
               [1, "rgba(101, 193, 247, 0.1)"],
