@@ -4,6 +4,7 @@ const DAY = "7D";
 const ONE_HOUR = 1000 * 60 * 60;
 const TEN_MINUTES = 1000 * 60 * 10;
 const tickInterval = ONE_HOUR;
+const KST_OFFSET = 9 * 60 * 60 * 1000;
 
 let priceData = {};
 // let period = "1D";
@@ -16,7 +17,11 @@ const createChartData = (period = "1D") => {
     is_same_timecode: isSameTimecode,
   } = priceData;
   const timeCode = timecodeDatetime?.split(" ").join("T");
+  const timezone = new Date().toLocaleTimeString("ko-KR", {
+    timeZoneName: "short",
+  });
   const now = new Date(timeCode);
+  // const timeCodeKST = now.setHours(now.getHours() + 9);
   const baseTime = new Date(timeCode).setHours(
     period === HOUR
       ? now.getHours() - 24
@@ -85,6 +90,7 @@ function chartDraw({
       spacingLeft: 0,
       style: {
         fontSize: "13px",
+        marginTop: "9px",
       },
     },
     stockTools: {
@@ -127,7 +133,7 @@ function chartDraw({
             textAlign: "right",
             useHTML: true,
             formatter: function () {
-              return `   <div style="border: 1px solid #000;  hegint:40px; padding: 8px; border-radius: 3px; background-color: white;">
+              return `<div style="border: 1px solid #000;  hegint:40px; padding: 8px; border-radius: 3px; background-color: white;">
       <b style="font-weight: 700; font-size: 10px;">AI forecast </b>`;
             },
           },
@@ -193,6 +199,9 @@ function chartDraw({
       },
       symbolHeight: 10,
       symbolWidth: 10,
+      borderWidth: 1,
+      backgroundColor: "#fff",
+      borderColor: "#DDDDDD",
 
       labelFormatter: function () {
         return `<span style="color:${this.color}">${this.name}</span>`;

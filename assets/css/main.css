@@ -82,7 +82,19 @@ h6 a {
   top: 0;
   right: 0;
   z-index: 10;
+  align-items: center;
+  margin-bottom: 27px;
 }
+
+.utc {
+  position: absolute;
+  top: 21px;
+  right: 100px;
+  font-size: 12px;
+  color: #999;
+  font-weight: 500;
+}
+
 .toggle-buttons button {
   width: 44px;
   height: 38px;
