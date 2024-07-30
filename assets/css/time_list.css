@@ -21,7 +21,7 @@
   width: 145px;
 }
 .time-list .time-list-row > div:nth-child(2) {
-  width: 345px;
+  width: 200px;
 }
 .time-list .time-list-row > div:nth-child(3) {
   flex: 1;
@@ -30,7 +30,7 @@
   flex: 1;
 }
 .time-list .time-list-row > div:nth-child(5) {
-  width: 198px;
+  width: 162px;
 }
 
 .time-list .time-list-row > div:not(:last-child) {
