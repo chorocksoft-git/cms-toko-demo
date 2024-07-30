@@ -358,6 +358,9 @@ async function init() {
   const realData = document.querySelector(".real_data");
   const graphLoading = document.querySelector(".graph_loading");
   const realGraph = document.querySelector(".real_graph");
+  const graphDate = document.querySelector(
+    ".real_graph .toggle-buttons > .active"
+  );
 
   dataLoading.style.display = "block";
   graphLoading.style.display = "block";
@@ -380,7 +383,7 @@ async function init() {
   realData.style.display = "block";
 
   //차트 그리기
-  const chartData = createChartData();
+  const chartData = createChartData(graphDate.innerHTML);
   chartDraw(chartData);
   graphLoading.style.display = "none";
   realGraph.style.display = "block";

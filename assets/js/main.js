@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   buttons.forEach((button) => {
     button.addEventListener("click", function (event) {
-      console.log("Button clicked");
       event.preventDefault();
       buttons.forEach((btn) => btn.classList.remove("active"));
       this.classList.add("active");
