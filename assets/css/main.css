@@ -199,7 +199,11 @@ h6 a {
   color: green;
   font-weight: 700;
 }
-
+.highcharts-figure {
+  flex-direction: row;
+  flex: 1;
+  display: block;
+}
 .highcharts-figure,
 .highcharts-data-table table {
   min-width: 360px;
