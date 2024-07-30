@@ -223,7 +223,7 @@ function chartDraw({
             )}</span><br/>`;
           return `<span style="color:${color}">●</span>
           <b style="font-weight: 400; font-size: 11px;">${ccName}: </b> 
-           <b style="font-weight: 700">Rp ${numberWithCommas(
+           <b style="font-weight: 700 font-size: 11px;">Rp ${numberWithCommas(
              dropDecimalPoint(points[idx - 1].y)
            )}</b><br/>`;
         });
@@ -232,10 +232,6 @@ function chartDraw({
       borderWidth: 1.5,
       borderColor: this.color,
       borderRadius: 4,
-      useHTML: true,
-      style: {
-        fontSize: "12px",
-      },
     },
     plotOptions: {
       series: {
