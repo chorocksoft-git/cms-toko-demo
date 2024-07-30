@@ -22,7 +22,6 @@ const createChartData = (period = "1D") => {
       ? now.getHours() - 24
       : now.getHours() - weekPriceChart.length + 1
   );
-  console.log("period", period);
 
   const calcWeepPrice =
     period === HOUR ? weekPriceChart.slice(145, 169) : weekPriceChart;
@@ -51,7 +50,6 @@ const createChartData = (period = "1D") => {
     }),
 
     ai_price_chart: calcAiPrice.map((price, idx) => {
-      console.log("period", period === HOUR);
       return [
         period === HOUR
           ? (parseInt(baseTime / tickInterval, 10) + (idx + 1)) * tickInterval +
@@ -75,7 +73,6 @@ function chartDraw({
   const minValue = findMinValue(weekPriceData, aiPriceData);
   const { format } = dateFns;
   const ccName = priceData.cc_code;
-  console.log("aiPriceData", aiPriceData);
 
   Highcharts.chart("container", {
     chart: {
@@ -359,6 +356,9 @@ async function init() {
   const realData = document.querySelector(".real_data");
   const graphLoading = document.querySelector(".graph_loading");
   const realGraph = document.querySelector(".real_graph");
+  const graphDate = document.querySelector(
+    ".real_graph .toggle-buttons > .active"
+  );
 
   dataLoading.style.display = "block";
   graphLoading.style.display = "block";
@@ -372,7 +372,6 @@ async function init() {
 
   //수집된 데이터를 전역에서 관리
   priceData = data;
-  console.log(data);
   currentPage = 0;
 
   //AI Price Prediction 대표 데이터 구성
@@ -382,7 +381,7 @@ async function init() {
   realData.style.display = "block";
 
   //차트 그리기
-  const chartData = createChartData();
+  const chartData = createChartData(graphDate.innerHTML);
   chartDraw(chartData);
   graphLoading.style.display = "none";
   realGraph.style.display = "block";
