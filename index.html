@@ -170,8 +170,13 @@
                   <div id="price" class="metric">
                     <img src="./assets/img/price-logo.svg" alt="price-logo" />
                     <div class="content-wrapper">
-                      <span class="title">Price</span>
-                      <span class="content">Rp 1,129,691,516.51</span>
+                      <div style="display: flex; margin-bottom: 6px">
+                        <span class="title">Price</span>
+                      </div>
+                      <div style="display: flex; margin-bottom: 6px">
+                        <span class="content">Rp 9,348,556.473</span>
+                      </div>
+                      <div style="height: 20px"></div>
                     </div>
                   </div>
                   <div id="prediction" class="metric">
@@ -180,24 +185,48 @@
                       alt="price-logo"
                     />
                     <div class="content-wrapper">
-                      <div style="display: flex; align-items: center">
-                        <span class="title">Prediction (1h)</span>
-                        <span id="percent" class="negative">▼ 0.476%</span>
+                      <div style="display: flex; margin-bottom: 6px">
+                        <span class="title"
+                          >AI prediction price for 07/30 14:30</span
+                        >
                       </div>
-                      <span class="content">Rp 1,124,337,288.153</span>
+                      <div style="display: flex; margin-bottom: 6px">
+                        <span class="content">Rp 9,389,277.966</span>
+                      </div>
+                      <div style="display: flex">
+                        <span id="percent" class="positive">▲ 0.434%</span>
+                      </div>
                     </div>
                   </div>
                   <div id="ave-mape" class="metric">
                     <img
-                      src="./assets/img/ave-mape-logo.svg"
+                      src="./assets/img/accuracy-icon.svg"
                       alt="price-logo"
                     />
                     <div class="content-wrapper">
-                      <span class="title">Ave Mape</span>
-                      <span class="content">0.841%</span>
+                      <div style="display: flex; margin-bottom: 6px">
+                        <span class="title">Accuracy</span>
+                      </div>
+                      <div style="display: flex; margin-bottom: 6px">
+                        <span class="content">99.320%</span>
+                      </div>
+                      <div style="height: 20px"></div>
                     </div>
                   </div>
                 </div>
+              </div>
+            </section>
+            <section style="margin-top: 45px">
+              <p class="content-title">
+                Recent predicted prices and their accuracy
+              </p>
+              <div class="row">
+                <p class="content">
+                  This is a list of prices forecasted for 1 hour ahead, updated
+                  every 10 minutes over the past 240 minutes. <br />
+                  The accuracy is calculated by comparing the forecasted price
+                  with the actual price 1 hour later.
+                </p>
               </div>
             </section>
             <section>
@@ -225,51 +254,46 @@
                 <div id="price-list">
                   <div class="time-list-row">
                     <div>
-                      <span>
-                        at 07/30 12:10, predicted the price for 07/30 13:10
-                      </span>
+                      <span
+                        >predicted the price for
+                        <span style="font-weight: 700">07/30 14:20</span> at
+                        07/30 13:20</span
+                      >
                     </div>
-                    <div><span>Rp 1,129,653,200.674</span></div>
-                    <div><span class="bold">Rp 1,123,422,623.24</span></div>
-                    <div><span>0.552%</span></div>
-                  </div>
-                  <div class="time-list-row">
-                    <div>
-                      <span>
-                        at 07/30 12:10, predicted the price for 07/30 13:10
-                      </span>
-                    </div>
-                    <div><span>Rp 1,129,610,741.237</span></div>
-                    <div><span class="bold">Rp 1,123,718,479.467</span></div>
-                    <div><span>0.522%</span></div>
+                    <div><span>Rp 9,356,837.427</span></div>
+                    <div><span class="bold">Rp 9,385,981.244</span></div>
+                    <div><span>99.689%</span></div>
                   </div>
                   <div class="time-list-row">
                     <div>
                       <span
-                        >at 07/30 12:10, predicted the price for 07/30 13:10
-                      </span>
+                        >predicted the price for
+                        <span style="font-weight: 700">07/30 14:10</span> at
+                        07/30 13:10</span
+                      >
                     </div>
-                    <div><span>Rp 1,129,733,900.337</span></div>
-                    <div><span class="bold">Rp 1,123,161,363.22</span></div>
-                    <div><span>0.582%</span></div>
+                    <div><span>Rp 9,350,233.584</span></div>
+                    <div><span class="bold">Rp 9,371,966.19</span></div>
+                    <div><span>99.768%</span></div>
+                  </div>
+                  <div class="time-list-row">
+                    <div>
+                      <span
+                        >predicted the price for
+                        <span style="font-weight: 700">07/30 14:00</span> at
+                        07/30 13:00</span
+                      >
+                    </div>
+                    <div><span>Rp 9,358,905.748</span></div>
+                    <div><span class="bold">Rp 9,372,826.034</span></div>
+                    <div><span>99.851%</span></div>
                   </div>
                 </div>
 
                 <div class="time-list-row footer" onclick="loadListData()">
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 448 512"
-                    >
-                      <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                      <path
-                        d="M246.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 402.7 361.4 265.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-160 160zm160-352l-160 160c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L224 210.7 361.4 73.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3z"
-                      ></path>
-                    </svg>
-                    <span style="margin-left: 10px"> see more </span>
-                  </div>
+                  <span style="margin-left: 10px" class="footer-title down"
+                    >see more</span
+                  >
                 </div>
               </div>
             </section>
