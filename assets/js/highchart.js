@@ -117,6 +117,42 @@ function chartDraw({
           return format(new Date(this.value), "MM-dd HH:mm");
         },
       },
+      plotBands: [
+        {
+          color: "rgba(216, 240, 255, 1)",
+          from: aiPriceData[aiPriceData.length - 1][0],
+          to: lastAiPricePoint[0],
+          label: {
+            text: "AI forecast",
+            textAlign: "right",
+            useHTML: true,
+            formatter: function () {
+              return `   <div style="border: 1px solid #000;  hegint:40px; padding: 8px; border-radius: 3px; background-color: white;">
+      <b style="font-weight: 700; font-size: 10px;">AI forecast </b>`;
+            },
+          },
+        },
+      ],
+      // plotLines: [
+      //   {
+      //     color: "rgba(0, 126, 200, 1)",
+      //     width: 2,
+      //     value: new Date(),
+      //     zIndex: 5,
+      //     label: {
+      //       text: "",
+      //     },
+      //   },
+      //   {
+      //     color: "rgba(0, 126, 200, 1)",
+      //     width: 2,
+      //     value: new Date().setHours(new Date().getHours() + 1),
+      //     zIndex: 5,
+      //     label: {
+      //       text: "",
+      //     },
+      //   },
+      // ],
       allowDecimals: false,
       endOnTick: false,
       ordinal: false,
@@ -206,21 +242,7 @@ function chartDraw({
             return false;
           },
         },
-        // point: {
-        //   events: {
-        //     mouseOver: function () {
-        //       // 마지막 포인트를 찾기 위한 인덱스
-        //       let series = this.series;
-        //       let lastIndex = series.data.length - 1;
-        //       console.log("series", series.name);
-        //       console.log("lastIndex", lastIndex);
-        //       if (this.index === lastIndex) {
-        //         // 마지막 데이터 포인트일 때 아무 것도 하지 않음
-        //         return false;
-        //       }
-        //     },
-        //   },
-        // },
+
         areaspline: {
           marker: {
             radius: 3,
@@ -268,8 +290,6 @@ function chartDraw({
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
           stops: [
             [0, "rgba(69, 179, 65, 0.4)"],
-            // [0.3, "rgba(69, 179, 65, 0.1)"],
-            // [0.7, "rgba(255, 255, 255, 0.4)"],
             [1, "rgba(255, 255, 255, 0.3)"],
           ],
         },
@@ -284,8 +304,6 @@ function chartDraw({
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
           stops: [
             [0, "rgba(175, 209, 227, 0.6)"],
-            // [0.3, "rgba(175, 209, 227, 0.1)"],
-            // [0.7, "rgba(255, 255, 255, 0.3)"],
             [1, "rgba(255, 255, 255, 0.5)"],
           ],
         },
@@ -298,8 +316,6 @@ function chartDraw({
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
           stops: [
             [0, "rgba(175, 209, 227, 0.6)"],
-            // [0.3, "rgba(175, 209, 227, 0.1)"],
-            // [0.7, "rgba(255, 255, 255, 0.3)"],
             [1, "rgba(255, 255, 255, 0.5)"],
           ],
         },
