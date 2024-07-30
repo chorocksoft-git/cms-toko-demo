@@ -22,12 +22,13 @@ const createChartData = (period = "1D") => {
       ? now.getHours() - 24
       : now.getHours() - weekPriceChart.length + 1
   );
-  console.log("period", period);
 
   const calcWeepPrice =
     period === HOUR ? weekPriceChart.slice(145, 169) : weekPriceChart;
   const calcAiPrice =
-    period === HOUR ? aiPriceChart.slice(145, 169) : aiPriceChart;
+    period === HOUR
+      ? aiPriceChart.slice(145, 169)
+      : aiPriceChart.slice(0, aiPriceChart.length - 1);
   const lastAiPricePoint = aiPriceChart[aiPriceChart.length - 1];
   return {
     is_same_timecode: isSameTimecode,
@@ -76,6 +77,11 @@ function chartDraw({
   const { format } = dateFns;
   const ccName = priceData.cc_code;
   console.log("aiPriceData", aiPriceData);
+  console.log(
+    "aiPriceData[aiPriceData.length - 1]",
+    aiPriceData[aiPriceData.length - 1]
+  );
+  console.log("lastAiPricePoint", lastAiPricePoint);
 
   Highcharts.chart("container", {
     chart: {
