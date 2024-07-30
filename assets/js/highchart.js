@@ -53,9 +53,9 @@ const createChartData = (period = "1D") => {
             parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES;
 
       // 마지막 5개의 데이터 포인트의 시간을 10분 단위로 조정
-      if (idx >= calcAiPrice.length - 5) {
-        time = Math.round(time / TEN_MINUTES) * TEN_MINUTES;
-      }
+      // if (idx >= calcAiPrice.length - 5) {
+      //   time = Math.round(time / TEN_MINUTES) * TEN_MINUTES;
+      // }
 
       return [time, price];
     }),
@@ -70,9 +70,9 @@ const createChartData = (period = "1D") => {
             parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) * TEN_MINUTES;
 
       // 마지막 5개의 데이터 포인트의 시간을 10분 단위로 조정
-      if (idx >= calcAiPrice.length - 5) {
-        time = Math.round(time / TEN_MINUTES) * TEN_MINUTES;
-      }
+      // if (idx >= calcAiPrice.length - 5) {
+      //   time = Math.round(time / TEN_MINUTES) * TEN_MINUTES;
+      // }
 
       return [time, price];
     }),
@@ -130,12 +130,13 @@ function chartDraw({
     },
     xAxis: {
       type: "datetime",
-      events: {
-        setExtremes: function (event) {
-          console.log("The new minimum is: " + event.min);
-          console.log("The new maximum is: " + event.max);
-        },
-      },
+      // breaks: [
+      //   {
+      //     from: aiPriceData[aiPriceData.length - 1][0],
+      //     to: aiPriceData[aiPriceData.length - 1][0],
+      //     breakSize: 0,
+      //   },
+      // ],
       labels: {
         formatter() {
           return format(new Date(this.value), "MM-dd HH:mm");

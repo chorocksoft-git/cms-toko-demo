@@ -95,7 +95,7 @@ function pointOutsideOfBreak(e) {
   }
 }
 
-Highcharts.chart("AiContainer", {
+Highcharts.chart("aiContainer", {
   chart: {
     type: "line", // 'line' 타입 설정
     zooming: {
