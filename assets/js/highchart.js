@@ -26,7 +26,9 @@ const createChartData = (period = "1D") => {
   const calcWeepPrice =
     period === HOUR ? weekPriceChart.slice(145, 169) : weekPriceChart;
   const calcAiPrice =
-    period === HOUR ? aiPriceChart.slice(145, 169) : aiPriceChart;
+    period === HOUR
+      ? aiPriceChart.slice(145, 169)
+      : aiPriceChart.slice(0, aiPriceChart.length - 1);
   const lastAiPricePoint = aiPriceChart[aiPriceChart.length - 1];
   return {
     is_same_timecode: isSameTimecode,
