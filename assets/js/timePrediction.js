@@ -18,15 +18,17 @@ function loadListData() {
     listContainer.innerHTML = "";
   }
 
+  const { format } = dateFns;
+
   currentData.forEach((item, index) => {
     const globalIndex = start + index + 1;
     const row = document.createElement("div");
     row.className = "time-list-row";
 
-    const timeDiv = document.createElement("div");
-    const timeSpan = document.createElement("span");
-    timeSpan.textContent = `${globalIndex}0 minutes ago`;
-    timeDiv.appendChild(timeSpan);
+    // const timeDiv = document.createElement("div");
+    // const timeSpan = document.createElement("span");
+    // timeSpan.textContent = `${globalIndex}0 minutes ago`;
+    // timeDiv.appendChild(timeSpan);
 
     const timeRangeDiv = document.createElement("div");
     const timeRangeSpan = document.createElement("span");
@@ -40,16 +42,18 @@ function loadListData() {
     startTime.setHours(startTime.getHours() - 1);
     // startTime.setMinutes(startTime.getMinutes() - 10);
 
-    timeRangeSpan.textContent = `${formatDateTime(
-      startTime
-    )} ~ ${formatDateTime(endTime)}`;
+    //at 05/07 14:20, predicted the price for 05/07 15:20
+    timeRangeSpan.textContent = `at ${format(
+      startTime,
+      "MM/dd HH:mm"
+    )}, predicted the price for ${format(endTime, "MM/dd HH:mm")}`;
     timeRangeDiv.appendChild(timeRangeSpan);
 
     const actualPriceDiv = document.createElement("div");
     const actualPriceSpan = document.createElement("span");
 
     actualPriceSpan.textContent = `Rp ${numberWithCommas(
-      dropDecimalPoint(priceData.mape_week_price_chat[index], 3)
+      dropDecimalPoint(priceData.mape_week_price_chat[globalIndex - 1], 3)
     )}`;
     actualPriceDiv.appendChild(actualPriceSpan);
 
@@ -59,20 +63,26 @@ function loadListData() {
 
     predictedPriceSpan.className = "bold";
     predictedPriceSpan.textContent = `Rp ${numberWithCommas(
-      dropDecimalPoint(priceData.mape_ai_price_chat[index], 3)
+      dropDecimalPoint(priceData.mape_ai_price_chat[globalIndex - 1], 3)
     )}`;
     predictedPriceDiv.appendChild(predictedPriceSpan);
 
-    const aveMapeDiv = document.createElement("div");
-    const aveMapeSpan = document.createElement("span");
-    aveMapeSpan.textContent = `${item.toFixed(3)}%`;
-    aveMapeDiv.appendChild(aveMapeSpan);
+    const AccuracyDiv = document.createElement("div");
+    const AccuracySpan = document.createElement("span");
+    AccuracySpan.textContent = `${item.toFixed(3)}%`;
+    AccuracyDiv.appendChild(AccuracySpan);
 
-    row.appendChild(timeDiv);
+    // const aveMapeDiv = document.createElement("div");
+    // const aveMapeSpan = document.createElement("span");
+    // aveMapeSpan.textContent = `${item.toFixed(3)}%`;
+    // aveMapeDiv.appendChild(aveMapeSpan);
+
+    // row.appendChild(timeDiv);
     row.appendChild(timeRangeDiv);
     row.appendChild(actualPriceDiv);
     row.appendChild(predictedPriceDiv);
-    row.appendChild(aveMapeDiv);
+    row.appendChild(AccuracyDiv);
+    // row.appendChild(aveMapeDiv);
 
     listContainer.appendChild(row);
   });
