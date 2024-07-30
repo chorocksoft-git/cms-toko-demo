@@ -18,15 +18,17 @@ function loadListData() {
     listContainer.innerHTML = "";
   }
 
+  const { format } = dateFns;
+
   currentData.forEach((item, index) => {
     const globalIndex = start + index + 1;
     const row = document.createElement("div");
     row.className = "time-list-row";
 
-    const timeDiv = document.createElement("div");
-    const timeSpan = document.createElement("span");
-    timeSpan.textContent = `${globalIndex}0 minutes ago`;
-    timeDiv.appendChild(timeSpan);
+    // const timeDiv = document.createElement("div");
+    // const timeSpan = document.createElement("span");
+    // timeSpan.textContent = `${globalIndex}0 minutes ago`;
+    // timeDiv.appendChild(timeSpan);
 
     const timeRangeDiv = document.createElement("div");
     const timeRangeSpan = document.createElement("span");
@@ -40,9 +42,11 @@ function loadListData() {
     startTime.setHours(startTime.getHours() - 1);
     // startTime.setMinutes(startTime.getMinutes() - 10);
 
-    timeRangeSpan.textContent = `${formatDateTime(
-      startTime
-    )} ~ ${formatDateTime(endTime)}`;
+    //at 05/07 14:20, predicted the price for 05/07 15:20
+    timeRangeSpan.textContent = `at ${format(
+      startTime,
+      "MM/dd HH:mm"
+    )}, predicted the price for ${format(endTime, "MM/dd HH:mm")}`;
     timeRangeDiv.appendChild(timeRangeSpan);
 
     const actualPriceDiv = document.createElement("div");
@@ -73,7 +77,7 @@ function loadListData() {
     // aveMapeSpan.textContent = `${item.toFixed(3)}%`;
     // aveMapeDiv.appendChild(aveMapeSpan);
 
-    row.appendChild(timeDiv);
+    // row.appendChild(timeDiv);
     row.appendChild(timeRangeDiv);
     row.appendChild(actualPriceDiv);
     row.appendChild(predictedPriceDiv);
