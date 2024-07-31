@@ -90,8 +90,9 @@ function chartDraw({
   const minValue = findMinValue(weekPriceData, aiPriceData);
   const { format } = dateFns;
   const ccName = priceData.cc_code;
-  console.log(weekPriceData);
-  console.log(lastAiPricePoint);
+  // console.log(weekPriceData);
+  // console.log(aiPriceData);
+  // console.log(lastAiPricePoint);
 
   Highcharts.chart("container", {
     chart: {
@@ -334,6 +335,7 @@ function chartDraw({
       },
       {
         name: "line",
+        dashStyle: "Dot",
         data: [aiPriceData[aiPriceData.length - 1], lastAiPricePoint],
         color: "rgba(0, 126, 200, 1)",
         fillColor: {
@@ -343,6 +345,8 @@ function chartDraw({
             [1, "rgba(255, 255, 255, 0.5)"],
           ],
         },
+        linkedTo: "series2",
+
         showInLegend: false,
         enableMouseTracking: false,
         marker: {
@@ -356,6 +360,10 @@ function chartDraw({
         id: "series3",
         data: [lastAiPricePoint],
         color: "#007EC8",
+        // animation: {
+        //   duration: 1000,
+        //   easing: "line",
+        // },
         marker: {
           symbol: "circle",
           radius: 20,
@@ -415,7 +423,9 @@ async function init() {
 
   //수집된 데이터를 전역에서 관리
   priceData = data;
+
   currentPage = 0;
+  console.log(priceData);
 
   //AI Price Prediction 대표 데이터 구성
   metricsData();
