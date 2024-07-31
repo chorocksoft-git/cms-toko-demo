@@ -1,5 +1,6 @@
 let currentPage = 0;
 const itemsPerPage = 3;
+const initPage = 6;
 const footer = document.querySelector(".footer");
 const footerTitle = document.querySelector(".footer > .footer-title");
 const listContainer = document.getElementById("price-list");
@@ -10,20 +11,25 @@ function addComma(price) {
 }
 
 function loadListData() {
-  const start = currentPage * itemsPerPage;
-  const end = start + itemsPerPage;
-  const currentData = priceData.price_mape_list.slice(start, end);
+  const start = (currentPage !== 0 ? initPage : 0) + currentPage * itemsPerPage;
+  const end = (currentPage === 0 ? initPage : 0) + start + itemsPerPage;
+  const currentData = priceData.mape_ai_price_chat.slice(start, end);
 
   if (currentPage === 0) {
     listContainer.innerHTML = "";
   }
 
+  const voidDataLength =
+    priceData.mape_ai_price_chat.length - priceData.mape_week_price_chat.length;
+
   const { format } = dateFns;
 
   currentData.forEach((item, index) => {
-    const globalIndex = start + index + 1;
+    const globalIndex = start + index;
     const row = document.createElement("div");
     row.className = "time-list-row";
+
+    const notVoidData = globalIndex - voidDataLength >= 0;
 
     // const timeDiv = document.createElement("div");
     // const timeSpan = document.createElement("span");
@@ -37,6 +43,7 @@ function loadListData() {
     endTime.setMinutes(
       Math.floor(endTime.getMinutes() / 10) * 10 - globalIndex * 10
     );
+    endTime.setHours(endTime.getHours() + 1);
 
     let startTime = new Date(endTime);
     startTime.setHours(startTime.getHours() - 1);
@@ -46,30 +53,36 @@ function loadListData() {
     timeRangeSpan.innerHTML = `predicted the price for <span style="font-weight: 700;">${format(
       endTime,
       "MM/dd HH:mm"
-    )}</span> at ${format(startTime, "MM/dd HH:mm")}`;
+    )}</span> at ${format(startTime, "MM/dd HH:mm")} [${globalIndex}]`;
     timeRangeDiv.appendChild(timeRangeSpan);
 
+    //actualPrice
     const actualPriceDiv = document.createElement("div");
     const actualPriceSpan = document.createElement("span");
 
-    actualPriceSpan.textContent = `Rp ${numberWithCommas(
-      dropDecimalPoint(priceData.mape_week_price_chat[globalIndex - 1], 3)
-    )}`;
+    actualPriceSpan.innerHTML = notVoidData
+      ? `Rp ${numberWithCommas(
+          dropDecimalPoint(priceData.mape_week_price_chat[globalIndex], 3)
+        )}`
+      : "<span style={color: #999999}>to be determined</span>";
     actualPriceDiv.appendChild(actualPriceSpan);
 
+    //predictedPrice
     const predictedPriceDiv = document.createElement("div");
     const predictedPriceSpan = document.createElement("span");
-    // predictedPriceDiv.className = "text-start";
 
     predictedPriceSpan.className = "bold";
     predictedPriceSpan.textContent = `Rp ${numberWithCommas(
-      dropDecimalPoint(priceData.mape_ai_price_chat[globalIndex - 1], 3)
+      dropDecimalPoint(priceData.mape_ai_price_chat[globalIndex], 3)
     )}`;
     predictedPriceDiv.appendChild(predictedPriceSpan);
 
+    //AccuracyDiv
     const AccuracyDiv = document.createElement("div");
     const AccuracySpan = document.createElement("span");
-    AccuracySpan.textContent = `${item.toFixed(3)}%`;
+    AccuracySpan.textContent = notVoidData
+      ? `${priceData.price_mape_list[globalIndex].toFixed(2)}%`
+      : "<span style={color: #999999}>to be determined</span>";
     AccuracyDiv.appendChild(AccuracySpan);
 
     // const aveMapeDiv = document.createElement("div");
