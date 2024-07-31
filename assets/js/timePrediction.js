@@ -53,7 +53,7 @@ function loadListData() {
     timeRangeSpan.innerHTML = `predicted the price for <span style="font-weight: 700;">${format(
       endTime,
       "MM/dd HH:mm"
-    )}</span> at ${format(startTime, "MM/dd HH:mm")} [${globalIndex}]`;
+    )}</span> at ${format(startTime, "MM/dd HH:mm")}`;
     timeRangeDiv.appendChild(timeRangeSpan);
 
     //actualPrice
@@ -62,9 +62,9 @@ function loadListData() {
 
     actualPriceSpan.innerHTML = notVoidData
       ? `Rp ${numberWithCommas(
-          dropDecimalPoint(priceData.mape_week_price_chat[globalIndex], 3)
+          dropDecimalPoint(priceData.mape_week_price_chat[globalIndex - 6], 3)
         )}`
-      : "<span style={color: #999999}>to be determined</span>";
+      : "<span style='color: #999999'>to be determined</span>";
     actualPriceDiv.appendChild(actualPriceSpan);
 
     //predictedPrice
@@ -80,9 +80,9 @@ function loadListData() {
     //AccuracyDiv
     const AccuracyDiv = document.createElement("div");
     const AccuracySpan = document.createElement("span");
-    AccuracySpan.textContent = notVoidData
-      ? `${priceData.price_mape_list[globalIndex].toFixed(2)}%`
-      : "<span style={color: #999999}>to be determined</span>";
+    AccuracySpan.innerHTML = notVoidData
+      ? `${priceData.price_mape_list[globalIndex - 6].toFixed(2)}%`
+      : "<span style='color: #999999'>to be determined</span>";
     AccuracyDiv.appendChild(AccuracySpan);
 
     // const aveMapeDiv = document.createElement("div");
@@ -102,7 +102,9 @@ function loadListData() {
 
   currentPage++;
 
-  const nextData = priceData.price_mape_list.slice(end, end + itemsPerPage);
+  const nextData = priceData.mape_ai_price_chat.slice(end, end + itemsPerPage);
+  console.log("nextData", nextData);
+  console.log("nextData", nextData);
   if (nextData.length === 0) {
     if (footerTitle.classList.contains("down")) {
       // footer.style.display = "none";

@@ -90,9 +90,9 @@ function chartDraw({
   const minValue = findMinValue(weekPriceData, aiPriceData);
   const { format } = dateFns;
   const ccName = priceData.cc_code;
-  console.log(weekPriceData);
-  console.log(aiPriceData);
-  console.log(lastAiPricePoint);
+  // console.log(weekPriceData);
+  // console.log(aiPriceData);
+  // console.log(lastAiPricePoint);
 
   Highcharts.chart("container", {
     chart: {
@@ -423,6 +423,7 @@ async function init() {
 
   //수집된 데이터를 전역에서 관리
   priceData = data;
+
   currentPage = 0;
   console.log(priceData);
 
