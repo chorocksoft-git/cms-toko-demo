@@ -46,6 +46,19 @@ const createChartData = (period = "1D") => {
       lastAiPricePoint,
     ],
     week_price_chart: calcWeepPrice.map((price, idx) => {
+      if (idx < 5) {
+        return [
+          period === HOUR
+            ? (parseInt(baseTime / tickInterval, 10) + (idx + 1)) *
+                tickInterval +
+              parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) *
+                TEN_MINUTES
+            : (parseInt(baseTime / tickInterval, 10) + idx) * tickInterval +
+              parseInt((baseTime % tickInterval) / TEN_MINUTES, 10) *
+                TEN_MINUTES,
+          price,
+        ];
+      }
       return [
         period === HOUR
           ? (parseInt(baseTime / tickInterval, 10) + (idx + 1)) * tickInterval +
@@ -76,18 +89,20 @@ function chartDraw({
   week_price_chart: weekPriceData,
   ai_price_chart: aiPriceData,
   last_ai_price_point: lastAiPricePoint,
+  name = "container",
 }) {
   const minValue = findMinValue(weekPriceData, aiPriceData);
   const { format } = dateFns;
   const ccName = priceData.cc_code;
 
-  Highcharts.chart("container", {
+  return Highcharts.chart(name, {
     chart: {
       backgroundColor: "rgba(255, 255, 255, 0)",
       type: "areaspline",
       height: 600,
       spacingRight: 0,
       spacingLeft: 0,
+      spacing: [0, 0, 0, 0], // 위, 오른쪽, 아래, 왼쪽 간격을 0으로 설정
       style: {
         fontSize: "13px",
         marginTop: "9px",
@@ -179,34 +194,34 @@ function chartDraw({
         zIndex: 0,
         gridLineWidth: 1,
         offset: 30,
-        opposite: true,
+        opposite: name === "container" ? false : true,
         min: minValue - 300,
         startOnTick: false,
       },
     ],
 
-    legend: {
-      layout: "horizontal",
-      align: "left",
-      verticalAlign: "top",
-      itemStyle: {
-        fontWeight: 400,
-        fontSize: "13px",
-        textShadow: "none",
-      },
-      itemHoverStyle: {
-        textShadow: "0 4px 4px rgba(0, 0, 0, 0.3)",
-      },
-      symbolHeight: 10,
-      symbolWidth: 10,
-      borderWidth: 1,
-      backgroundColor: "#fff",
-      borderColor: "#DDDDDD",
+    // legend: {
+    //   layout: "horizontal",
+    //   align: "left",
+    //   verticalAlign: "top",
+    //   itemStyle: {
+    //     fontWeight: 400,
+    //     fontSize: "13px",
+    //     textShadow: "none",
+    //   },
+    //   itemHoverStyle: {
+    //     textShadow: "0 4px 4px rgba(0, 0, 0, 0.3)",
+    //   },
+    //   symbolHeight: 10,
+    //   symbolWidth: 10,
+    //   borderWidth: 1,
+    //   backgroundColor: "#fff",
+    //   borderColor: "#DDDDDD",
 
-      labelFormatter: function () {
-        return `<span style="color:${this.color}">${this.name}</span>`;
-      },
-    },
+    //   labelFormatter: function () {
+    //     return `<span style="color:${this.color}">${this.name}</span>`;
+    //   },
+    // },
 
     tooltip: {
       crosshairs: true,
@@ -338,6 +353,7 @@ function chartDraw({
         data: [lastAiPricePoint],
         color: "#007EC8",
         marker: {
+          enabled: false,
           symbol: "circle",
           radius: 20,
           fillColor: {
@@ -406,6 +422,7 @@ async function init() {
   //차트 그리기
   const chartData = createChartData(graphDate.innerHTML);
   chartDraw(chartData);
+  setTimeout(() => chartDraw({ ...chartData, name: "container2" }), 450);
   graphLoading.style.display = "none";
   realGraph.style.display = "block";
 }

@@ -202,8 +202,9 @@ h6 a {
 
 .highcharts-figure,
 .highcharts-data-table table {
-  min-width: 360px;
-  margin: 1em auto;
+  flex: 1;
+  /* margin: 1em auto; */
+  padding-bottom: 1em;
 }
 
 .highcharts-data-table table {

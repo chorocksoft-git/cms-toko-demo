@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const updateChart = (period) => {
     const scrollPosition = window.scrollY; // 스크롤 위치 저장
     const chartData = createChartData(period);
-    chartDraw(chartData);
+    console.log(chartDraw(chartData));
+
     window.scrollTo(0, scrollPosition); // 스크롤 위치 복원
   };
 
