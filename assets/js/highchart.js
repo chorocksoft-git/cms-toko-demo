@@ -320,23 +320,23 @@ function chartDraw({
         },
       },
 
-      {
-        name: "Past Prediction",
-        data: aiPriceData,
-        id: "series2",
-        color: "#AFD1E3",
-        fillColor: {
-          linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
-          stops: [
-            [0, "rgba(175, 209, 227, 0.6)"],
-            [1, "rgba(255, 255, 255, 0.5)"],
-          ],
-        },
-      },
+      // {
+      //   name: "Past Prediction",
+      //   data: aiPriceData,
+      //   id: "series2",
+      //   color: "#AFD1E3",
+      //   fillColor: {
+      //     linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+      //     stops: [
+      //       [0, "rgba(175, 209, 227, 0.6)"],
+      //       [1, "rgba(255, 255, 255, 0.5)"],
+      //     ],
+      //   },
+      // },
       {
         name: "line",
         dashStyle: "Dot",
-        data: [aiPriceData[aiPriceData.length - 1], lastAiPricePoint],
+        data: [weekPriceData[weekPriceData.length - 1], lastAiPricePoint],
         color: "rgba(0, 126, 200, 1)",
         fillColor: {
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
