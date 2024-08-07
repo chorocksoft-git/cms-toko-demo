@@ -51,7 +51,7 @@ h6 a {
   width: 100%;
 }
 
-.main {
+main {
   flex: 1;
   background-color: #fff;
   /* margin: 0 auto; */
@@ -59,7 +59,7 @@ h6 a {
   /* width: 65vw; */
 }
 
-.main .content-title {
+.content-title {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 6px;

@@ -25,7 +25,8 @@
   <body class="layout">
     <div class="container">
       <header>
-        <div class="tab_list">
+        <nav class="tab_list">
+          <!-- nav -->
           <div class="tab tko active" data-value="125347">
             <span>TKO</span>
           </div>
@@ -41,7 +42,9 @@
           <div class="tab sol" data-value="125439">
             <span>SOL</span>
           </div>
-        </div>
+        </nav>
+        <!-- header -->
+
         <div
           style="
             display: flex;
@@ -54,8 +57,10 @@
           <img src="./assets/img/logo.png" alt="logo" />
         </div>
       </header>
-      <div class="main">
+      <main>
+        <!--main  -->
         <section>
+          <!-- section -->
           <p class="content-title">AI prediction price in 1 hour</p>
           <div class="row">
             <p class="content">
@@ -64,9 +69,14 @@
             </p>
           </div>
         </section>
+      </main>
+
+      <section>
+        <!-- section -->
         <!-- 실데이터 -->
         <div class="real_data" style="display: none">
           <section>
+            <!--section  -->
             <div>
               <!-- 표 -->
               <div class="metrics">
@@ -117,6 +127,7 @@
             </div>
           </section>
           <section style="margin-top: 45px">
+            <!-- section -->
             <p class="content-title">
               Recent predicted prices and their accuracy
             </p>
@@ -130,6 +141,7 @@
             </div>
           </section>
           <section>
+            <!-- section -->
             <div class="time-list">
               <div class="time-list-row header">
                 <!-- <div>
@@ -165,6 +177,7 @@
         <div class="data_loading" style="display: none; position: relative">
           <div style="filter: blur(5px)">
             <section>
+              <!-- section -->
               <div>
                 <!-- 표 -->
                 <div class="metrics">
@@ -218,6 +231,8 @@
               </div>
             </section>
             <section style="margin-top: 45px">
+              <!-- section -->
+
               <p class="content-title">
                 Recent predicted prices and their accuracy
               </p>
@@ -231,6 +246,8 @@
               </div>
             </section>
             <section>
+              <!-- section -->
+
               <div class="time-list">
                 <div class="time-list-row header">
                   <!-- <div>
@@ -421,6 +438,7 @@
           <section
             style="position: relative; margin-top: 80px; filter: blur(5px)"
           >
+            <!-- section -->
             <div class="toggle-buttons">
               <button id="1h-button" class="active">1D</button>
               <button id="24h-button">7D</button>
@@ -2698,11 +2716,7 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="main"></div>
+      </section>
     </div>
 
     <script type="text/javascript" src="./assets/js/main.js"></script>
